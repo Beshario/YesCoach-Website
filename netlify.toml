@@ -1,7 +1,8 @@
 [build]
   publish = "."
 
+# Only redirect 404s to index, not all routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
