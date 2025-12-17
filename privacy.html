@@ -3,50 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - YesCoach</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Privacy Policy | YesCoach</title>
+    <meta name="description" content="YesCoach privacy policy. Learn how we handle your data during pre-alpha development.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://yescoach.app/privacy.html">
+
     <style>
+        :root {
+            --color-primary: #006B6B;
+            --color-charcoal: #2C2C2C;
+            --color-stone: #F5F5DC;
+            --color-pure-light: #FFFFFF;
+            --color-soft-shadow: #E8E8E8;
+            --color-text-secondary: #5C5C5C;
+            --color-text-muted: #7f8c8d;
+
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+            line-height: 1.7;
+            color: var(--color-charcoal);
+            background: var(--color-pure-light);
         }
-        h1 { color: #2563eb; }
-        h2 { color: #1e40af; margin-top: 30px; }
-        .last-updated { color: #666; font-style: italic; }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        header {
+            padding: var(--space-xl) 0;
+            text-align: center;
+            border-bottom: 1px solid var(--color-soft-shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        main {
+            padding: var(--space-2xl) 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.02em;
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-2xl);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+
+        ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-lg);
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: var(--space-sm);
+        }
+
+        strong {
+            color: var(--color-charcoal);
+        }
+
+        .highlight-box {
+            background: var(--color-stone);
+            padding: var(--space-lg);
+            border-radius: 8px;
+            margin: var(--space-lg) 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--color-charcoal);
+        }
+
+        footer {
+            border-top: 1px solid var(--color-soft-shadow);
+            padding: var(--space-xl) 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            font-size: 0.875rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            margin-top: var(--space-xl);
+        }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy - YesCoach</h1>
-    <p class="last-updated">Last Updated: November 28, 2025</p>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">YesCoach</a>
+        </div>
+    </header>
 
-    <h2>Overview</h2>
-    <p>YesCoach is a biomechanically-intelligent strength training platform currently in internal testing.</p>
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: December 2025</p>
 
-    <h2>Data Collection</h2>
-    <p><strong>During internal testing, YesCoach does not collect, transmit, or store any user data.</strong></p>
-    <p>All workout data, exercise history, and preferences are stored locally on your device only. No information is sent to external servers.</p>
+            <h2>Overview</h2>
+            <p>YesCoach is a strength training platform currently in pre-alpha development. Your privacy matters to us.</p>
 
-    <h2>Local Storage</h2>
-    <p>The app uses local device storage to save:</p>
-    <ul>
-        <li>Workout plans and exercise configurations</li>
-        <li>Set tracking and performance history</li>
-        <li>User preferences and settings</li>
-    </ul>
-    <p>This data remains on your device and is never transmitted.</p>
+            <div class="highlight-box">
+                <p><strong>During pre-alpha, YesCoach does not collect, transmit, or store any personal training data.</strong></p>
+            </div>
 
-    <h2>Third-Party Services</h2>
-    <p>During internal testing, the app does not integrate with any third-party services or analytics platforms.</p>
+            <h2>App Data</h2>
+            <p>All workout data, exercise history, and preferences are stored locally on your device only. No training information is sent to external servers.</p>
+            <p>The app uses local device storage to save:</p>
+            <ul>
+                <li>Workout plans and exercise configurations</li>
+                <li>Set tracking and performance history</li>
+                <li>User preferences and settings</li>
+            </ul>
+            <p>This data remains on your device and is never transmitted.</p>
 
-    <h2>Future Changes</h2>
-    <p>Before public release, this privacy policy will be updated to reflect any data collection practices. Users will be notified of any changes.</p>
+            <h2>Email List</h2>
+            <p>If you join our early access list, we collect only your email address. We use this to send occasional updates about YesCoach development. You can unsubscribe at any time.</p>
 
-    <h2>Contact</h2>
-    <p>For questions about this privacy policy, please contact us.</p>
+            <h2>Third-Party Services</h2>
+            <p>During pre-alpha, the app does not integrate with any third-party analytics or tracking services.</p>
 
-    <p><em>Note: This policy applies to internal testing versions only.</em></p>
+            <h2>Future Changes</h2>
+            <p>Before public release, this privacy policy will be updated to reflect any data collection practices. Users will be notified of any changes.</p>
+
+            <h2>Contact</h2>
+            <p>For questions about this privacy policy, please reach out through our website.</p>
+
+            <p class="note">This policy applies to pre-alpha versions only.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><a href="index.html">Back to YesCoach</a></p>
+            <p style="margin-top: var(--space-sm);">&copy; 2025 YesCoach</p>
+        </div>
+    </footer>
 </body>
 </html>

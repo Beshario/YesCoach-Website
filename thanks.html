@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | YesCoach</title>
+    <meta name="robots" content="noindex">
+    <style>
+        :root {
+            --color-primary: #006B6B;
+            --color-accent: #4ECDC4;
+            --color-warm: #FF8C42;
+            --color-charcoal: #1a1a1a;
+            --color-pure-light: #FFFFFF;
+            --color-text: #2C2C2C;
+            --color-text-secondary: #4A4A4A;
+            --color-text-muted: #6B6B6B;
+            --color-soft-shadow: #E8E8E8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.65;
+            color: var(--color-text);
+            background: var(--color-pure-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 3rem 0;
+        }
+
+        .thank-you {
+            text-align: center;
+        }
+
+        .checkmark {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #008080 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .checkmark svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .note {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-soft-shadow);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            padding: 1.5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--color-soft-shadow);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">YesCoach</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="thank-you">
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+
+                <h1>Thank you.</h1>
+
+                <p class="message">
+                    It means a lot that you're interested in what we're building.
+                </p>
+
+                <p class="message">
+                    We're working eagerly on YesCoach — refining the biomechanics, polishing the experience, and making sure it's something genuinely useful.
+                </p>
+
+                <p class="note">
+                    You'll hear from us as things take shape. In the meantime, thanks for your patience and trust.
+                </p>
+
+                <a href="/" class="back-link">← Back to YesCoach</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><a href="privacy.html">Privacy</a> · © 2025 YesCoach</p>
+        </div>
+    </footer>
+</body>
+</html>
