@@ -1,7 +1,18 @@
 [build]
   publish = "."
 
-# Only redirect 404s to index, not all routes
+# Serve HTML pages directly (don't catch in fallback)
+[[redirects]]
+  from = "/thanks.html"
+  to = "/thanks.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy.html"
+  status = 200
+
+# Fallback for 404s
 [[redirects]]
   from = "/*"
   to = "/index.html"
