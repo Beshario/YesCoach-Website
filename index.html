@@ -31,6 +31,12 @@
     <!-- Favicon (add your favicon files) -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Google Fonts - preloaded to prevent flash -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=block">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=block" rel="stylesheet">
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -51,11 +57,13 @@
 
     <style>
         :root {
-            /* Vibrant colors from app */
-            --color-primary: #006B6B;
-            --color-primary-light: #20B2AA;
-            --color-accent: #4ECDC4;
-            --color-warm: #FF8C42;
+            /* YesCoach logo colors */
+            --color-primary: #4A8FE3;        /* Blue from logo */
+            --color-primary-dark: #3B7DD8;   /* Darker blue for hover */
+            --color-secondary: #E53935;      /* Red from logo */
+            --color-accent: #5B8DEF;         /* Light blue accent */
+            --color-warm: #E67E22;           /* Contrast-adjusted orange */
+            --color-warm-dark: #D35400;      /* Darker orange for hover */
             --color-charcoal: #1a1a1a;
             --color-stone: #F5F5DC;
             --color-pure-light: #FFFFFF;
@@ -94,9 +102,19 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-family: 'Roboto', sans-serif;
             font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-accent);
+            font-weight: 500;
+            color: var(--color-charcoal);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
         }
 
         /* Hero */
@@ -138,7 +156,7 @@
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--color-accent);
+            color: var(--color-secondary);
             margin-bottom: var(--space-lg);
             font-weight: 500;
         }
@@ -172,7 +190,7 @@
         }
 
         .transform-col.after ul {
-            color: #7FFFE0;
+            color: #7CB3F4;
             font-weight: 500;
         }
 
@@ -201,7 +219,7 @@
         .feature-block h3 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--color-primary);
+            color: var(--color-secondary);
             margin-bottom: var(--space-sm);
         }
 
@@ -212,7 +230,7 @@
 
         /* Promise */
         .promise {
-            background: linear-gradient(135deg, var(--color-primary) 0%, #008080 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             padding: var(--space-xl);
             border-radius: 8px;
             margin: var(--space-xl) 0;
@@ -231,7 +249,7 @@
         }
 
         .promise strong {
-            color: #7FFFE0;
+            color: #FFCF70;
         }
 
         /* CTA */
@@ -293,7 +311,7 @@
         }
 
         .submit-btn:hover {
-            background: #e67a2e;
+            background: var(--color-warm-dark);
             transform: translateY(-1px);
         }
 
@@ -341,7 +359,10 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">YesCoach</div>
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="YesCoach logo">
+                <span>YesCoach</span>
+            </a>
         </div>
     </header>
 
