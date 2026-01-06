@@ -5,53 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | YesCoach</title>
     <meta name="robots" content="noindex">
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts - preloaded -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=block">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=block" rel="stylesheet">
+
     <style>
-        :root {
-            --color-primary: #006B6B;
-            --color-accent: #4ECDC4;
-            --color-warm: #FF8C42;
-            --color-charcoal: #1a1a1a;
-            --color-pure-light: #FFFFFF;
-            --color-text: #2C2C2C;
-            --color-text-secondary: #4A4A4A;
-            --color-text-muted: #6B6B6B;
-            --color-soft-shadow: #E8E8E8;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.65;
-            color: var(--color-text);
-            background: var(--color-pure-light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        .container {
-            max-width: 540px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        header {
-            padding: 1.5rem 0;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-accent);
-            text-decoration: none;
         }
 
         main {
             flex: 1;
             display: flex;
             align-items: center;
-            padding: 3rem 0;
+            padding: var(--space-2xl) 0;
         }
 
         .thank-you {
@@ -61,12 +36,12 @@
         .checkmark {
             width: 64px;
             height: 64px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, #008080 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
+            margin: 0 auto var(--space-xl);
         }
 
         .checkmark svg {
@@ -81,28 +56,28 @@
             font-size: 2rem;
             font-weight: 600;
             color: var(--color-charcoal);
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--space-lg);
             letter-spacing: -0.02em;
         }
 
         .message {
             font-size: 1.1rem;
             color: var(--color-text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-md);
             line-height: 1.7;
         }
 
         .note {
             font-size: 1rem;
             color: var(--color-text-muted);
-            margin-top: 2rem;
-            padding-top: 2rem;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-xl);
             border-top: 1px solid var(--color-soft-shadow);
         }
 
         .back-link {
             display: inline-block;
-            margin-top: 2rem;
+            margin-top: var(--space-xl);
             color: var(--color-accent);
             text-decoration: none;
             font-weight: 500;
@@ -111,28 +86,15 @@
         .back-link:hover {
             text-decoration: underline;
         }
-
-        footer {
-            padding: 1.5rem 0;
-            text-align: center;
-            border-top: 1px solid var(--color-soft-shadow);
-        }
-
-        footer p {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-        }
-
-        footer a {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="/" class="logo">YesCoach</a>
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="YesCoach logo">
+                <span>YesCoach</span>
+            </a>
         </div>
     </header>
 

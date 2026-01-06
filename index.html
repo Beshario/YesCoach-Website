@@ -31,6 +31,9 @@
     <!-- Favicon (add your favicon files) -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="styles.css">
+
     <!-- Google Fonts - preloaded to prevent flash -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,67 +59,6 @@
     </script>
 
     <style>
-        :root {
-            /* YesCoach logo colors */
-            --color-primary: #4A8FE3;        /* Blue from logo */
-            --color-primary-dark: #3B7DD8;   /* Darker blue for hover */
-            --color-secondary: #E53935;      /* Red from logo */
-            --color-accent: #5B8DEF;         /* Light blue accent */
-            --color-warm: #E67E22;           /* Contrast-adjusted orange */
-            --color-warm-dark: #D35400;      /* Darker orange for hover */
-            --color-charcoal: #1a1a1a;
-            --color-stone: #F5F5DC;
-            --color-pure-light: #FFFFFF;
-            --color-soft-shadow: #E8E8E8;
-            --color-text: #2C2C2C;
-            --color-text-secondary: #4A4A4A;
-            --color-text-muted: #6B6B6B;
-
-            --space-xs: 0.25rem;
-            --space-sm: 0.5rem;
-            --space-md: 1rem;
-            --space-lg: 1.5rem;
-            --space-xl: 2rem;
-            --space-2xl: 3rem;
-            --space-3xl: 4rem;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.65;
-            color: var(--color-text);
-            background: var(--color-pure-light);
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 var(--space-lg);
-        }
-
-        /* Header */
-        header {
-            padding: var(--space-lg) 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--color-charcoal);
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 32px;
-            width: auto;
-        }
-
         /* Hero */
         .hero {
             padding: var(--space-3xl) 0 var(--space-2xl);
@@ -321,25 +263,44 @@
             margin-top: var(--space-md);
         }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--color-soft-shadow);
-            padding: var(--space-lg) 0;
+        /* Twitter CTA */
+        .twitter-cta {
             text-align: center;
+            padding: var(--space-xl) 0;
+            border-bottom: 1px solid var(--color-soft-shadow);
         }
 
-        footer p {
-            font-size: 0.8rem;
+        .twitter-cta p {
             color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+            font-size: 0.95rem;
         }
 
-        footer a {
-            color: var(--color-accent);
+        .twitter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.75rem var(--space-lg);
+            font-size: 1rem;
+            font-weight: 600;
+            background: #1DA1F2;
+            color: var(--color-pure-light);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
             text-decoration: none;
+            transition: all 0.2s;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .twitter-btn:hover {
+            background: #1a8cd8;
+            transform: translateY(-1px);
+        }
+
+        .twitter-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
 
         /* Responsive */
@@ -379,6 +340,18 @@
                 <p class="hero-sub">
                     YesCoach helps make the invisible visible. Through biomechanical modeling and visual feedback, it shows muscle activation, recovery, and training patterns — grounded in proven science and how the body actually works.
                 </p>
+            </div>
+        </section>
+
+        <section class="twitter-cta">
+            <div class="container">
+                <p>Building in the open. Thinking through problems, sharing what works, what doesn't.</p>
+                <a href="https://twitter.com/YCoach58265" class="twitter-btn" target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                    </svg>
+                    Follow along on Twitter
+                </a>
             </div>
         </section>
 
