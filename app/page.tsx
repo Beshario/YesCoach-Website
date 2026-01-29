@@ -12,11 +12,11 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-32 lg:py-40">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-6">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0 }}
+              transition={{ duration: 0.4, delay: 0 }}
               className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
             >
               See what your training is doing.
@@ -25,7 +25,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.4, delay: 0.15 }}
               className="text-xl text-muted-foreground space-y-1"
             >
               <p>You put in the work.</p>
@@ -37,7 +37,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-base text-muted-foreground leading-relaxed"
             >
               YesCoach helps make the invisible visible. Through biomechanical modeling and visual feedback,
@@ -54,7 +54,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0 }}
+            transition={{ duration: 0.3, delay: 0 }}
             viewport={{ once: false }}
             className="text-muted-foreground mb-6"
           >
@@ -63,7 +63,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
             viewport={{ once: false }}
           >
             <Button asChild size="lg" className="bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white">
@@ -84,46 +84,53 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0 }}
+            transition={{ duration: 0.3, delay: 0 }}
             viewport={{ once: false }}
             className="text-3xl lg:text-4xl font-bold mb-16 text-foreground"
           >
             What you get
           </motion.h2>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6">
             {[
               {
                 title: "Muscle activation you can see",
-                description: "Select an exercise and see which muscles are involved — and how much. Activation is based on joint mechanics and movement, not generic labels."
+                description: "Select an exercise and see which muscles are involved — and how much. Activation is based on joint mechanics and movement, not generic labels.",
+                gradient: "from-primary/10 to-primary/5"
               },
               {
                 title: "Recovery you can understand",
-                description: "See which muscle groups are fresh and which are still recovering. Plan sessions based on readiness, not just a calendar."
+                description: "See which muscle groups are fresh and which are still recovering. Plan sessions based on readiness, not just a calendar.",
+                gradient: "from-accent/10 to-accent/5"
               },
               {
                 title: "Patterns over time",
-                description: "Watch how your training accumulates. Notice imbalances early. Connect decisions to outcomes."
+                description: "Watch how your training accumulates. Notice imbalances early. Connect decisions to outcomes.",
+                gradient: "from-secondary/10 to-secondary/5"
               },
               {
                 title: "Intelligence that adapts",
-                description: "Your training history matters. Strength in one movement informs others. Suggestions evolve as your patterns evolve."
+                description: "Your training history matters. Strength in one movement informs others. Suggestions evolve as your patterns evolve.",
+                gradient: "from-primary/10 to-accent/5"
               }
             ].map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: false }}
               >
-                <Card className="p-8 h-full border-border/50 hover:border-primary/50 transition-colors">
-                  <h3 className="text-xl font-semibold text-primary mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
+                <Card className={`group relative p-8 h-full bg-gradient-to-br ${feature.gradient} border-2 border-border/50 hover:border-primary/70 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative">
+                    <h3 className="text-xl font-bold text-primary mb-3 group-hover:scale-[1.02] transition-transform">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -135,9 +142,9 @@ export default function Home() {
       <section className="py-32">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0 }}
+            transition={{ duration: 0.3, delay: 0 }}
             viewport={{ once: false }}
             className="space-y-4 text-center"
           >
@@ -147,7 +154,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
               viewport={{ once: false }}
               className="text-xl text-muted-foreground"
             >
@@ -156,7 +163,7 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
               viewport={{ once: false }}
               className="text-lg text-muted-foreground pt-4"
             >
@@ -172,7 +179,7 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0 }}
+            transition={{ duration: 0.3, delay: 0 }}
             viewport={{ once: false }}
             className="text-3xl font-bold mb-4 text-primary"
           >
@@ -181,7 +188,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
             viewport={{ once: false }}
             className="text-muted-foreground mb-8"
           >
@@ -190,7 +197,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
             viewport={{ once: false }}
           >
             <EmailForm />

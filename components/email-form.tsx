@@ -13,6 +13,7 @@ export function EmailForm() {
       data-netlify="true"
       netlify-honeypot="bot-field"
       className="w-full max-w-[400px] mx-auto"
+      suppressHydrationWarning
     >
       <input type="hidden" name="form-name" value="early-access" />
 
