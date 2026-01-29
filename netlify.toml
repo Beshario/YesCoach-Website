@@ -1,19 +1,30 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = ".next"
 
-# Serve HTML pages directly (don't catch in fallback)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [[redirects]]
   from = "/thanks.html"
-  to = "/thanks.html"
-  status = 200
+  to = "/thanks"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/privacy.html"
-  to = "/privacy.html"
-  status = 200
+  to = "/privacy"
+  status = 301
+  force = true
 
-# Fallback for 404s
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
+  from = "/terms.html"
+  to = "/terms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
