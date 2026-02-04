@@ -10,10 +10,7 @@ export default function TermsPage() {
       <header className="border-b border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
           <Link href="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
+            <img src="/logo.png" alt="YesCoach logo" className="h-5 w-auto" />
             <span className="font-semibold">YesCoach</span>
           </Link>
         </div>
@@ -155,6 +152,9 @@ export default function TermsPage() {
       {/* Footer */}
       <footer className="border-t border-border py-8">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-center mb-4">
+            <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">
               Home

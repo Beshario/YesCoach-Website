@@ -6,6 +6,15 @@ import Link from "next/link"
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background">
+      <header className="border-b border-border/70">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12 py-5">
+          <Link href="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+            <img src="/logo.png" alt="YesCoach logo" className="h-5 w-auto" />
+            <span className="text-base font-semibold tracking-tight">YesCoach</span>
+          </Link>
+        </div>
+      </header>
+
       <main className="py-24 lg:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -140,6 +149,9 @@ export default function PrivacyPage() {
 
       <footer className="border-t border-border py-12">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-center mb-4">
+            <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
+          </div>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">
               Home

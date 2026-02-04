@@ -12,6 +12,9 @@ export default function ThanksPage() {
       <div className="max-w-2xl w-full">
         <Card className="text-center">
           <CardContent className="pt-12 pb-8">
+            <div className="flex items-center justify-center mb-6">
+              <img src="/logo.png" alt="YesCoach logo" className="h-8 w-auto" />
+            </div>
             {/* Animated checkmark */}
             <motion.div
               initial={{ scale: 0 }}

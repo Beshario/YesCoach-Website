@@ -9,6 +9,18 @@ import { EmailForm } from "@/components/email-form"
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      <header className="border-b border-border/70">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between gap-4">
+          <Link href="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+            <img src="/logo.png" alt="YesCoach logo" className="h-5 w-auto" />
+            <span className="text-lg font-semibold tracking-tight">YesCoach</span>
+          </Link>
+          <span className="hidden sm:inline text-sm text-muted-foreground">
+            Biomechanics-based strength training
+          </span>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="py-32 lg:py-40">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -204,6 +216,26 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-center mb-4">
+            <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
+            <Link href="/privacy" className="hover:text-foreground transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/terms" className="hover:text-foreground transition-colors">
+              Terms & Conditions
+            </Link>
+            <span>·</span>
+            <span>© 2026 YesCoach</span>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
