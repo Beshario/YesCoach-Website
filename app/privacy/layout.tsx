@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | YesCoach',
-  description: 'YesCoach privacy policy. Learn how we handle your data during pre-alpha development.',
+  description: 'YesCoach privacy policy. Learn how we handle your data during beta.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://yescoach.app/privacy',

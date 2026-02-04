@@ -34,10 +34,10 @@ export default function TermsPage() {
           <div className="space-y-8">
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                1. Pre-Alpha Status
+                1. Beta Status
               </h2>
               <p className="text-muted-foreground mb-4">
-                YesCoach is currently in pre-alpha. Features may change, break, or be removed at any time. Data may be reset.
+                YesCoach is currently in beta. Features may change, break, or be removed at any time. Data may be reset.
               </p>
               <p className="text-muted-foreground">
                 By using the app, you acknowledge this early stage.
@@ -55,7 +55,7 @@ export default function TermsPage() {
                 Training data is currently stored locally and/or in early backend systems.
               </p>
               <p className="text-muted-foreground mb-4">
-                The app provides export and import functionality so you can back up your training data. While we do our best to maintain data integrity and work with you on data preservation, we make no guarantees about data persistence during pre-alpha. You are responsible for backing up your data using the export feature.
+                The app provides export and import functionality so you can back up your training data. While we do our best to maintain data integrity and work with you on data preservation, we make no guarantees about data persistence during beta. You are responsible for backing up your data using the export feature.
               </p>
               <p className="text-muted-foreground">
                 You can request deletion of your data at any time by contacting us.
@@ -110,7 +110,7 @@ export default function TermsPage() {
                 6. Limitation of Liability
               </h2>
               <p className="text-muted-foreground mb-4">
-                YesCoach is provided "as is" during pre-alpha.
+                YesCoach is provided "as is" during beta.
               </p>
               <p className="text-muted-foreground mb-4">
                 We are not liable for:

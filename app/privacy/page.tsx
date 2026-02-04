@@ -35,7 +35,7 @@ export default function PrivacyPage() {
                 1. Overview
               </h2>
               <p>
-                YesCoach is an early-stage, pre-alpha application. We collect only the minimum information needed to operate, improve the app, and communicate with early users.
+                YesCoach is a beta application. We collect only the minimum information needed to operate, improve the app, and communicate with users.
               </p>
             </section>
 
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
                 <li>Device information (app version, platform, crash data)</li>
               </ul>
               <p>
-                Training and body data may be stored locally and/or in early backend systems during pre-alpha.
+                Training and body data may be stored locally and/or in backend systems during beta.
               </p>
             </section>
 
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
                 4. Data Storage & Retention
               </h2>
-              <p className="mb-3">Because YesCoach is in pre-alpha:</p>
+              <p className="mb-3">Because YesCoach is in beta:</p>
               <ul className="list-disc pl-6 space-y-2 mb-3">
                 <li>Data may be reset or deleted as features evolve</li>
                 <li>We do not guarantee long-term data persistence</li>
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
             </section>
 
             <p className="text-sm italic text-muted-foreground mt-12">
-              This policy applies to pre-alpha versions only.
+              This policy applies to the beta version.
             </p>
           </div>
         </motion.div>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | YesCoach',
-  description: 'YesCoach terms and conditions. Learn about our pre-alpha service terms.',
+  description: 'YesCoach terms and conditions. Learn about our beta service terms.',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://yescoach.app/terms',
