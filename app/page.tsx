@@ -58,9 +58,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 className="text-base text-muted-foreground leading-relaxed"
               >
-                YesCoach helps make the invisible visible. Through biomechanical modeling and visual feedback,
-                it shows muscle activation, recovery, and training patterns — grounded in proven science and
-                how the body actually works.
+                Session by session, patterns unfold. Week by week, the picture builds.
               </motion.p>
             </div>
 
