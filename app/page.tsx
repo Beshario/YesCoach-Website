@@ -1,10 +1,12 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { EmailForm } from "@/components/email-form"
+import { ThemeToggle } from '@/components/theme-toggle'
+import { PhoneFrame } from '@/components/phone-frame'
+import { AppScreenshot } from '@/components/app-screenshot'
 
 export default function Home() {
   return (
@@ -18,44 +20,80 @@ export default function Home() {
           <span className="hidden sm:inline text-sm text-muted-foreground">
             Biomechanics-based strength training
           </span>
+          <ThemeToggle />
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-32 lg:py-40">
+      <section className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl space-y-6">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0 }}
-              className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
-            >
-              See what your training is doing.
-            </motion.h1>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
+            {/* Text */}
+            <div className="space-y-6">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0 }}
+                className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
+              >
+                See what your training is doing.
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                className="text-xl text-muted-foreground space-y-1"
+              >
+                <p>You put in the work.</p>
+                <p>But are the right muscles working?</p>
+                <p>Are you recovered enough to push today?</p>
+                <p>Is your training balanced over time?</p>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="text-base text-muted-foreground leading-relaxed"
+              >
+                YesCoach helps make the invisible visible. Through biomechanical modeling and visual feedback,
+                it shows muscle activation, recovery, and training patterns — grounded in proven science and
+                how the body actually works.
+              </motion.p>
+            </div>
+
+            {/* Phone mockups */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.15 }}
-              className="text-xl text-muted-foreground space-y-1"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative h-[540px] flex items-center justify-center lg:justify-end"
             >
-              <p>You put in the work.</p>
-              <p>But are the right muscles working?</p>
-              <p>Are you recovered enough to push today?</p>
-              <p>Is your training balanced over time?</p>
+              {/* Back phone — behind, rotated */}
+              <div className="absolute left-4 lg:left-0 top-4 rotate-[-7deg] opacity-60 w-[190px] z-0">
+                <PhoneFrame>
+                  <AppScreenshot
+                    dark="/screenshots/dark/home-back.jpg"
+                    light="/screenshots/light/home-back.jpg"
+                    alt="YesCoach app back view"
+                  />
+                </PhoneFrame>
+              </div>
+
+              {/* Front phone — in front, slight counter-rotation */}
+              <div className="relative rotate-[2deg] w-[210px] ml-24 lg:ml-32 z-10">
+                <PhoneFrame>
+                  <AppScreenshot
+                    dark="/screenshots/dark/home-front.jpg"
+                    light="/screenshots/light/home-front.jpg"
+                    alt="YesCoach app home screen"
+                  />
+                </PhoneFrame>
+              </div>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="text-base text-muted-foreground leading-relaxed"
-            >
-              YesCoach helps make the invisible visible. Through biomechanical modeling and visual feedback,
-              it shows muscle activation, recovery, and training patterns — grounded in proven science and
-              how the body actually works.
-            </motion.p>
           </div>
         </div>
       </section>
@@ -91,61 +129,224 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-32">
+      <section className="py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: false }}
-            className="text-3xl lg:text-4xl font-bold mb-16 text-foreground"
+            className="text-3xl lg:text-4xl font-bold mb-20 text-foreground"
           >
             What you get
           </motion.h2>
 
-          <div className="grid lg:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Muscle activation you can see",
-                description: "Select an exercise and see which muscles are involved — and how much. Activation is based on joint mechanics and movement, not generic labels.",
-                gradient: "from-primary/10 to-primary/5"
-              },
-              {
-                title: "Recovery you can understand",
-                description: "See which muscle groups are fresh and which are still recovering. Plan sessions based on readiness, not just a calendar.",
-                gradient: "from-accent/10 to-accent/5"
-              },
-              {
-                title: "Patterns over time",
-                description: "Watch how your training accumulates. Notice imbalances early. Connect decisions to outcomes.",
-                gradient: "from-secondary/10 to-secondary/5"
-              },
-              {
-                title: "Intelligence that adapts",
-                description: "Your training history matters. Strength in one movement informs others. Suggestions evolve as your patterns evolve.",
-                gradient: "from-primary/10 to-accent/5"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: false }}
-              >
-                <Card className={`group relative p-8 h-full bg-gradient-to-br ${feature.gradient} border-2 border-border/50 hover:border-primary/70 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative">
-                    <h3 className="text-xl font-bold text-primary mb-3 group-hover:scale-[1.02] transition-transform">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="space-y-24">
+
+            {/* Row 1: text left, screenshot right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: false }}
+              className="grid lg:grid-cols-2 gap-12 items-center"
+            >
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-primary">Log sets the way you actually train</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Weight, reps, and how hard it felt — logged in seconds. Every set feeds the model that builds a real picture of your training over time.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[210px]">
+                  <PhoneFrame>
+                    <AppScreenshot
+                      dark="/screenshots/dark/set-logging.jpg"
+                      light="/screenshots/light/set-logging.jpg"
+                      alt="Logging a set: weight, reps, RIR and rest timer"
+                    />
+                  </PhoneFrame>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Row 2: screenshot left (dark mode only), text right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: false }}
+              className="flex flex-col lg:flex-row gap-12 items-center"
+            >
+              <div className="hidden dark:flex justify-center lg:order-1 order-2">
+                <div className="w-[210px]">
+                  <PhoneFrame>
+                    <AppScreenshot
+                      dark="/screenshots/dark/day-summary.jpg"
+                      alt="Day summary showing muscle work body map"
+                    />
+                  </PhoneFrame>
+                </div>
+              </div>
+              <div className="space-y-4 lg:order-2 order-1">
+                <h3 className="text-2xl font-bold text-primary">See exactly what you worked</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  After each session, a color-coded body map shows which muscles you hit and how hard — front and back. Not a list of exercises. A picture of the session.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Row 3: text left, screenshot right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: false }}
+              className="grid lg:grid-cols-2 gap-12 items-center"
+            >
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-primary">Every session, on the map</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  A color-coded calendar shows when you trained and how hard. Spot gaps, see your rhythm, and navigate back to any day in your history.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                <div className="w-[210px]">
+                  <PhoneFrame>
+                    <AppScreenshot
+                      dark="/screenshots/dark/calendar-track.jpg"
+                      light="/screenshots/light/calendar-track.jpg"
+                      alt="Training calendar with color-coded sessions"
+                    />
+                  </PhoneFrame>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Row 4: screenshot left, text right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              viewport={{ once: false }}
+              className="grid lg:grid-cols-2 gap-12 items-center"
+            >
+              <div className="flex justify-center lg:order-1 order-2">
+                <div className="w-[210px]">
+                  <PhoneFrame>
+                    <AppScreenshot
+                      dark="/screenshots/dark/week-summary.jpg"
+                      light="/screenshots/light/week-summary.jpg"
+                      alt="Programs screen showing preset and custom training programs"
+                    />
+                  </PhoneFrame>
+                </div>
+              </div>
+              <div className="space-y-4 lg:order-2 order-1">
+                <h3 className="text-2xl font-bold text-primary">Start with a proven program</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Pick from structures like Push/Pull/Legs or Upper/Lower, or build your own. Your training plan lives in the app, ready to load when you show up.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Monthly Insights */}
+      <section className="py-24 border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: false }}
+            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground text-center"
+          >
+            More of what's inside
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground mb-12 text-lg text-center"
+          >
+            Monthly breakdowns, balance charts, and the details that make training clearer.
+          </motion.p>
+
+          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory lg:overflow-visible lg:flex-wrap lg:justify-center lg:snap-none">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0 }}
+              viewport={{ once: false }}
+              className="flex-shrink-0 snap-start w-[185px]"
+            >
+              <PhoneFrame>
+                <AppScreenshot
+                  dark="/screenshots/dark/month-pf.jpg"
+                  light="/screenshots/light/month-pf.jpg"
+                  alt="Month summary: sessions, sets, volume and muscle exposure map"
+                />
+              </PhoneFrame>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              viewport={{ once: false }}
+              className="flex-shrink-0 snap-start w-[185px]"
+            >
+              <PhoneFrame>
+                <AppScreenshot
+                  dark="/screenshots/dark/month-balance.jpg"
+                  light="/screenshots/light/month-balance.jpg"
+                  alt="Monthly muscle balance chart"
+                />
+              </PhoneFrame>
+            </motion.div>
+
+            {/*
+              This screenshot only exists in light mode (no dark equivalent).
+              We pass the light image as the `dark` prop so AppScreenshot always renders it,
+              but `dark:hidden` on the wrapper ensures it is never shown in dark mode.
+              If this class is ever removed, audit that a dark version exists first.
+            */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              viewport={{ once: false }}
+              className="dark:hidden flex-shrink-0 snap-start w-[185px]"
+            >
+              <PhoneFrame>
+                <AppScreenshot
+                  dark="/screenshots/light/month-graph.jpg"
+                  alt="Monthly performance graph"
+                />
+              </PhoneFrame>
+            </motion.div>
+
+            {/* Dark mode only — no light equivalent yet */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              viewport={{ once: false }}
+              className="hidden dark:block flex-shrink-0 snap-start w-[185px]"
+            >
+              <PhoneFrame>
+                <AppScreenshot
+                  dark="/screenshots/dark/general.jpg"
+                  alt="YesCoach app overview"
+                />
+              </PhoneFrame>
+            </motion.div>
+
           </div>
         </div>
       </section>
@@ -204,7 +405,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-muted-foreground mb-8"
           >
-            If this resonates, you can follow along as it takes shape.
+            Curious where this goes? Follow along as it takes shape.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
