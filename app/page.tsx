@@ -40,17 +40,14 @@ export default function Home() {
                 See what your training is doing.
               </motion.h1>
 
-              <motion.div
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 }}
-                className="text-xl text-muted-foreground space-y-1"
+                className="text-xl text-muted-foreground"
               >
-                <p>You put in the work.</p>
-                <p>But are the right muscles working?</p>
-                <p>Are you recovered enough to push today?</p>
-                <p>Is your training balanced over time?</p>
-              </motion.div>
+                Muscle load. Recovery state. Long-term balance.
+              </motion.p>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -58,7 +55,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0.3 }}
                 className="text-base text-muted-foreground leading-relaxed"
               >
-                Session by session, patterns unfold. Week by week, the picture builds.
+                Session by session, patterns become clear.
               </motion.p>
             </div>
 
