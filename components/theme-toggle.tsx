@@ -11,12 +11,12 @@ export function ThemeToggle() {
 
   useEffect(() => { setMounted(true) }, [])
 
-  // Render sun by default (dark mode = click to go light)
+  // Render moon by default (light mode = click to go dark)
   // avoids layout shift before mount
   if (!mounted) {
     return (
       <Button variant="ghost" size="icon" aria-label="Toggle theme">
-        <Sun className="h-4 w-4" />
+        <Moon className="h-4 w-4" />
       </Button>
     )
   }

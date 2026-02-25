@@ -21,8 +21,8 @@ export function AppScreenshot({
 
   useEffect(() => { setMounted(true) }, [])
 
-  // Before mount: show dark (matches defaultTheme="dark")
-  const src = mounted && resolvedTheme === 'light' && light ? light : dark
+  // Before mount: show light (matches defaultTheme="light")
+  const src = !mounted || resolvedTheme === 'light' ? (light ?? dark) : dark
 
   return (
     <Image
