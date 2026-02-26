@@ -46,16 +46,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0.15 }}
                 className="text-xl text-muted-foreground"
               >
-                Muscle load. Recovery state. Long-term balance.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="text-base text-muted-foreground leading-relaxed"
-              >
-                Session by session, patterns become clear.
+                Real-time muscle readiness. Research-based dose tracking. Clear visual feedback — session by session.
               </motion.p>
             </div>
 
@@ -131,10 +122,19 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             viewport={{ once: false }}
-            className="text-3xl lg:text-4xl font-bold mb-20 text-foreground"
+            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
           >
-            What you get
+            A model of your body.
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground text-lg mb-20 max-w-2xl"
+          >
+            Every set feeds a living model. Muscle dose, recovery state, accumulated load, movement balance — tracked together, updated every session.
+          </motion.p>
 
           <div className="space-y-24">
 
@@ -147,9 +147,9 @@ export default function Home() {
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary">Log sets the way you actually train</h3>
+                <h3 className="text-2xl font-bold text-primary">Fast to log. Easy to understand.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Weight, reps, and how hard it felt — logged in seconds. Every set feeds the model that builds a real picture of your training over time.
+                  Weight. Reps. Effort (RIR). Logged in seconds. Every set feeds the model — no manual tagging, no setup.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -171,22 +171,32 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: false }}
-              className="flex flex-col lg:flex-row gap-12 items-center"
+              className="grid lg:grid-cols-2 gap-12 items-center"
             >
-              <div className="hidden dark:flex justify-center lg:order-1 order-2">
-                <div className="w-[210px]">
+              <div className="flex justify-center gap-4 lg:order-1 order-2">
+                <div className="w-[165px]">
                   <PhoneFrame>
                     <AppScreenshot
                       dark="/screenshots/dark/day-summary.jpg"
+                      light="/screenshots/light/day-summary.jpg"
                       alt="Day summary showing muscle work body map"
+                    />
+                  </PhoneFrame>
+                </div>
+                <div className="w-[165px]">
+                  <PhoneFrame>
+                    <AppScreenshot
+                      dark="/screenshots/dark/day-summary-exercises.jpg"
+                      light="/screenshots/light/day-summary-exercises.jpg"
+                      alt="Day summary with highlighted exercises per muscle"
                     />
                   </PhoneFrame>
                 </div>
               </div>
               <div className="space-y-4 lg:order-2 order-1">
-                <h3 className="text-2xl font-bold text-primary">See exactly what you worked</h3>
+                <h3 className="text-2xl font-bold text-primary">After every session, see the session.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  After each session, a color-coded body map shows which muscles you hit and how hard — front and back. Not a list of exercises. A picture of the session.
+                  A color-coded body map shows which muscles were stressed and how hard — front and back. Tap any muscle to see the exercises that worked it. A picture, not a list.
                 </p>
               </div>
             </motion.div>
@@ -200,9 +210,9 @@ export default function Home() {
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary">Every session, on the map</h3>
+                <h3 className="text-2xl font-bold text-primary">Patterns emerge.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  A color-coded calendar shows when you trained and how hard. Spot gaps, see your rhythm, and navigate back to any day in your history.
+                  Weekly rhythm. Monthly balance. Long-term accumulation. Strength trends and muscle exposure side by side — drill from month to week to day to exercise.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -238,9 +248,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="space-y-4 lg:order-2 order-1">
-                <h3 className="text-2xl font-bold text-primary">Start with a proven program</h3>
+                <h3 className="text-2xl font-bold text-primary">Start with a proven structure.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Pick from structures like Push/Pull/Legs or Upper/Lower, or build your own. Your training plan lives in the app, ready to load when you show up.
+                  Push/Pull/Legs. Upper/Lower. Or build your own. Your plan lives in the app — ready when you show up.
                 </p>
               </div>
             </motion.div>
@@ -366,7 +376,7 @@ export default function Home() {
               viewport={{ once: false }}
               className="text-xl text-muted-foreground"
             >
-              When you can see what's happening, you train with intention — and trust grows naturally.
+              When training becomes visible, decisions get easier.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
