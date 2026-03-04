@@ -26,102 +26,119 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last Updated: 15/01/2026
+            Last Updated: March 4, 2026
           </p>
 
           <div className="space-y-8 text-muted-foreground">
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                1. Overview
+                1. Scope
               </h2>
               <p>
-                YesCoach is a beta application. We collect only the minimum information needed to operate, improve the app, and communicate with users.
+                This Privacy Policy explains how YesCoach handles information for the YesCoach application and related services.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                2. Information We Collect
+                2. Information We Process
               </h2>
-              <p className="mb-3">We may collect:</p>
-              <ul className="list-disc pl-6 space-y-2 mb-3">
-                <li>Name and email (for access, updates, and feedback)</li>
-                <li>Basic usage data (e.g. feature usage, session completion)</li>
-                <li>Device information (app version, platform, crash data)</li>
-              </ul>
-              <p>
-                Training and body data may be stored locally and/or in backend systems during beta.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                3. How We Use Your Information
-              </h2>
-              <p className="mb-3">We use your information to:</p>
+              <p className="mb-3">Depending on how you use YesCoach, we may process:</p>
               <ul className="list-disc pl-6 space-y-2 mb-4">
-                <li>Provide and improve the app</li>
-                <li>Understand how features are used</li>
-                <li>Communicate updates or important changes</li>
-                <li>Fix bugs and improve reliability</li>
+                <li>
+                  Account information you provide if you choose to sign up or sign in (for example, email address and account identifiers).
+                </li>
+                <li>
+                  Training information you enter in the app (for example, exercises, sets, reps, load, and related workout details).
+                </li>
+                <li>
+                  Product usage events used for analytics and funnel measurement (for example, app open, session start/complete, pricing page viewed, and payment attempt).
+                </li>
+                <li>
+                  Technical data such as app version, device/platform type, and diagnostic signals.
+                </li>
               </ul>
               <div className="bg-muted rounded-lg p-6">
                 <p className="text-foreground font-semibold">
-                  We do not sell your data.
+                  We do not collect your name or email unless you choose to create an account or sign in.
                 </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                4. Data Storage & Retention
-              </h2>
-              <p className="mb-3">Because YesCoach is in beta:</p>
-              <ul className="list-disc pl-6 space-y-2 mb-3">
-                <li>Data may be reset or deleted as features evolve</li>
-                <li>We do not guarantee long-term data persistence</li>
-                <li>You may request deletion of your data at any time</li>
-              </ul>
-              <p>
-                The app provides export and import functionality to help you preserve your training data. While we do our best to maintain data integrity and work with you on data preservation, you are responsible for regularly backing up your data using the export feature.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                5. Third-Party Services
+                3. Local Training Data
               </h2>
               <p className="mb-3">
-                We may use third-party services (e.g. analytics, payments when enabled) that process limited data on our behalf.
+                Workout log content is designed to stay primarily in local app storage on your device.
               </p>
               <p>
-                These services are used only to support core app functionality.
+                YesCoach uses discrete product events for analytics and does not rely on detailed per-set workout log export to analytics systems.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                6. Payments (If Enabled)
+                4. Analytics Identity
               </h2>
-              <p className="mb-3">If payments are enabled:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>Payment details are handled by third-party providers</li>
-                <li>YesCoach does not store your full payment information</li>
-              </ul>
+              <p className="mb-3">
+                Analytics may be anonymous by default. If you sign in, analytics events may be linked to your account identifier so we can understand product reliability and behavior across sessions.
+              </p>
+              <p>
+                We do not sell personal information.
+              </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                7. Your Rights
+                5. How We Use Information
               </h2>
-              <p className="mb-3">You can:</p>
               <ul className="list-disc pl-6 space-y-2 mb-3">
-                <li>Request access to your data</li>
-                <li>Request data deletion</li>
-                <li>Ask questions about data usage</li>
+                <li>Operate core app features and account access.</li>
+                <li>Maintain service security, quality, and debugging.</li>
+                <li>Measure product usage and improve user experience.</li>
+                <li>Manage subscriptions and billing integrations.</li>
+                <li>Respond to support, legal, and compliance requests.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                6. Third-Party Processors
+              </h2>
+              <p>
+                We use third-party providers for defined functions, including authentication, analytics, subscriptions, payments, and app-store operations.
+              </p>
+              <p className="mt-3">
+                Payment credentials are handled by payment processors and app stores. YesCoach does not store full payment card details.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                7. Retention
+              </h2>
+              <p className="mb-3">
+                We retain data only as long as needed for the purposes described in this Policy, legal obligations, and dispute resolution.
+              </p>
+              <p>
+                Local data may be removed by using in-app reset/export tools or uninstalling the app. Account-linked data and processor records may persist for operational, legal, tax, and anti-fraud requirements.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                8. Your Rights and Choices
+              </h2>
+              <p className="mb-3">Subject to applicable law, you may request to:</p>
+              <ul className="list-disc pl-6 space-y-2 mb-3">
+                <li>Access information associated with your account.</li>
+                <li>Correct or update account information.</li>
+                <li>Delete your account-linked data.</li>
+                <li>Object to or restrict certain processing where applicable.</li>
               </ul>
               <p>
-                Contact us at:{' '}
+                To exercise rights or ask questions, contact:{' '}
                 <a
                   href="mailto:contact@yescoach.fit"
                   className="text-primary hover:underline"
@@ -133,16 +150,30 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                8. Changes to This Policy
+                9. Children
               </h2>
               <p>
-                This policy may change as the app matures. Continued use of the app means you accept the updated policy.
+                YesCoach is not directed to children under 13. If you believe a child has provided personal information, contact us and we will review and address the request.
               </p>
             </section>
 
-            <p className="text-sm italic text-muted-foreground mt-12">
-              This policy applies to the beta version.
-            </p>
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                10. Changes to This Policy
+              </h2>
+              <p>
+                We may update this Policy from time to time. Continued use after updates means the updated Policy applies to your use.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                11. Contact
+              </h2>
+              <p>
+                YesCoach privacy requests: <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>
+              </p>
+            </section>
           </div>
         </motion.div>
       </main>

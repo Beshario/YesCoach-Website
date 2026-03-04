@@ -28,43 +28,64 @@ export default function TermsPage() {
             Terms & Conditions
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last Updated: 15/01/2026
+            Last Updated: March 4, 2026
           </p>
 
           <div className="space-y-8">
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                1. Beta Status
+                1. Acceptance of Terms
               </h2>
               <p className="text-muted-foreground mb-4">
-                YesCoach is currently in beta. Features may change, break, or be removed at any time. Data may be reset.
-              </p>
-              <p className="text-muted-foreground">
-                By using the app, you acknowledge this early stage.
+                These Terms govern your use of the YesCoach app and related services. By using YesCoach, you agree to these Terms.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                2. Accounts & Data
+                2. Accounts and Identity Data
               </h2>
               <p className="text-muted-foreground mb-4">
-                We may collect name and email for access, feedback, and updates.
+                You may use certain parts of YesCoach without creating an account. If you choose to create an account or sign in, you agree to provide accurate information.
               </p>
               <p className="text-muted-foreground mb-4">
-                Training data is currently stored locally and/or in early backend systems.
+                YesCoach does not collect your name or email unless you choose to sign up or sign in.
               </p>
               <p className="text-muted-foreground mb-4">
-                The app provides export and import functionality so you can back up your training data. While we do our best to maintain data integrity and work with you on data preservation, we make no guarantees about data persistence during beta. You are responsible for backing up your data using the export feature.
-              </p>
-              <p className="text-muted-foreground">
-                You can request deletion of your data at any time by contacting us.
+                If you sign in, your account identifier may be linked to analytics events for product reliability and usage analysis.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                3. Health Disclaimer
+                3. Training Data and Analytics
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                Workout log content (for example exercises, sets, reps, and load entries) is designed to stay primarily in local app storage on your device.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                We may collect discrete product usage events, such as app open, session start/complete, and pricing/payment funnel events.
+              </p>
+              <p className="text-muted-foreground">
+                Additional details are described in our Privacy Policy.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                4. Beta Service Notice
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                YesCoach is in beta. Features may change, break, or be removed at any time.
+              </p>
+              <p className="text-muted-foreground">
+                Data models and availability may evolve as the product matures.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                5. Health Disclaimer
               </h2>
               <div className="bg-muted rounded-lg p-6 mb-4">
                 <p className="text-foreground font-semibold">
@@ -81,19 +102,22 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                4. Payments (If Applicable)
+                6. Payments and Subscriptions
               </h2>
               <p className="text-muted-foreground mb-4">
-                Founder access or paid features, when enabled, are optional and meant to support development.
+                Paid features or subscriptions, when offered, are optional.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                Pricing, features, billing cycles, and availability may change.
               </p>
               <p className="text-muted-foreground">
-                Pricing, features, and availability may change as the product evolves.
+                Payments are processed by third-party providers and app stores. Their terms also apply.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                5. Acceptable Use
+                7. Acceptable Use
               </h2>
               <p className="text-muted-foreground mb-4">
                 You agree not to:
@@ -107,36 +131,64 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                6. Limitation of Liability
+                8. Intellectual Property
+              </h2>
+              <p className="text-muted-foreground">
+                YesCoach, including software, designs, and content, is protected by applicable intellectual property laws. You may not copy, modify, or distribute YesCoach except as allowed by law or with written permission.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                9. Disclaimer and Limitation of Liability
               </h2>
               <p className="text-muted-foreground mb-4">
-                YesCoach is provided "as is" during beta.
+                YesCoach is provided "as is" and "as available."
               </p>
               <p className="text-muted-foreground mb-4">
-                We are not liable for:
+                To the maximum extent permitted by law, we are not liable for:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Data loss</li>
                 <li>Service interruptions</li>
                 <li>Training outcomes or injuries</li>
+                <li>Indirect, incidental, special, or consequential damages</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                7. Changes to These Terms
+                10. Suspension and Termination
               </h2>
               <p className="text-muted-foreground">
-                These terms may be updated as the product matures. Continued use of the app means acceptance of updated terms.
+                We may suspend or terminate access if these Terms are violated, if required by law, or to protect the service and users.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">
-                8. Contact
+                11. Children
               </h2>
               <p className="text-muted-foreground">
-                For questions or data requests:{' '}
+                YesCoach is not directed to children under 13.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                12. Changes to These Terms
+              </h2>
+              <p className="text-muted-foreground">
+                We may update these Terms from time to time. Continued use after updates means the updated Terms apply.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                13. Contact
+              </h2>
+              <p className="text-muted-foreground">
+                For legal, privacy, or account requests:{' '}
                 <a
                   href="mailto:contact@yescoach.fit"
                   className="text-primary hover:underline"
