@@ -36,12 +36,12 @@ export function EmailForm() {
           type="submit"
           className="bg-accent hover:bg-accent/90 text-accent-foreground"
         >
-          Join Waitlist
+          Get Updates
         </Button>
       </div>
 
       <p className="text-sm text-muted-foreground mt-3 text-center">
-        Occasional updates. No noise.
+        Product updates and feedback follow-up. No noise.
       </p>
     </form>
   )

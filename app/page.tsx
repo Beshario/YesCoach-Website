@@ -25,29 +25,85 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <section className="py-20 lg:py-28 relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(74,143,227,0.10),transparent_30%),radial-gradient(circle_at_75%_30%,rgba(230,126,34,0.12),transparent_20%)]"
+        />
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Text */}
-            <div className="space-y-6">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0 }}
-                className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground"
-              >
-                See what your training is doing.
-              </motion.h1>
-
+            <div className="space-y-8">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.15 }}
-                className="text-xl text-muted-foreground"
+                transition={{ duration: 0.4, delay: 0 }}
+                className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                Real-time muscle readiness. Research-based dose tracking. Clear visual feedback — session by session.
+                Currently evolving in public
               </motion.p>
+              <div className="space-y-5">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.08 }}
+                  className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground max-w-3xl text-balance"
+                >
+                  Training insight,
+                  <span className="block text-primary">shaped with early users.</span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.16 }}
+                  className="text-xl text-muted-foreground max-w-2xl"
+                >
+                  YesCoach is currently evolving in public. Early users help shape how training insight should work.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="flex flex-wrap gap-2 text-sm text-muted-foreground"
+                >
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Public beta</span>
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Android live</span>
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Feedback welcome</span>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.24 }}
+                className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
+              >
+                <p className="text-sm font-semibold text-foreground">
+                  Try YesCoach beta, then stay in the loop.
+                </p>
+                <p className="text-sm text-muted-foreground mt-2 mb-4">
+                  Install from Google Play, then leave your email for updates or send feedback directly to <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Try the Android Beta
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="bg-background/80">
+                    <a href="#feedback">
+                      Follow Development
+                    </a>
+                  </Button>
+                </div>
+              </motion.div>
             </div>
 
             {/* Phone mockups */}
@@ -81,36 +137,6 @@ export default function Home() {
             </motion.div>
 
           </div>
-        </div>
-      </section>
-
-      {/* Twitter CTA */}
-      <section className="py-20 border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0 }}
-            viewport={{ once: false }}
-            className="text-muted-foreground mb-6"
-          >
-            Building in the open. Thinking through problems, sharing what works, what doesn't.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: false }}
-          >
-            <Button asChild size="lg" className="bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white">
-              <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                </svg>
-                Follow along on Twitter
-              </a>
-            </Button>
-          </motion.div>
         </div>
       </section>
 
@@ -392,7 +418,7 @@ export default function Home() {
       </section>
 
       {/* Email Signup */}
-      <section className="py-32 border-t border-border">
+      <section id="feedback" className="py-32 border-t border-border">
         <div className="max-w-2xl mx-auto px-6 lg:px-12 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -401,7 +427,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-3xl font-bold mb-4 text-primary"
           >
-            Currently building
+            Follow development and send feedback
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -410,7 +436,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-muted-foreground mb-8"
           >
-            Curious where this goes? Follow along as it takes shape.
+            Leave your email for progress updates, then send thoughts after you try the beta. Short notes, bug reports, and confusion points are all useful.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -420,6 +446,15 @@ export default function Home() {
           >
             <EmailForm />
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            viewport={{ once: false }}
+            className="text-sm text-muted-foreground mt-6"
+          >
+            Prefer social? <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Follow development on X</a>.
+          </motion.p>
         </div>
       </section>
 
