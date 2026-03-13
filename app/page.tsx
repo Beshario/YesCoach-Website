@@ -103,6 +103,9 @@ export default function Home() {
                     </a>
                   </Button>
                 </div>
+                <p className="text-sm text-muted-foreground mt-4">
+                  Looking for more detail? <Link href="/strength-training-recovery-app" className="text-primary hover:underline">See how YesCoach works as a strength training recovery app</Link>.
+                </p>
               </motion.div>
             </div>
 
