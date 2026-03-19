@@ -41,7 +41,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                Currently evolving in public
+                Open beta · Android
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -50,8 +50,8 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.08 }}
                   className="text-5xl lg:text-6xl font-bold tracking-tight text-foreground max-w-3xl text-balance"
                 >
-                  Training insight,
-                  <span className="block text-primary">shaped with early users.</span>
+                  See what your
+                  <span className="block text-primary">training is doing.</span>
                 </motion.h1>
 
                 <motion.p
@@ -60,7 +60,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.16 }}
                   className="text-xl text-muted-foreground max-w-2xl"
                 >
-                  YesCoach is currently evolving in public. Early users help shape how training insight should work.
+                  Which muscles are working. How recovered they are. What patterns are emerging. Grounded in exercise science and how your body moves.
                 </motion.p>
 
                 <motion.div
@@ -69,9 +69,10 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.2 }}
                   className="flex flex-wrap gap-2 text-sm text-muted-foreground"
                 >
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Public beta</span>
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Free to start</span>
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">No credit card</span>
                   <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Android live</span>
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Feedback welcome</span>
+                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Building in public</span>
                 </motion.div>
               </div>
 
@@ -82,10 +83,10 @@ export default function Home() {
                 className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
               >
                 <p className="text-sm font-semibold text-foreground">
-                  Try YesCoach beta, then stay in the loop.
+                  Earn premium free — just by training.
                 </p>
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
-                  Install from Google Play, then leave your email for updates or send feedback directly to <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>.
+                  Log 3 workouts in your first week, give us honest feedback, and unlock premium free. Simple as that.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
@@ -94,17 +95,17 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Try the Android Beta
+                      Download free — Android
                     </a>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="bg-background/80">
                     <a href="#feedback">
-                      Follow Development
+                      Stay in the loop
                     </a>
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">
-                  Looking for more detail? <Link href="/strength-training-recovery-app" className="text-primary hover:underline">See how YesCoach works as a strength training recovery app</Link>.
+                  Questions? <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a> goes straight to the builder.
                 </p>
               </motion.div>
             </div>
@@ -420,6 +421,139 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pricing & Beta */}
+      <section className="py-24 border-t border-border">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: false }}
+            className="text-3xl lg:text-4xl font-bold mb-4 text-primary"
+          >
+            Free to try. Worth keeping.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground text-lg mb-12 max-w-2xl"
+          >
+            During beta, you can earn premium by training. Log 3 workouts in your first week, give feedback, and premium unlocks — free. No trial clock, no pressure.
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Free card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              viewport={{ once: false }}
+              className="rounded-2xl border border-border bg-card p-6 space-y-4"
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free</p>
+                <p className="text-3xl font-bold text-foreground">$0</p>
+                <p className="text-sm text-muted-foreground mt-1">Always free</p>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {[
+                  "Workout logging",
+                  "Workout planning",
+                  "Exercise browsing by muscle",
+                  "Day view — session breakdown",
+                  "Muscle-first navigation",
+                  "Works with any training style",
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Premium card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              viewport={{ once: false }}
+              className="rounded-2xl border-2 border-primary bg-card p-6 space-y-4 relative"
+            >
+              <div className="absolute -top-3 left-6">
+                <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">Earn free during beta</span>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Premium</p>
+                <p className="text-3xl font-bold text-foreground">$2.99<span className="text-lg font-normal text-muted-foreground">/mo</span></p>
+                <p className="text-sm text-muted-foreground mt-1">or $19.99/year · a lunch a year</p>
+              </div>
+              <p className="text-xs text-muted-foreground border-t border-border pt-3">Everything in Free, plus:</p>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {[
+                  "Weekly body map summary",
+                  "Monthly training breakdown",
+                  "Muscle tracking over time",
+                  "Recovery visibility per muscle group",
+                  "Training balance & pattern analysis",
+                  "More as it ships",
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-2">
+                    <span className="text-primary mt-0.5">✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.3 }}
+            viewport={{ once: false }}
+            className="mt-14 space-y-8"
+          >
+            {[
+              {
+                q: "How do I earn premium during beta?",
+                a: "Download the app, log 3 workouts in your first 7 days, and submit feedback through the in-app prompt. Premium unlocks automatically."
+              },
+              {
+                q: "Does it work with my current program?",
+                a: "Yes. You log whatever you're already doing — your exercises, your weights, your sets. No templates to follow, no setup required."
+              },
+              {
+                q: "What counts as a workout?",
+                a: "Any logged session with at least one set. Strength training, accessory work, whatever you're running."
+              },
+              {
+                q: "Is my data private?",
+                a: "Your training data stays on your account. We don't sell it or share it. See the privacy policy for details."
+              },
+              {
+                q: "Android only?",
+                a: "Android is live on Google Play. iOS is on the roadmap."
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.08 }}
+                viewport={{ once: false }}
+                className="border-t border-border pt-6"
+              >
+                <p className="font-semibold text-foreground mb-2">{item.q}</p>
+                <p className="text-muted-foreground text-sm">{item.a}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Email Signup */}
       <section id="feedback" className="py-32 border-t border-border">
         <div className="max-w-2xl mx-auto px-6 lg:px-12 text-center">
@@ -430,7 +564,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-3xl font-bold mb-4 text-primary"
           >
-            Follow development and send feedback
+            Stay in the loop
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -467,6 +601,7 @@ export default function Home() {
           <div className="flex items-center justify-center mb-4">
             <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
           </div>
+          <p className="text-center text-sm text-muted-foreground mb-3">Solo-built by an engineer who trains.</p>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
             <Link href="/privacy" className="hover:text-foreground transition-colors">
               Privacy Policy
