@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#4A8FE3"/>
+
+  <!-- Logo mark - simplified Y shape -->
+  <circle cx="120" cy="180" r="48" fill="#4A8FE3"/>
+  <text x="120" y="195" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="white" text-anchor="middle">Y</text>
+
+  <!-- YesCoach wordmark -->
+  <text x="188" y="200" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#1a1a1a" letter-spacing="-1">YesCoach</text>
+
+  <!-- Headline -->
+  <text x="80" y="310" font-family="Arial, sans-serif" font-size="62" font-weight="700" fill="#1a1a1a" letter-spacing="-2">See what your training</text>
+  <text x="80" y="385" font-family="Arial, sans-serif" font-size="62" font-weight="700" fill="#1a1a1a" letter-spacing="-2">is doing.</text>
+
+  <!-- Sub copy -->
+  <text x="80" y="460" font-family="Arial, sans-serif" font-size="26" fill="#4A4A4A">Muscle activation · Recovery · Training patterns</text>
+
+  <!-- Tag -->
+  <rect x="80" y="500" width="240" height="44" rx="6" fill="#4A8FE3"/>
+  <text x="200" y="528" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">Free on Android</text>
+
+  <!-- URL -->
+  <text x="1120" y="590" font-family="Arial, sans-serif" font-size="20" fill="#6B6B6B" text-anchor="end">yescoach.app</text>
+</svg>
