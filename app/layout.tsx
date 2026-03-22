@@ -15,28 +15,28 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yescoach.app'),
+  metadataBase: new URL('https://yescoach.fit'),
   title: 'YesCoach | Strength Training Recovery and Muscle Tracking App',
-  description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based strength training app for Android.',
+  description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based Android strength training app that is free during beta.',
   keywords: 'strength training recovery app, muscle tracking app, biomechanics training app, workout recovery tracker, muscle activation app, strength training app, exercise science app, android fitness app',
   authors: [{ name: 'YesCoach' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://yescoach.app/',
+    url: 'https://yescoach.fit/',
     title: 'YesCoach | Strength Training Recovery and Muscle Tracking App',
-    description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based strength training app for Android.',
+    description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based Android strength training app that is free during beta.',
     siteName: 'YesCoach',
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'YesCoach | Strength Training Recovery and Muscle Tracking App',
-    description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based strength training app for Android.',
+    description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based Android strength training app that is free during beta.',
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
   alternates: {
-    canonical: 'https://yescoach.app/',
+    canonical: 'https://yescoach.fit/',
   },
   icons: {
     icon: [
@@ -68,8 +68,8 @@ export default function RootLayout({
               name: 'YesCoach',
               applicationCategory: 'HealthApplication',
               operatingSystem: 'Android',
-              description: 'Strength training recovery and muscle tracking app with biomechanics-based training insight.',
-              url: 'https://yescoach.app/',
+              description: 'Strength training recovery and muscle tracking app with biomechanics-based training insight. Free during beta.',
+              url: 'https://yescoach.fit/',
               downloadUrl: 'https://play.google.com/store/apps/details?id=com.yescoach.fit',
               installUrl: 'https://play.google.com/store/apps/details?id=com.yescoach.fit',
               sameAs: [

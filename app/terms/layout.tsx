@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: 'YesCoach terms and conditions. Learn about our beta service terms.',
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://yescoach.app/terms',
+    canonical: 'https://yescoach.fit/terms',
   },
 }
 

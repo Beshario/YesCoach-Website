@@ -4,15 +4,15 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Strength Training Recovery App | YesCoach',
   description:
-    'YesCoach is a strength training recovery app that helps you see muscle load, understand recovery state, and track training patterns over time.',
+    'YesCoach is a strength training recovery app that helps you see muscle load, understand recovery state, and track training patterns over time. Free during beta.',
   alternates: {
-    canonical: 'https://yescoach.app/strength-training-recovery-app',
+    canonical: 'https://yescoach.fit/strength-training-recovery-app',
   },
   openGraph: {
     title: 'Strength Training Recovery App | YesCoach',
     description:
-      'Track muscle load, recovery state, and training patterns with YesCoach.',
-    url: 'https://yescoach.app/strength-training-recovery-app',
+      'Track muscle load, recovery state, and training patterns with YesCoach. Free during beta.',
+    url: 'https://yescoach.fit/strength-training-recovery-app',
     type: 'article',
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Strength Training Recovery App | YesCoach',
     description:
-      'Track muscle load, recovery state, and training patterns with YesCoach.',
+      'Track muscle load, recovery state, and training patterns with YesCoach. Free during beta.',
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
 }
@@ -37,7 +37,7 @@ export default function StrengthTrainingRecoveryAppPage() {
             A clearer way to track recovery between strength training sessions.
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mt-6">
-            YesCoach helps lifters understand which muscles were stressed, how training accumulates over time, and when the body may be ready to push again.
+            YesCoach helps lifters understand which muscles were stressed, how training accumulates over time, and when the body may be ready to push again. The full app is currently free during beta.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mt-8">
             <a

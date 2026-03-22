@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yescoach.app/sitemap.xml
+Sitemap: https://yescoach.fit/sitemap.xml

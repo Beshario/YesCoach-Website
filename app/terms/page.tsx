@@ -105,6 +105,9 @@ export default function TermsPage() {
                 6. Payments and Subscriptions
               </h2>
               <p className="text-muted-foreground mb-4">
+                During beta, the full YesCoach app is offered free of charge.
+              </p>
+              <p className="text-muted-foreground mb-4">
                 Paid features or subscriptions, when offered, are optional.
               </p>
               <p className="text-muted-foreground mb-4">

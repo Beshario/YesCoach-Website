@@ -6,6 +6,18 @@
   package = "@netlify/plugin-nextjs"
 
 [[redirects]]
+  from = "https://yescoach.app/*"
+  to = "https://yescoach.fit/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.yescoach.fit/*"
+  to = "https://yescoach.fit/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/thanks.html"
   to = "/thanks"
   status = 301
