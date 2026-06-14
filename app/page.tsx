@@ -1,12 +1,47 @@
 'use client'
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { EmailForm } from "@/components/email-form"
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
+
+function VideoFacade({ videoId }: { videoId: string }) {
+  const [playing, setPlaying] = useState(false)
+
+  if (playing) {
+    return (
+      <iframe
+        className="absolute inset-0 w-full h-full"
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=1&rel=0&loop=1&playlist=${videoId}`}
+        title="YesCoach — See what your training is doing"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    )
+  }
+
+  return (
+    <button
+      onClick={() => setPlaying(true)}
+      className="absolute inset-0 w-full h-full bg-black group"
+      aria-label="Play YesCoach demo video"
+    >
+      <img
+        src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+        alt="YesCoach app demo preview"
+        className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity"
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/30 transition-colors">
+          <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1" />
+        </div>
+      </div>
+    </button>
+  )
+}
 
 export default function Home() {
   return (
@@ -88,7 +123,7 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
                   Log 3 workouts in your first week, give us honest feedback, and unlock premium free. Simple as that.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
                     <a
                       href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
@@ -96,11 +131,6 @@ export default function Home() {
                       rel="noopener noreferrer"
                     >
                       Download free — Android
-                    </a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="bg-background/80">
-                    <a href="#feedback">
-                      Stay in the loop
                     </a>
                   </Button>
                 </div>
@@ -141,6 +171,41 @@ export default function Home() {
             </motion.div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Demo Video */}
+      <section className="py-24 border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: false }}
+            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground text-center"
+          >
+            See it in action.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground text-lg mb-12 max-w-2xl text-center mx-auto"
+          >
+            Tap a muscle. Build a workout. See where the work went.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: false }}
+            className="flex justify-center"
+          >
+            <div className="rounded-3xl overflow-hidden border border-border/60 shadow-[0_32px_80px_-20px_rgba(0,0,0,0.4)] w-full max-w-[315px] aspect-[9/16] relative">
+              <VideoFacade videoId="p0FQkPH4LB4" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -539,7 +604,7 @@ export default function Home() {
               },
             ].map((item, i) => (
               <motion.div
-                key={i}
+                key={item.q}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.08 }}
@@ -554,47 +619,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Email Signup */}
-      <section id="feedback" className="py-32 border-t border-border">
-        <div className="max-w-2xl mx-auto px-6 lg:px-12 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0 }}
-            viewport={{ once: false }}
-            className="text-3xl font-bold mb-4 text-primary"
-          >
-            Stay in the loop
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: false }}
-            className="text-muted-foreground mb-8"
-          >
-            Leave your email for progress updates, then send thoughts after you try the beta. Short notes, bug reports, and confusion points are all useful.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            viewport={{ once: false }}
-          >
-            <EmailForm />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            viewport={{ once: false }}
-            className="text-sm text-muted-foreground mt-6"
-          >
-            Prefer social? <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Follow development on X</a>.
-          </motion.p>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -603,6 +627,14 @@ export default function Home() {
           </div>
           <p className="text-center text-sm text-muted-foreground mb-3">Solo-built by an engineer who trains.</p>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
+            <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+              Follow on X
+            </a>
+            <span>·</span>
+            <a href="mailto:contact@yescoach.fit" className="hover:text-foreground transition-colors">
+              contact@yescoach.fit
+            </a>
+            <span>·</span>
             <Link href="/privacy" className="hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
