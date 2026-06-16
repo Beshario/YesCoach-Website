@@ -1,19 +1,32 @@
 # YesCoach Website
 
-Landing page and privacy policy for YesCoach app.
+Marketing site for the YesCoach app. Next.js (App Router, static export) deployed to
+**Cloudflare Pages** with `main` as the production branch.
 
-## Deployment
+## Stack
 
-Deploy to GitHub Pages or any static hosting.
+- Next.js 16 (App Router, `output: 'export'`)
+- Tailwind + DaisyUI-style tokens via shadcn/ui
+- Framer Motion for hero animation
+- Hosted on Cloudflare Pages; DNS via Cloudflare (registrar: Namecheap)
 
-## Files
+## Local
 
-- `index.html` - Landing page
-- `privacy.html` - Privacy policy (placeholder for testing)
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # emits ./out/ for the static export
+```
 
-## TODO
+## Routes
 
-- [ ] Add screenshots/GIFs
-- [ ] Create proper privacy policy before public release
-- [ ] Add app store badges
-- [ ] Design improvements
+- `/` — landing (`app/page.tsx`)
+- `/privacy` — privacy policy (`app/privacy/page.tsx`)
+- `/terms` — terms & conditions (`app/terms/page.tsx`)
+- `/strength-training-recovery-app` — SEO landing (`app/strength-training-recovery-app/page.tsx`)
+- `/robots.txt`, `/sitemap.xml` — generated from `app/robots.ts` and `app/sitemap.ts`
+
+## Conventions
+
+- Production branch is `main`. No PR workflow on this repo — commit directly.
+- Domain: **yescoach.fit** (was Netlify on .app; migrated June 2026).
