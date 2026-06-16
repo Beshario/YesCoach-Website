@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     'YesCoach is a strength training recovery app that helps you see muscle load, understand recovery state, and track training patterns over time.',
   alternates: {
-    canonical: 'https://yescoach.app/strength-training-recovery-app',
+    canonical: 'https://yescoach.fit/strength-training-recovery-app',
   },
   openGraph: {
     title: 'Strength Training Recovery App | YesCoach',
     description:
       'Track muscle load, recovery state, and training patterns with YesCoach.',
-    url: 'https://yescoach.app/strength-training-recovery-app',
+    url: 'https://yescoach.fit/strength-training-recovery-app',
     type: 'article',
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
@@ -48,12 +48,14 @@ export default function StrengthTrainingRecoveryAppPage() {
             >
               Try the Android Beta
             </a>
-            <Link
-              href="/#feedback"
+            <a
+              href="https://twitter.com/YCoach58265"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              Follow development
-            </Link>
+              Follow development on X
+            </a>
           </div>
         </div>
       </section>
@@ -62,19 +64,19 @@ export default function StrengthTrainingRecoveryAppPage() {
         <div className="max-w-5xl mx-auto px-6 lg:px-12 grid gap-12">
           <div className="grid lg:grid-cols-3 gap-6">
             <article className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="text-xl font-semibold text-foreground mb-3">See muscle load</h2>
+              <h3 className="text-xl font-semibold text-foreground mb-3">See muscle load</h3>
               <p className="text-muted-foreground">
                 After each session, YesCoach shows which muscles took the work so training stress is easier to interpret than a raw logbook.
               </p>
             </article>
             <article className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="text-xl font-semibold text-foreground mb-3">Track recovery state</h2>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Track recovery state</h3>
               <p className="text-muted-foreground">
                 Recovery is easier to judge when session stress, accumulated training, and recent patterns are visible in one place.
               </p>
             </article>
             <article className="rounded-2xl border border-border bg-card p-6">
-              <h2 className="text-xl font-semibold text-foreground mb-3">Spot patterns over time</h2>
+              <h3 className="text-xl font-semibold text-foreground mb-3">Spot patterns over time</h3>
               <p className="text-muted-foreground">
                 Use weekly and monthly views to see balance, exposure, and how your training evolves over time.
               </p>

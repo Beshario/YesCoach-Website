@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yescoach.app'
+  const baseUrl = 'https://yescoach.fit'
   const now = new Date()
 
   return [

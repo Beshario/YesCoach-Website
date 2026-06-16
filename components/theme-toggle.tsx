@@ -15,23 +15,25 @@ export function ThemeToggle() {
   // avoids layout shift before mount
   if (!mounted) {
     return (
-      <Button variant="ghost" size="icon" aria-label="Toggle theme">
-        <Moon className="h-4 w-4" />
+      <Button variant="ghost" size="icon" aria-label="Switch to dark theme" aria-pressed={false}>
+        <Moon className="h-4 w-4" aria-hidden="true" />
       </Button>
     )
   }
 
+  const isDark = resolvedTheme === 'dark'
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      aria-label="Toggle theme"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-pressed={isDark}
     >
-      {resolvedTheme === 'dark' ? (
-        <Sun className="h-4 w-4" />
+      {isDark ? (
+        <Sun className="h-4 w-4" aria-hidden="true" />
       ) : (
-        <Moon className="h-4 w-4" />
+        <Moon className="h-4 w-4" aria-hidden="true" />
       )}
     </Button>
   )

@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://yescoach.app/sitemap.xml',
-    host: 'https://yescoach.app',
+    sitemap: 'https://yescoach.fit/sitemap.xml',
+    host: 'https://yescoach.fit',
   }
 }

@@ -13,7 +13,7 @@ export default function Home() {
       <header className="border-b border-border/70">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between gap-4">
           <Link href="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <img src="/logo.png" alt="YesCoach logo" className="h-5 w-auto" />
+            <img src="/logo.png" alt="" className="h-5 w-auto" />
             <span className="text-lg font-semibold tracking-tight">YesCoach</span>
           </Link>
           <span className="hidden sm:inline text-sm text-muted-foreground">
@@ -461,7 +461,7 @@ export default function Home() {
                   "Works with any training style",
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">✓</span>
+                    <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
                     {f}
                   </li>
                 ))}
@@ -495,7 +495,7 @@ export default function Home() {
                   "More as it ships",
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">✓</span>
+                    <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
                     {f}
                   </li>
                 ))}
@@ -552,26 +552,26 @@ export default function Home() {
       <footer className="border-t border-border py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-center mb-4">
-            <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
+            <img src="/logo.png" alt="YesCoach" className="h-7 w-auto" />
           </div>
           <p className="text-center text-sm text-muted-foreground mb-3">Solo-built by an engineer who trains.</p>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
             <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
               Follow on X
             </a>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <a href="mailto:contact@yescoach.fit" className="hover:text-foreground transition-colors">
               contact@yescoach.fit
             </a>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <Link href="/privacy" className="hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <Link href="/terms" className="hover:text-foreground transition-colors">
               Terms & Conditions
             </Link>
-            <span>·</span>
+            <span aria-hidden="true">·</span>
             <span>© 2026 YesCoach</span>
           </div>
         </div>

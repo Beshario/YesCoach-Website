@@ -10,7 +10,7 @@ export default function TermsPage() {
       <header className="border-b border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
           <Link href="/" className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <img src="/logo.png" alt="YesCoach logo" className="h-5 w-auto" />
+            <img src="/logo.png" alt="" className="h-5 w-auto" />
             <span className="font-semibold">YesCoach</span>
           </Link>
         </div>
@@ -205,7 +205,7 @@ export default function TermsPage() {
       <footer className="border-t border-border py-8">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-center mb-4">
-            <img src="/logo.png" alt="YesCoach logo" className="h-7 w-auto" />
+            <img src="/logo.png" alt="YesCoach" className="h-7 w-auto" />
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">

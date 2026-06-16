@@ -6,6 +6,10 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 
+// Orphan page (no entry point after waitlist removal); keep out of search.
+// Cannot set `export const metadata` on a client component, so noindex is in
+// the document via the parent layout's robots metadata if needed.
+
 export default function ThanksPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center py-16 px-6">
