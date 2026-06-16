@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { EmailForm } from "@/components/email-form"
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
@@ -88,7 +87,7 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
                   Log 3 workouts in your first week, give us honest feedback, and unlock premium free. Simple as that.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
                     <a
                       href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
@@ -96,11 +95,6 @@ export default function Home() {
                       rel="noopener noreferrer"
                     >
                       Download free — Android
-                    </a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="bg-background/80">
-                    <a href="#feedback">
-                      Stay in the loop
                     </a>
                   </Button>
                 </div>
@@ -554,47 +548,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Email Signup */}
-      <section id="feedback" className="py-32 border-t border-border">
-        <div className="max-w-2xl mx-auto px-6 lg:px-12 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0 }}
-            viewport={{ once: false }}
-            className="text-3xl font-bold mb-4 text-primary"
-          >
-            Stay in the loop
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: false }}
-            className="text-muted-foreground mb-8"
-          >
-            Leave your email for progress updates, then send thoughts after you try the beta. Short notes, bug reports, and confusion points are all useful.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            viewport={{ once: false }}
-          >
-            <EmailForm />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            viewport={{ once: false }}
-            className="text-sm text-muted-foreground mt-6"
-          >
-            Prefer social? <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Follow development on X</a>.
-          </motion.p>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="border-t border-border py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -603,6 +556,14 @@ export default function Home() {
           </div>
           <p className="text-center text-sm text-muted-foreground mb-3">Solo-built by an engineer who trains.</p>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
+            <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+              Follow on X
+            </a>
+            <span>·</span>
+            <a href="mailto:contact@yescoach.fit" className="hover:text-foreground transition-colors">
+              contact@yescoach.fit
+            </a>
+            <span>·</span>
             <Link href="/privacy" className="hover:text-foreground transition-colors">
               Privacy Policy
             </Link>
