@@ -40,7 +40,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                v0.01 · Awareness, free forever
+                v0.01 · Awareness, free
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -82,10 +82,10 @@ export default function Home() {
                 className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
               >
                 <p className="text-sm font-semibold text-foreground">
-                  Awareness is free. Forever.
+                  Awareness is free, by design.
                 </p>
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
-                  Logging, the body map, recovery, patterns — the whole <em>see what your training is doing</em> layer. All free, on purpose. Coaching — adaptive sessions that talk back — is what we're building as the paid tier. Early users get first access.
+                  Logging, the body map, recovery, patterns — the whole <em>see what your training is doing</em> layer. Free, on purpose. Coaching — adaptive sessions that talk back — is what we&rsquo;re building as the paid tier. Early users get first access.
                 </p>
                 <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
@@ -482,31 +482,17 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-primary"
           >
-            Free, forever. Coaching, coming.
+            Free. Coaching, coming.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
             viewport={{ once: false }}
-            className="text-muted-foreground text-lg mb-8 max-w-2xl"
+            className="text-muted-foreground text-lg mb-12 max-w-2xl"
           >
-            Awareness is the trust-bank. We made it free on purpose. Coaching — the layer that tells you what to do with what you see — is the paid tier, in development.
+            Awareness is free, by design. Coaching — the layer that tells you what to do with what you see — is the paid tier, in development.
           </motion.p>
-
-          {/* Walk-back as positive */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: false }}
-            className="rounded-2xl border border-accent/30 bg-accent/5 p-5 mb-12"
-          >
-            <p className="text-sm font-semibold text-foreground mb-2">Update: we made awareness free.</p>
-            <p className="text-sm text-muted-foreground">
-              Muscle tracking, recovery, balance, patterns — what used to be premium — are now free, forever. Seeing your training shouldn&apos;t have a price tag. If you were on the beta and &ldquo;earned premium,&rdquo; you keep everything, and you&apos;re first in line for coaching when it ships.
-            </p>
-          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Free card */}
@@ -518,7 +504,7 @@ export default function Home() {
               className="rounded-2xl border border-border bg-card p-6 space-y-4"
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free, forever</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free</p>
                 <p className="text-3xl font-bold text-foreground">$0</p>
                 <p className="text-sm text-muted-foreground mt-1">The awareness layer</p>
               </div>
@@ -584,8 +570,8 @@ export default function Home() {
           >
             {[
               {
-                q: "Why is everything free now?",
-                a: "Because awareness should be the trust-bank, not the pitch. The whole “see what your training is doing” layer — logging, body map, recovery, patterns — is free forever, by design. Coaching (adaptive sessions, in-session guidance, plans that learn how you train) is what we’re building as the paid tier. Early users get first access when it lands."
+                q: "Why is everything free?",
+                a: "Because awareness should be the lead, not the pitch. The whole “see what your training is doing” layer — logging, body map, recovery, patterns — is free, by design. Coaching (adaptive sessions, in-session guidance, plans that learn how you train) is what we’re building as the paid tier. Early users get first access when it lands."
               },
               {
                 q: "When does coaching ship?",
