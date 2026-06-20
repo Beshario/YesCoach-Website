@@ -40,7 +40,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                Open beta · Android
+                v0.01 · Awareness, free forever
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -82,10 +82,10 @@ export default function Home() {
                 className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
               >
                 <p className="text-sm font-semibold text-foreground">
-                  Earn premium free — just by training.
+                  Awareness is free. Forever.
                 </p>
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
-                  Log 3 workouts in your first week, give us honest feedback, and unlock premium free. Simple as that.
+                  Logging, the body map, recovery, patterns — the whole <em>see what your training is doing</em> layer. All free, on purpose. Coaching — adaptive sessions that talk back — is what we're building as the paid tier. Early users get first access.
                 </p>
                 <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
@@ -415,6 +415,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why YesCoach isn't another tracker */}
+      <section className="py-24 border-t border-border">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: false }}
+            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
+          >
+            Why YesCoach isn&apos;t another tracker.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground text-lg mb-12 max-w-2xl"
+          >
+            Most workout apps store your sets. YesCoach computes what those sets actually do.
+          </motion.p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                h: "They log. YesCoach understands.",
+                p: "Other apps store “bench 3×10” and slap static muscle tags on it. YesCoach computes per-muscle stimulus from biomechanics — change your stance, grip, or implement and the body map recalculates. No competitor does real-time biomechanical resolution."
+              },
+              {
+                h: "A living model of your body, not a spreadsheet.",
+                p: "Recovery, accumulated load, movement balance — tracked together, updated every session. Your training isn’t a list; it’s a picture."
+              },
+              {
+                h: "Awareness first.",
+                p: "See what your training does before being told what to do. The app illuminates; you explore. Coaching comes when you’re ready — and only if you want it."
+              },
+              {
+                h: "Built by an engineer who trains.",
+                p: "No roadmap committee. The maker’s email is in the footer. The product is the conversation."
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.h}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.08 }}
+                viewport={{ once: false }}
+                className="rounded-2xl border border-border bg-card p-6 space-y-3"
+              >
+                <h3 className="text-lg font-bold text-primary">{item.h}</h3>
+                <p className="text-muted-foreground leading-relaxed">{item.p}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing & Beta */}
       <section className="py-24 border-t border-border">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
@@ -425,17 +482,31 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-primary"
           >
-            Free to try. Worth keeping.
+            Free, forever. Coaching, coming.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
             viewport={{ once: false }}
-            className="text-muted-foreground text-lg mb-12 max-w-2xl"
+            className="text-muted-foreground text-lg mb-8 max-w-2xl"
           >
-            During beta, you can earn premium by training. Log 3 workouts in your first week, give feedback, and premium unlocks — free. No trial clock, no pressure.
+            Awareness is the trust-bank. We made it free on purpose. Coaching — the layer that tells you what to do with what you see — is the paid tier, in development.
           </motion.p>
+
+          {/* Walk-back as positive */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
+            viewport={{ once: false }}
+            className="rounded-2xl border border-accent/30 bg-accent/5 p-5 mb-12"
+          >
+            <p className="text-sm font-semibold text-foreground mb-2">Update: we made awareness free.</p>
+            <p className="text-sm text-muted-foreground">
+              Muscle tracking, recovery, balance, patterns — what used to be premium — are now free, forever. Seeing your training shouldn&apos;t have a price tag. If you were on the beta and &ldquo;earned premium,&rdquo; you keep everything, and you&apos;re first in line for coaching when it ships.
+            </p>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Free card */}
@@ -447,16 +518,18 @@ export default function Home() {
               className="rounded-2xl border border-border bg-card p-6 space-y-4"
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free, forever</p>
                 <p className="text-3xl font-bold text-foreground">$0</p>
-                <p className="text-sm text-muted-foreground mt-1">Always free</p>
+                <p className="text-sm text-muted-foreground mt-1">The awareness layer</p>
               </div>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {[
                   "Workout logging",
-                  "Workout planning",
-                  "Exercise browsing by muscle",
-                  "Day view — session breakdown",
+                  "Biomechanical body map (recalculates with stance, grip, load)",
+                  "Muscle tracking over time",
+                  "Recovery visibility per muscle group",
+                  "Training balance & pattern analysis",
+                  "Weekly + monthly summaries",
                   "Muscle-first navigation",
                   "Works with any training style",
                 ].map((f) => (
@@ -477,22 +550,21 @@ export default function Home() {
               className="rounded-2xl border-2 border-primary bg-card p-6 space-y-4 relative"
             >
               <div className="absolute -top-3 left-6">
-                <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">Earn free during beta</span>
+                <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">Early users get first access</span>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Premium</p>
-                <p className="text-3xl font-bold text-foreground">$2.99<span className="text-lg font-normal text-muted-foreground">/mo</span></p>
-                <p className="text-sm text-muted-foreground mt-1">or $19.99/year · a lunch a year</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Coaching · coming</p>
+                <p className="text-3xl font-bold text-foreground">In development</p>
+                <p className="text-sm text-muted-foreground mt-1">The paid tier — when you&rsquo;re ready</p>
               </div>
-              <p className="text-xs text-muted-foreground border-t border-border pt-3">Everything in Free, plus:</p>
+              <p className="text-xs text-muted-foreground border-t border-border pt-3">What it will be:</p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {[
-                  "Weekly body map summary",
-                  "Monthly training breakdown",
-                  "Muscle tracking over time",
-                  "Recovery visibility per muscle group",
-                  "Training balance & pattern analysis",
-                  "More as it ships",
+                  "Goal-aware prescribed sessions",
+                  "In-session guidance — the body map talking back",
+                  "Adaptive across your recovery, balance, accumulated load",
+                  "Plans that learn how you train, not generic templates",
+                  "Early users get first access and early pricing",
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2">
                     <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
@@ -512,8 +584,12 @@ export default function Home() {
           >
             {[
               {
-                q: "How do I earn premium during beta?",
-                a: "Download the app, log 3 workouts in your first 7 days, and submit feedback through the in-app prompt. Premium unlocks automatically."
+                q: "Why is everything free now?",
+                a: "Because awareness should be the trust-bank, not the pitch. The whole “see what your training is doing” layer — logging, body map, recovery, patterns — is free forever, by design. Coaching (adaptive sessions, in-session guidance, plans that learn how you train) is what we’re building as the paid tier. Early users get first access when it lands."
+              },
+              {
+                q: "When does coaching ship?",
+                a: "In development. We’ll announce timing when it’s close. Early users get first access and early pricing."
               },
               {
                 q: "Does it work with my current program?",
