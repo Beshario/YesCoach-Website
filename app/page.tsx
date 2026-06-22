@@ -40,7 +40,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                v0.01 · Awareness, free
+                v0.01 · Android
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -59,20 +59,8 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.16 }}
                   className="text-xl text-muted-foreground max-w-2xl"
                 >
-                  Which muscles are working. How recovered they are. What patterns are emerging. Grounded in exercise science and how your body moves.
+                  Which muscles are working. How recovered they are. What patterns are emerging.
                 </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  className="flex flex-wrap gap-2 text-sm text-muted-foreground"
-                >
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Free to start</span>
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">No credit card</span>
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Android live</span>
-                  <span className="rounded-full border border-border bg-background/80 px-3 py-1.5">Building in public</span>
-                </motion.div>
               </div>
 
               <motion.div
@@ -82,10 +70,10 @@ export default function Home() {
                 className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
               >
                 <p className="text-sm font-semibold text-foreground">
-                  Awareness is free, by design.
+                  Awareness is free.
                 </p>
                 <p className="text-sm text-muted-foreground mt-2 mb-4">
-                  Logging, the body map, recovery, patterns — the whole <em>see what your training is doing</em> layer. Free, on purpose. Coaching — adaptive sessions that talk back — is what we&rsquo;re building as the paid tier. Early users get first access.
+                  Logging, body map, recovery, balance, patterns. Coaching — adaptive prescribed sessions — is the paid tier, in development.
                 </p>
                 <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
@@ -99,7 +87,7 @@ export default function Home() {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-4">
-                  Questions? <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a> goes straight to the builder.
+                  <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>
                 </p>
               </motion.div>
             </div>
@@ -380,98 +368,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Promise */}
-      <section className="py-32">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0 }}
-            viewport={{ once: false }}
-            className="space-y-4 text-center"
-          >
-            <p className="text-2xl text-foreground">
-              <span className="text-accent font-semibold">Clarity builds confidence.</span>
-            </p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-              viewport={{ once: false }}
-              className="text-xl text-muted-foreground"
-            >
-              When training becomes visible, decisions get easier.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              viewport={{ once: false }}
-              className="text-lg text-muted-foreground pt-4"
-            >
-              You already do the work. YesCoach helps you understand it.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why YesCoach isn't another tracker */}
-      <section className="py-24 border-t border-border">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            viewport={{ once: false }}
-            className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
-          >
-            Why YesCoach isn&apos;t another tracker.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: false }}
-            className="text-muted-foreground text-lg mb-12 max-w-2xl"
-          >
-            Most workout apps store your sets. YesCoach computes what those sets actually do.
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                h: "They log. YesCoach understands.",
-                p: "Other apps store “bench 3×10” and slap static muscle tags on it. YesCoach computes per-muscle stimulus from biomechanics — change your stance, grip, or implement and the body map recalculates. No competitor does real-time biomechanical resolution."
-              },
-              {
-                h: "A living model of your body, not a spreadsheet.",
-                p: "Recovery, accumulated load, movement balance — tracked together, updated every session. Your training isn’t a list; it’s a picture."
-              },
-              {
-                h: "Awareness first.",
-                p: "See what your training does before being told what to do. The app illuminates; you explore. Coaching comes when you’re ready — and only if you want it."
-              },
-              {
-                h: "Built by an engineer who trains.",
-                p: "No roadmap committee. The maker’s email is in the footer. The product is the conversation."
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.h}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.08 }}
-                viewport={{ once: false }}
-                className="rounded-2xl border border-border bg-card p-6 space-y-3"
-              >
-                <h3 className="text-lg font-bold text-primary">{item.h}</h3>
-                <p className="text-muted-foreground leading-relaxed">{item.p}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Pricing & Beta */}
       <section className="py-24 border-t border-border">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
@@ -491,7 +387,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-muted-foreground text-lg mb-12 max-w-2xl"
           >
-            Awareness is free, by design. Coaching — the layer that tells you what to do with what you see — is the paid tier, in development.
+            Coaching — adaptive prescribed sessions, in-session guidance — is the paid tier, in development.
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -535,22 +431,17 @@ export default function Home() {
               viewport={{ once: false }}
               className="rounded-2xl border-2 border-primary bg-card p-6 space-y-4 relative"
             >
-              <div className="absolute -top-3 left-6">
-                <span className="bg-accent text-accent-foreground text-xs font-semibold px-3 py-1 rounded-full">Early users get first access</span>
-              </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Coaching · coming</p>
                 <p className="text-3xl font-bold text-foreground">In development</p>
-                <p className="text-sm text-muted-foreground mt-1">The paid tier — when you&rsquo;re ready</p>
+                <p className="text-sm text-muted-foreground mt-1">The paid tier</p>
               </div>
               <p className="text-xs text-muted-foreground border-t border-border pt-3">What it will be:</p>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {[
                   "Goal-aware prescribed sessions",
-                  "In-session guidance — the body map talking back",
-                  "Adaptive across your recovery, balance, accumulated load",
-                  "Plans that learn how you train, not generic templates",
-                  "Early users get first access and early pricing",
+                  "In-session guidance",
+                  "Adaptive across recovery, balance, accumulated load",
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2">
                     <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
@@ -570,12 +461,12 @@ export default function Home() {
           >
             {[
               {
-                q: "Why is everything free?",
-                a: "Because awareness should be the lead, not the pitch. The whole “see what your training is doing” layer — logging, body map, recovery, patterns — is free, by design. Coaching (adaptive sessions, in-session guidance, plans that learn how you train) is what we’re building as the paid tier. Early users get first access when it lands."
+                q: "Why is the app free?",
+                a: "The awareness layer (logging, body map, recovery, balance, patterns) is free. Coaching — adaptive prescribed sessions — is the paid tier, in development."
               },
               {
                 q: "When does coaching ship?",
-                a: "In development. We’ll announce timing when it’s close. Early users get first access and early pricing."
+                a: "In development. No date yet."
               },
               {
                 q: "Does it work with my current program?",
@@ -616,7 +507,6 @@ export default function Home() {
           <div className="flex items-center justify-center mb-4">
             <img src="/logo.png" alt="YesCoach" className="h-7 w-auto" />
           </div>
-          <p className="text-center text-sm text-muted-foreground mb-3">Solo-built by an engineer who trains.</p>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
             <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
               Follow on X
