@@ -59,7 +59,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.16 }}
                   className="text-xl text-muted-foreground max-w-2xl"
                 >
-                  Which muscles are working. How recovered they are. What patterns are emerging.
+                  Which muscles are working. How recovered they are. What patterns are emerging. Calculated from biomechanics — joint torques, load, stance, variant — not static labels.
                 </motion.p>
               </div>
 
@@ -126,6 +126,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* From first principles */}
+      <section className="py-16 border-t border-border">
+        <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: false }}
+            className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4"
+          >
+            From first principles
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: false }}
+            className="text-xl lg:text-2xl text-foreground mb-3"
+          >
+            Muscle activation calculated from biomechanics — joint torques, load, stance, variant.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            viewport={{ once: false }}
+            className="text-muted-foreground"
+          >
+            Change your stance, grip, or implement and the body map recalculates. Not static labels.
+          </motion.p>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="py-24 border-t border-border">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -145,7 +178,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-muted-foreground text-lg mb-20 max-w-2xl"
           >
-            Every set feeds a living model. Muscle dose, recovery state, accumulated load, movement balance — tracked together, updated every session.
+            Every set updates the model. Muscle dose, recovery state, accumulated load, balance — tracked together, recomputed every session.
           </motion.p>
 
           <div className="space-y-24">
@@ -387,7 +420,7 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-muted-foreground text-lg mb-12 max-w-2xl"
           >
-            Coaching — adaptive prescribed sessions, in-session guidance — is the paid tier, in development.
+            Coaching — adaptive prescribed sessions, in-session guidance, plans that read your recovery and accumulated load — is the paid tier, in development.
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-6">
