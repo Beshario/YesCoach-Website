@@ -541,6 +541,10 @@ export default function Home() {
             <img src="/logo.png" alt="YesCoach" className="h-7 w-auto" />
           </div>
           <div className="flex flex-wrap gap-4 justify-center text-sm text-muted-foreground">
+            <Link href="/blog" className="hover:text-foreground transition-colors">
+              Blog
+            </Link>
+            <span aria-hidden="true">·</span>
             <a href="https://twitter.com/YCoach58265" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
               Follow on X
             </a>
