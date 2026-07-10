@@ -19,7 +19,12 @@ export default function Home() {
           <span className="hidden sm:inline text-sm text-muted-foreground">
             Biomechanics-based strength training
           </span>
-          <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <Link href="/blog/reading-your-body-honestly" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Blog
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -555,6 +560,10 @@ export default function Home() {
             <span aria-hidden="true">·</span>
             <Link href="/terms" className="hover:text-foreground transition-colors">
               Terms & Conditions
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/blog/reading-your-body-honestly" className="hover:text-foreground transition-colors">
+              Blog
             </Link>
             <span aria-hidden="true">·</span>
             <span>© 2026 YesCoach</span>
