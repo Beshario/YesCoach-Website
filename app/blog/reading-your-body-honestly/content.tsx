@@ -41,10 +41,21 @@ export default function BlogPostContent() {
             </p>
           </div>
 
-          {/* Hero image placeholder */}
-          <div className="aspect-[16/10] bg-muted rounded-2xl border border-border/80 flex items-center justify-center mb-14">
-            <p className="text-sm text-muted-foreground">Live heatmap — hero image coming</p>
-          </div>
+          {/* Hero image — live heatmap capture */}
+          <figure className="mb-14">
+            <div className="mx-auto max-w-sm rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
+              <img
+                src="/blog/reading-your-body-honestly/hero.png"
+                alt="YesCoach live heatmap after a mixed training week — chest and front delts warm, quads deep red, showing muscle-specific dose"
+                width={1170}
+                height={2532}
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+            <figcaption className="text-center text-sm text-muted-foreground mt-4">
+              A training week reflected on the body map. Warm where the work went.
+            </figcaption>
+          </figure>
 
           <div className="space-y-12 text-lg text-muted-foreground">
 
