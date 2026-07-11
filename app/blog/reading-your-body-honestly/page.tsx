@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     siteName: "YesCoach",
     type: "article",
     publishedTime: "2026-07-10T00:00:00Z",
-    images: [{ url: '/blog/reading-your-body-honestly/hero.png', width: 1170, height: 2532, alt: 'YesCoach live heatmap showing a training week — chest, shoulders, and quads lit warm' }],
+    images: [{ url: '/blog/reading-your-body-honestly/hero.webp', width: 1170, height: 2532, alt: 'YesCoach live heatmap showing a training week — chest, shoulders, and quads lit warm' }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Reading your body honestly — YesCoach",
     description,
-    images: ['/blog/reading-your-body-honestly/hero.png'],
+    images: ['/blog/reading-your-body-honestly/hero.webp'],
   },
   alternates: {
     canonical: "https://yescoach.fit/blog/reading-your-body-honestly",
@@ -37,7 +37,7 @@ const jsonLd = {
   "datePublished": "2026-07-10",
   "dateModified": "2026-07-10",
   "mainEntityOfPage": "https://yescoach.fit/blog/reading-your-body-honestly",
-  "image": "https://yescoach.fit/blog/reading-your-body-honestly/hero.png",
+  "image": "https://yescoach.fit/blog/reading-your-body-honestly/hero.webp",
 }
 
 export default function ReadingYourBodyHonestly() {

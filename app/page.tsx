@@ -108,9 +108,10 @@ export default function Home() {
               <div className="absolute left-4 lg:left-0 top-4 rotate-[-7deg] opacity-60 w-[190px] z-0">
                 <PhoneFrame>
                   <AppScreenshot
-                    dark="/screenshots/dark/home-back.jpg"
-                    light="/screenshots/light/home-back.jpg"
+                    dark="/screenshots/dark/home-back.webp"
+                    light="/screenshots/light/home-back.webp"
                     alt="YesCoach app back view"
+                    priority
                   />
                 </PhoneFrame>
               </div>
@@ -119,8 +120,8 @@ export default function Home() {
               <div className="relative rotate-[2deg] w-[210px] ml-24 lg:ml-32 z-10">
                 <PhoneFrame>
                   <AppScreenshot
-                    dark="/screenshots/dark/home-front.jpg"
-                    light="/screenshots/light/home-front.jpg"
+                    dark="/screenshots/dark/home-front.webp"
+                    light="/screenshots/light/home-front.webp"
                     alt="YesCoach app home screen"
                   />
                 </PhoneFrame>
@@ -206,8 +207,8 @@ export default function Home() {
                 <div className="w-[210px]">
                   <PhoneFrame>
                     <AppScreenshot
-                      dark="/screenshots/dark/set-logging.jpg"
-                      light="/screenshots/light/set-logging.jpg"
+                      dark="/screenshots/dark/set-logging.webp"
+                      light="/screenshots/light/set-logging.webp"
                       alt="Logging a set: weight, reps, RIR and rest timer"
                     />
                   </PhoneFrame>
@@ -227,8 +228,8 @@ export default function Home() {
                 <div className="w-[165px]">
                   <PhoneFrame>
                     <AppScreenshot
-                      dark="/screenshots/dark/day-summary.jpg"
-                      light="/screenshots/light/day-summary.jpg"
+                      dark="/screenshots/dark/day-summary.webp"
+                      light="/screenshots/light/day-summary.webp"
                       alt="Day summary showing muscle work body map"
                     />
                   </PhoneFrame>
@@ -236,8 +237,8 @@ export default function Home() {
                 <div className="w-[165px]">
                   <PhoneFrame>
                     <AppScreenshot
-                      dark="/screenshots/dark/day-summary-exercises.jpg"
-                      light="/screenshots/light/day-summary-exercises.jpg"
+                      dark="/screenshots/dark/day-summary-exercises.webp"
+                      light="/screenshots/light/day-summary-exercises.webp"
                       alt="Day summary with highlighted exercises per muscle"
                     />
                   </PhoneFrame>
@@ -269,8 +270,8 @@ export default function Home() {
                 <div className="w-[210px]">
                   <PhoneFrame>
                     <AppScreenshot
-                      dark="/screenshots/dark/calendar-track.jpg"
-                      light="/screenshots/light/calendar-track.jpg"
+                      dark="/screenshots/dark/calendar-track.webp"
+                      light="/screenshots/light/calendar-track.webp"
                       alt="Training calendar with color-coded sessions"
                     />
                   </PhoneFrame>
@@ -290,8 +291,8 @@ export default function Home() {
                 <div className="w-[210px]">
                   <PhoneFrame>
                     <AppScreenshot
-                      dark="/screenshots/dark/week-summary.jpg"
-                      light="/screenshots/light/week-summary.jpg"
+                      dark="/screenshots/dark/week-summary.webp"
+                      light="/screenshots/light/week-summary.webp"
                       alt="Programs screen showing preset and custom training programs"
                     />
                   </PhoneFrame>
@@ -342,8 +343,8 @@ export default function Home() {
             >
               <PhoneFrame>
                 <AppScreenshot
-                  dark="/screenshots/dark/month-pf.jpg"
-                  light="/screenshots/light/month-pf.jpg"
+                  dark="/screenshots/dark/month-pf.webp"
+                  light="/screenshots/light/month-pf.webp"
                   alt="Month summary: sessions, sets, volume and muscle exposure map"
                 />
               </PhoneFrame>
@@ -358,8 +359,8 @@ export default function Home() {
             >
               <PhoneFrame>
                 <AppScreenshot
-                  dark="/screenshots/dark/month-balance.jpg"
-                  light="/screenshots/light/month-balance.jpg"
+                  dark="/screenshots/dark/month-balance.webp"
+                  light="/screenshots/light/month-balance.webp"
                   alt="Monthly muscle balance chart"
                 />
               </PhoneFrame>
@@ -380,7 +381,7 @@ export default function Home() {
             >
               <PhoneFrame>
                 <AppScreenshot
-                  dark="/screenshots/light/month-graph.jpg"
+                  dark="/screenshots/light/month-graph.webp"
                   alt="Monthly performance graph"
                 />
               </PhoneFrame>
@@ -396,7 +397,7 @@ export default function Home() {
             >
               <PhoneFrame>
                 <AppScreenshot
-                  dark="/screenshots/dark/general.jpg"
+                  dark="/screenshots/dark/general.webp"
                   alt="YesCoach app overview"
                 />
               </PhoneFrame>

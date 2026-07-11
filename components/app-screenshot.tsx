@@ -10,11 +10,13 @@ export function AppScreenshot({
   light,
   alt,
   className,
+  priority,
 }: {
   dark: string
   light?: string
   alt: string
   className?: string
+  priority?: boolean
 }) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -31,6 +33,7 @@ export function AppScreenshot({
       width={1080}
       height={2340}
       className={cn('w-full h-full object-cover', className)}
+      priority={priority}
     />
   )
 }
