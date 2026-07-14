@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import BlogPostContent from "./content"
 
-const description = "Log a set. See which muscles did the work, and how hard. YesCoach shows the live heatmap while you lift."
+const description = "Which muscles does the bench press work? YesCoach renders a live recruitment map — joint torque distributed to pectoralis major, anterior deltoid, and triceps brachii — and updates it set by set as you log."
 
 export const metadata: Metadata = {
   title: "Watch a lift light up — YesCoach",

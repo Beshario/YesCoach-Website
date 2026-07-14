@@ -37,7 +37,7 @@ export default function BlogPostContent() {
               Watch a lift light up
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Log a set. See which muscles did the work, and how hard.
+              A live recruitment map: joint torque distributed to each muscle, per set, per rep.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export default function BlogPostContent() {
               </div>
             </div>
             <figcaption className="text-center text-sm text-muted-foreground mt-4">
-              <strong>3 sets → 7 sets. Watch the chain deepen.</strong>
+              <strong>3 sets → 7 sets. Accumulated dose per muscle.</strong>
             </figcaption>
           </figure>
 
@@ -94,23 +94,15 @@ export default function BlogPostContent() {
               </figure>
 
               <p>
-                Bench press is a horizontal push. Chest, front delts, triceps. The app shows the chain before you lift.
+                Bench press is a compound horizontal push. Three primary movers generate the torque: <strong>pectoralis major</strong> (shoulder horizontal adduction), <strong>anterior deltoid</strong> (shoulder flexion), and <strong>triceps brachii</strong> (elbow extension). YesCoach displays this recruitment map on the exercise info page before you unrack.
               </p>
             </motion.section>
 
-            {/* Section 2: Log a set. Watch it answer. */}
+            {/* Section 2: SEO — search intent */}
             <section>
-              <h2 className="text-2xl font-semibold mb-5 text-foreground">Log a set. Watch it answer.</h2>
+              <h2 className="text-2xl font-semibold mb-5 text-foreground">What muscles does the bench press work?</h2>
               <p>
-                Three sets in — chest and front delts warm. Seven sets in — deeper, same chain. Nothing else lights, because nothing else did the work.
-              </p>
-            </section>
-
-            {/* Section 3: SEO — search intent */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-5 text-foreground">What muscles does bench press actually work?</h2>
-              <p>
-                The flat barbell bench loads three muscle groups as primary movers: pectoralis major (chest), anterior deltoid (front shoulder), and triceps. YesCoach shows this on the live body-map as you log. Brightness reflects mechanical dose — torque absorbed and proximity to failure, from the RIR you log.
+                The flat barbell bench press recruits three primary movers: <strong>pectoralis major</strong> (shoulder horizontal adduction), <strong>anterior deltoid</strong> (shoulder flexion), and <strong>triceps brachii</strong> (elbow extension). Stabilizers — serratus anterior, rotator cuff, forearm flexors — contribute without matching dose. YesCoach computes each muscle's mechanical contribution from joint torque and the reps in reserve (RIR) you report per set, then renders the result as a heatmap that updates set by set.
               </p>
             </section>
 
@@ -137,14 +129,14 @@ export default function BlogPostContent() {
                   </div>
                 </div>
                 <figcaption className="text-center text-sm text-muted-foreground mt-3">
-                  Bench press. Horizontal push. This is what it lights up.
+                  Bench press. Horizontal push. Recruitment after seven sets at RIR 2.
                 </figcaption>
               </figure>
             </motion.section>
 
             {/* Close */}
             <section>
-              <p className="mb-2">Log your first set. Watch it happen.</p>
+              <p className="mb-2">Log a set. Read your recruitment map.</p>
               <p>Free while it is early.</p>
             </section>
 
@@ -159,10 +151,10 @@ export default function BlogPostContent() {
             className="mt-16 border border-border/80 bg-card/85 backdrop-blur-sm rounded-2xl p-8 text-center"
           >
             <h3 className="text-2xl font-semibold text-foreground mb-3">
-              See your first set light up in 10 seconds
+              Your first recruitment map, in under 10 seconds
             </h3>
             <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
-              Add an exercise. Log a set. See your body answer back.
+              Add an exercise. Log a set. Read the map.
             </p>
             <a
               href={PLAY_STORE_URL}
