@@ -114,22 +114,61 @@ export default function BlogPostContent() {
               transition={{ duration: 0.5 }}
             >
               <figure className="mx-auto max-w-sm">
-                <div className="relative rounded-2xl border border-border/80 shadow-sm overflow-hidden">
-                  <img
-                    src="/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp"
-                    alt="YesCoach live heatmap after 7 sets of bench press — chest, front delts, and triceps lit deep orange and red"
-                    width={500}
-                    height={844}
-                    className="w-full h-auto"
-                  />
-                  <div className="absolute bottom-4 left-4">
+                <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm shadow-sm p-6">
+                  <div className="flex items-center gap-2 mb-5">
                     <span className="bg-primary text-primary-foreground rounded-full px-3 py-1 text-xs font-semibold">
                       Horizontal Push
                     </span>
+                    <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">
+                      Bench press
+                    </span>
+                  </div>
+
+                  <div className="mb-5">
+                    <p className="text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                      Primary movers
+                    </p>
+                    <ul className="space-y-1.5 text-base text-foreground">
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                        <span>Pectoralis major</span>
+                        <span className="text-xs text-muted-foreground ml-auto">shoulder h. adduction</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                        <span>Anterior deltoid</span>
+                        <span className="text-xs text-muted-foreground ml-auto">shoulder flexion</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                        <span>Triceps brachii</span>
+                        <span className="text-xs text-muted-foreground ml-auto">elbow extension</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                      Stabilizers
+                    </p>
+                    <ul className="space-y-1.5 text-base text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full border border-muted-foreground/60 shrink-0" aria-hidden="true" />
+                        <span>Serratus anterior</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full border border-muted-foreground/60 shrink-0" aria-hidden="true" />
+                        <span>Rotator cuff</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full border border-muted-foreground/60 shrink-0" aria-hidden="true" />
+                        <span>Forearm flexors</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <figcaption className="text-center text-sm text-muted-foreground mt-3">
-                  Bench press. Horizontal push. Recruitment after seven sets at RIR 2.
+                  Recruitment breakdown. Primary movers accumulate dose; stabilizers contribute without matching it.
                 </figcaption>
               </figure>
             </motion.section>
