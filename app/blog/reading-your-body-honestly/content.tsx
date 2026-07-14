@@ -19,9 +19,9 @@ export default function BlogPostContent() {
 
       <main className="py-16 lg:py-24">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="max-w-4xl mx-auto px-6 lg:px-12"
         >
           {/* Article header */}
@@ -29,91 +29,124 @@ export default function BlogPostContent() {
             <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
               <span>YesCoach</span>
               <span aria-hidden="true">·</span>
-              <time dateTime="2026-07-10">July 10, 2026</time>
+              <time dateTime="2026-07-11">July 11, 2026</time>
               <span aria-hidden="true">·</span>
               <span>2 min read</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight mb-4 text-foreground">
-              Reading your body honestly
+              Watch a lift light up
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Every color on the body map traces back to torque you actually produced.
+            <p className="text-xl text-muted-foreground max-w-2xl">
+              Log a set. See which muscles did the work, and how hard.
             </p>
           </div>
 
-          {/* Hero image — live heatmap capture */}
+          {/* Hero: side-by-side B + C */}
           <figure className="mb-14">
-            <div className="mx-auto max-w-sm rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
-              <img
-                src="/blog/reading-your-body-honestly/hero.webp"
-                alt="YesCoach live heatmap after a mixed training week — chest and front delts warm, quads deep red, showing muscle-specific dose"
-                width={1170}
-                height={2532}
-                className="w-full h-auto rounded-lg"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
+                <img
+                  src="/blog/reading-your-body-honestly/shot-b-heatmap-3sets.webp"
+                  alt="YesCoach live heatmap after 3 sets of bench press — chest, front delts, triceps starting to warm"
+                  width={500}
+                  height={844}
+                  loading="eager"
+                  fetchPriority="high"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
+                <img
+                  src="/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp"
+                  alt="Same heatmap after 7 sets — same muscle chain, deeper red and orange"
+                  width={500}
+                  height={844}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
             </div>
             <figcaption className="text-center text-sm text-muted-foreground mt-4">
-              A training week reflected on the body map. Warm where the work went.
+              <strong>3 sets → 7 sets. Watch the chain deepen.</strong>
             </figcaption>
           </figure>
 
           <div className="space-y-12 text-lg text-muted-foreground">
 
-            {/* Section 1: How color happens */}
+            {/* Section 1: The lift, the chain */}
             <motion.section
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-semibold mb-5 text-foreground">How the color happens</h2>
+              <h2 className="text-2xl font-semibold mb-5 text-foreground">The lift, the chain</h2>
 
-              {/* Physics chain callout */}
-              <div className="border border-border/80 bg-card/85 backdrop-blur-sm p-5 rounded-xl mb-5">
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary font-mono font-semibold shrink-0">01</span>
-                    <span>Load + range of motion → joint torque</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary font-mono font-semibold shrink-0">02</span>
-                    <span>Joint torque × moment arm → per-muscle contribution</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-primary font-mono font-semibold shrink-0">03</span>
-                    <span>Contribution ÷ muscle capacity → intensity, mapped to color</span>
+              <figure className="mb-5">
+                <div className="mx-auto max-w-sm rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
+                  <img
+                    src="/blog/reading-your-body-honestly/shot-a-bench-info.webp"
+                    alt="YesCoach ExerciseDetailPage for bench press — front and back body map with chest, front delts, and triceps highlighted, plus Equipment and Variant chips"
+                    width={500}
+                    height={844}
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
+              </figure>
+
+              <p>
+                Bench press is a horizontal push. Chest, front delts, triceps. The app shows the chain before you lift.
+              </p>
+            </motion.section>
+
+            {/* Section 2: Log a set. Watch it answer. */}
+            <section>
+              <h2 className="text-2xl font-semibold mb-5 text-foreground">Log a set. Watch it answer.</h2>
+              <p>
+                Three sets in — chest and front delts warm. Seven sets in — deeper, same chain. Nothing else lights, because nothing else did the work.
+              </p>
+            </section>
+
+            {/* Section 3: SEO — search intent */}
+            <section>
+              <h2 className="text-2xl font-semibold mb-5 text-foreground">What muscles does bench press actually work?</h2>
+              <p>
+                The flat barbell bench loads three muscle groups as primary movers: pectoralis major (chest), anterior deltoid (front shoulder), and triceps. YesCoach shows this on the live body-map as you log. Brightness reflects mechanical dose — torque absorbed and proximity to failure, from the RIR you log.
+              </p>
+            </section>
+
+            {/* Section 4: Shareable composite panel */}
+            <motion.section
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <figure className="mx-auto max-w-sm">
+                <div className="relative rounded-2xl border border-border/80 shadow-sm overflow-hidden">
+                  <img
+                    src="/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp"
+                    alt="YesCoach live heatmap after 7 sets of bench press — chest, front delts, and triceps lit deep orange and red"
+                    width={500}
+                    height={844}
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="bg-primary text-primary-foreground rounded-full px-3 py-1 text-xs font-semibold">
+                      Horizontal Push
+                    </span>
                   </div>
                 </div>
-              </div>
-
-              <p>
-                Log a set. The engine walks the chain. Add twenty kilos, every color downstream climbs. Switch from Romanian to conventional deadlift and the knee angle changes — quads come in, posterior chain redistributes. The map answers to what you actually did.
-              </p>
+                <figcaption className="text-center text-sm text-muted-foreground mt-3">
+                  Bench press. Horizontal push. This is what it lights up.
+                </figcaption>
+              </figure>
             </motion.section>
 
-            {/* Section 2: History */}
-            <motion.section
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-2xl font-semibold mb-5 text-foreground">Per-muscle history, same chain</h2>
-              <p>
-                Stack each session's dose against the muscle's recovery curve. A muscle worked heavy three days ago sits at different readiness than one last touched a week ago. The map shows it today, without you having to remember.
-              </p>
-            </motion.section>
-
-            {/* Section 3: Close */}
-            <motion.section
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <p className="mb-2">Log a set. Watch the physics answer.</p>
+            {/* Close */}
+            <section>
+              <p className="mb-2">Log your first set. Watch it happen.</p>
               <p>Free while it is early.</p>
-            </motion.section>
+            </section>
 
           </div>
 
@@ -126,10 +159,10 @@ export default function BlogPostContent() {
             className="mt-16 border border-border/80 bg-card/85 backdrop-blur-sm rounded-2xl p-8 text-center"
           >
             <h3 className="text-2xl font-semibold text-foreground mb-3">
-              See your own body light up
+              See your first set light up in 10 seconds
             </h3>
             <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
-              Log a set. Watch it answer back.
+              Add an exercise. Log a set. See your body answer back.
             </p>
             <a
               href={PLAY_STORE_URL}

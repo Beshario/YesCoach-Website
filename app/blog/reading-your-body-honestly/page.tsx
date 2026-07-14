@@ -1,26 +1,26 @@
 import type { Metadata } from "next"
 import BlogPostContent from "./content"
 
-const description = "Most apps color muscles by tag. YesCoach colors them by dose computed from joint torque — every number traces back to the movement."
+const description = "Log a set. See which muscles did the work, and how hard. YesCoach shows the live heatmap while you lift."
 
 export const metadata: Metadata = {
-  title: "Reading your body honestly — YesCoach",
+  title: "Watch a lift light up — YesCoach",
   description,
   authors: [{ name: 'YesCoach' }],
   openGraph: {
-    title: "Reading your body honestly — YesCoach",
+    title: "Watch a lift light up — YesCoach",
     description,
     url: "https://yescoach.fit/blog/reading-your-body-honestly",
     siteName: "YesCoach",
     type: "article",
-    publishedTime: "2026-07-10T00:00:00Z",
-    images: [{ url: '/blog/reading-your-body-honestly/hero.webp', width: 1170, height: 2532, alt: 'YesCoach live heatmap showing a training week — chest, shoulders, and quads lit warm' }],
+    publishedTime: "2026-07-11T00:00:00Z",
+    images: [{ url: '/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp', width: 500, height: 844, alt: 'YesCoach live heatmap after 7 sets of bench press — chest, front delts, triceps lit warm' }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reading your body honestly — YesCoach",
+    title: "Watch a lift light up — YesCoach",
     description,
-    images: ['/blog/reading-your-body-honestly/hero.webp'],
+    images: ['/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp'],
   },
   alternates: {
     canonical: "https://yescoach.fit/blog/reading-your-body-honestly",
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Reading your body honestly",
+  "headline": "Watch a lift light up",
   "description": description,
   "author": { "@type": "Organization", "name": "YesCoach" },
   "publisher": { "@type": "Organization", "name": "YesCoach", "url": "https://yescoach.fit" },
-  "datePublished": "2026-07-10",
-  "dateModified": "2026-07-10",
+  "datePublished": "2026-07-11",
+  "dateModified": "2026-07-13",
   "mainEntityOfPage": "https://yescoach.fit/blog/reading-your-body-honestly",
-  "image": "https://yescoach.fit/blog/reading-your-body-honestly/hero.webp",
+  "image": "https://yescoach.fit/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp",
 }
 
 export default function ReadingYourBodyHonestly() {
