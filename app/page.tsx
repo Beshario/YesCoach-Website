@@ -17,10 +17,18 @@ export default function Home() {
             <span className="text-lg font-semibold tracking-tight">YesCoach</span>
           </Link>
           <span className="hidden sm:inline text-sm text-muted-foreground">
-            Biomechanics-based strength training
+            Body model · free · local · private
           </span>
-          <div className="flex items-center gap-4">
-            <Link href="/blog/reading-your-body-honestly" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="flex items-center gap-3">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center rounded-full bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 hover:opacity-90 transition-opacity"
+            >
+              Get it — Android
+            </a>
+            <Link href="/blog/reading-your-body-honestly" className="inline-flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               Blog
             </Link>
             <ThemeToggle />
@@ -45,7 +53,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                v0.01 · Android
+                On Google Play · Free · Local · Private
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -64,7 +72,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.16 }}
                   className="text-xl text-muted-foreground max-w-2xl"
                 >
-                  Which muscles are working. How recovered they are. What patterns are emerging. Calculated from biomechanics — joint torques, load, stance, variant — not static labels.
+                  Which muscles worked. How recovered they are. What's emerging. Computed from joint torques, load, stance, and variant — not static labels.
                 </motion.p>
               </div>
 
@@ -74,11 +82,8 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0.24 }}
                 className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-5 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.25)] max-w-xl"
               >
-                <p className="text-sm font-semibold text-foreground">
-                  Awareness is free.
-                </p>
-                <p className="text-sm text-muted-foreground mt-2 mb-4">
-                  Logging, body map, recovery, balance, patterns. Coaching — adaptive prescribed sessions — is the paid tier, in development.
+                <p className="text-base font-semibold text-foreground mb-4">
+                  Free. Runs on your phone. No account.
                 </p>
                 <div>
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
@@ -91,9 +96,6 @@ export default function Home() {
                     </a>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>
-                </p>
               </motion.div>
             </div>
 
@@ -105,7 +107,7 @@ export default function Home() {
               className="relative h-[540px] flex items-center justify-center lg:justify-end"
             >
               {/* Back phone — behind, rotated */}
-              <div className="absolute left-4 lg:left-0 top-4 rotate-[-7deg] opacity-60 w-[190px] z-0">
+              <div className="absolute left-6 lg:left-0 top-4 rotate-[-7deg] opacity-60 w-[170px] sm:w-[190px] z-0">
                 <PhoneFrame>
                   <AppScreenshot
                     dark="/screenshots/dark/home-back.webp"
@@ -139,7 +141,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-4"
           >
             From first principles
@@ -148,19 +150,19 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-xl lg:text-2xl text-foreground mb-3"
           >
-            Muscle activation calculated from biomechanics — joint torques, load, stance, variant.
+            Per-muscle dose derived from joint torque, moment arms, and effort — not category tags.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-muted-foreground"
           >
-            Change your stance, grip, or implement and the body map recalculates. Not static labels.
+            Change your stance, grip, or implement and the recruitment recalculates. The engine models each exercise as a movement pattern with anatomical joint actions, not a lookup row.
           </motion.p>
         </div>
       </section>
@@ -172,7 +174,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-foreground"
           >
             A model of your body.
@@ -181,10 +183,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-20 max-w-2xl"
           >
-            Every set updates the model. Muscle dose, recovery state, accumulated load, balance — tracked together, recomputed every session.
+            Every set updates the model. Muscle dose, recovery state, cumulative tonnage, balance — recomputed every session.
           </motion.p>
 
           <div className="space-y-24">
@@ -194,13 +196,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-primary">Fast to log. Easy to understand.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Weight. Reps. Effort (RIR). Logged in seconds. Every set feeds the model — no manual tagging, no setup.
+                  Weight. Reps. RIR. Logged in seconds. Every set feeds the model. No tagging, no setup.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -221,7 +223,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="flex justify-center gap-4 lg:order-1 order-2">
@@ -257,13 +259,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold text-primary">Patterns emerge.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Weekly rhythm. Monthly balance. Long-term accumulation. Strength trends and muscle exposure side by side — drill from month to week to day to exercise.
+                  Weekly rhythm. Monthly balance. Long-term accumulation. Strength trends beside muscle exposure. Drill month → week → day → exercise.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -279,34 +281,52 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Row 4: screenshot left, text right */}
+            {/* Row 4: text only — reduces screenshot fatigue */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              viewport={{ once: false }}
-              className="grid lg:grid-cols-2 gap-12 items-center"
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-center space-y-4"
             >
-              <div className="flex justify-center lg:order-1 order-2">
-                <div className="w-[210px]">
-                  <PhoneFrame>
-                    <AppScreenshot
-                      dark="/screenshots/dark/week-summary.webp"
-                      light="/screenshots/light/week-summary.webp"
-                      alt="Programs screen showing preset and custom training programs"
-                    />
-                  </PhoneFrame>
-                </div>
-              </div>
-              <div className="space-y-4 lg:order-2 order-1">
-                <h3 className="text-2xl font-bold text-primary">Start with a proven structure.</h3>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  Push/Pull/Legs. Upper/Lower. Or build your own. Your plan lives in the app — ready when you show up.
-                </p>
-              </div>
+              <h3 className="text-2xl font-bold text-primary">Start with a proven structure.</h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                Push/Pull/Legs. Upper/Lower. Or build your own. Your plan lives in the app — ready when you show up.
+              </p>
             </motion.div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Mid-page CTA */}
+      <section className="py-16 border-t border-border">
+        <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            viewport={{ once: true }}
+            className="text-2xl lg:text-3xl font-semibold text-foreground mb-6"
+          >
+            Log a set. See your recruitment map.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download free — Android
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -317,7 +337,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-foreground text-center"
           >
             More of what's inside
@@ -326,7 +346,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-muted-foreground mb-12 text-lg text-center"
           >
             Monthly breakdowns, balance charts, and the details that make training clearer.
@@ -338,7 +358,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="flex-shrink-0 snap-start w-[185px]"
             >
               <PhoneFrame>
@@ -354,7 +374,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="flex-shrink-0 snap-start w-[185px]"
             >
               <PhoneFrame>
@@ -376,7 +396,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="dark:hidden flex-shrink-0 snap-start w-[185px]"
             >
               <PhoneFrame>
@@ -392,7 +412,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="hidden dark:block flex-shrink-0 snap-start w-[185px]"
             >
               <PhoneFrame>
@@ -407,117 +427,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing & Beta */}
+      {/* Free · Local · Private */}
       <section className="py-24 border-t border-border">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-primary"
           >
-            Free. Coaching, coming.
+            Free. Local. Private.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-12 max-w-2xl"
           >
-            Coaching — adaptive prescribed sessions, in-session guidance, plans that read your recovery and accumulated load — is the paid tier, in development.
+            A fast lifter's log with a body it can reason about. Every feature, no time limit, running on your phone.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Free card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              viewport={{ once: false }}
-              className="rounded-2xl border border-border bg-card p-6 space-y-4"
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Free</p>
-                <p className="text-3xl font-bold text-foreground">$0</p>
-                <p className="text-sm text-muted-foreground mt-1">The awareness layer</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-3 gap-4 mb-14"
+          >
+            {[
+              { label: "Free forever", detail: "Every feature. No ads. No paywall." },
+              { label: "Local-first", detail: "Training history lives in device storage." },
+              { label: "No account", detail: "Install, open, log. Nothing to sign up for." },
+            ].map((item) => (
+              <div key={item.label} className="rounded-2xl border border-border bg-card p-5">
+                <p className="text-sm font-semibold text-foreground mb-1">{item.label}</p>
+                <p className="text-sm text-muted-foreground">{item.detail}</p>
               </div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {[
-                  "Workout logging",
-                  "Biomechanical body map (recalculates with stance, grip, load)",
-                  "Muscle tracking over time",
-                  "Recovery visibility per muscle group",
-                  "Training balance & pattern analysis",
-                  "Weekly + monthly summaries",
-                  "Muscle-first navigation",
-                  "Works with any training style",
-                ].map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+            ))}
+          </motion.div>
 
-            {/* Premium card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              viewport={{ once: false }}
-              className="rounded-2xl border-2 border-primary bg-card p-6 space-y-4 relative"
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Coaching · coming</p>
-                <p className="text-3xl font-bold text-foreground">In development</p>
-                <p className="text-sm text-muted-foreground mt-1">The paid tier</p>
-              </div>
-              <p className="text-xs text-muted-foreground border-t border-border pt-3">What it will be:</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {[
-                  "Goal-aware prescribed sessions",
-                  "In-session guidance",
-                  "Adaptive across recovery, balance, accumulated load",
-                ].map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span aria-hidden="true" className="text-primary mt-0.5">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download free — Android
+              </a>
+            </Button>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.3 }}
-            viewport={{ once: false }}
-            className="mt-14 space-y-8"
+            viewport={{ once: true }}
+            className="space-y-8"
           >
             {[
               {
-                q: "Why is the app free?",
-                a: "The awareness layer (logging, body map, recovery, balance, patterns) is free. Coaching — adaptive prescribed sessions — is the paid tier, in development."
+                q: "Is it really free?",
+                a: "Yes. Every feature. No ads, no paywall, no time limit. The engine isn't gated."
               },
               {
-                q: "When does coaching ship?",
-                a: "In development. No date yet."
+                q: "Where does my training data live?",
+                a: "In local storage on your device. It is not uploaded to a server, not sold, not shared."
               },
               {
-                q: "Does it work with my current program?",
-                a: "Yes. You log whatever you're already doing — your exercises, your weights, your sets. No templates to follow, no setup required."
-              },
-              {
-                q: "What counts as a workout?",
-                a: "Any logged session with at least one set. Strength training, accessory work, whatever you're running."
-              },
-              {
-                q: "Is my data private?",
-                a: "Your training data stays on your account. We don't sell it or share it. See the privacy policy for details."
+                q: "How does the body map work?",
+                a: "Each exercise is modeled as a movement pattern with joint actions. Per-muscle dose is derived from joint torque, moment arms, and the reps in reserve you report. Change stance, grip, or implement; recruitment recalculates."
               },
               {
                 q: "Android only?",
@@ -528,8 +515,8 @@ export default function Home() {
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.08 }}
-                viewport={{ once: false }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                viewport={{ once: true }}
                 className="border-t border-border pt-6"
               >
                 <p className="font-semibold text-foreground mb-2">{item.q}</p>
@@ -537,6 +524,7 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+
         </div>
       </section>
 

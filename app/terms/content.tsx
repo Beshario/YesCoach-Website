@@ -63,7 +63,7 @@ export default function TermsContent() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">6. Payments and Subscriptions</h2>
-              <p className="mb-3">Paid features (coaching, in development) and any future subscriptions are optional.</p>
+              <p className="mb-3">Any future paid features or subscriptions are optional and separate from the free tier.</p>
               <p className="mb-3">Pricing, features, billing cycles, and availability may change.</p>
               <p>Payments are processed by third-party providers and app stores; their terms also apply.</p>
             </section>
