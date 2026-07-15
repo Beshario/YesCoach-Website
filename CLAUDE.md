@@ -132,6 +132,17 @@ Use verbatim. This is the brand's short-form pitch. Deviations dilute it.
   pattern).
 - Every page ends with a Download CTA card.
 
+## Known follow-ups
+
+- **Blog URL drift.** `/blog/reading-your-body-honestly` was published under an
+  H1 that later renamed to "Watch a lift light up." Not urgent — moving the URL
+  would sacrifice indexing built up post-launch. Address before adding a second
+  blog post so the URL scheme doesn't become permanently inconsistent.
+- **Hero video.** Currently a CSS cross-fade between two static heatmap frames
+  (`components/heatmap-loop.tsx`). A real screen-recorded clip of the log-a-set
+  → heatmap-update flow would prove "live" more forcefully. Only pursue when the
+  screen-record tooling is available; the current cross-fade ships the message.
+
 ## History of this doc
 
 Written after a 3-round review cycle where the founder pushed back on

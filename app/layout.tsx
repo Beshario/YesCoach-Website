@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     title: 'YesCoach | Strength Training Recovery and Muscle Tracking App',
     description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based strength training app for Android.',
     siteName: 'YesCoach',
-    images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
+    images: [{ url: '/og-home.webp', width: 500, height: 844, alt: 'YesCoach live heatmap after 7 sets of bench press — chest, front delts, triceps lit warm' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     site: '@YCoach58265',
     creator: '@YCoach58265',
     title: 'YesCoach | Strength Training Recovery and Muscle Tracking App',
     description: 'Track muscle load, recovery state, and training patterns with YesCoach. A biomechanics-based strength training app for Android.',
-    images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
+    images: [{ url: '/og-home.webp', width: 500, height: 844, alt: 'YesCoach live heatmap after 7 sets of bench press — chest, front delts, triceps lit warm' }],
   },
   alternates: {
     canonical: 'https://yescoach.fit/',

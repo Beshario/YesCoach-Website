@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
+import { HeatmapLoop } from '@/components/heatmap-loop'
 
 export default function Home() {
   return (
@@ -85,7 +86,7 @@ export default function Home() {
                 <p className="text-base font-semibold text-foreground mb-4">
                   Free. Runs on your phone. No account.
                 </p>
-                <div>
+                <div className="flex flex-wrap items-center gap-3">
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
                     <a
                       href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
@@ -95,6 +96,12 @@ export default function Home() {
                       Download free — Android
                     </a>
                   </Button>
+                  <a
+                    href="mailto:contact@yescoach.fit?subject=iOS%20waitlist&body=Add%20me%20to%20the%20YesCoach%20iOS%20waitlist."
+                    className="text-sm text-muted-foreground hover:text-foreground underline underline-offset-4"
+                  >
+                    On iPhone? Join the iOS waitlist
+                  </a>
                 </div>
               </motion.div>
             </div>
@@ -118,14 +125,10 @@ export default function Home() {
                 </PhoneFrame>
               </div>
 
-              {/* Front phone — in front, slight counter-rotation */}
+              {/* Front phone — in front, slight counter-rotation, shows live heatmap loop */}
               <div className="relative rotate-[2deg] w-[210px] ml-24 lg:ml-32 z-10">
                 <PhoneFrame>
-                  <AppScreenshot
-                    dark="/screenshots/dark/home-front.webp"
-                    light="/screenshots/light/home-front.webp"
-                    alt="YesCoach app home screen"
-                  />
+                  <HeatmapLoop />
                 </PhoneFrame>
               </div>
             </motion.div>
