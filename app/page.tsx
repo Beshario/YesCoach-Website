@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
-import { HeatmapLoop } from '@/components/heatmap-loop'
 
 export default function Home() {
   return (
@@ -125,10 +124,14 @@ export default function Home() {
                 </PhoneFrame>
               </div>
 
-              {/* Front phone — in front, slight counter-rotation, shows live heatmap loop */}
+              {/* Front phone — in front, slight counter-rotation */}
               <div className="relative rotate-[2deg] w-[210px] ml-24 lg:ml-32 z-10">
                 <PhoneFrame>
-                  <HeatmapLoop />
+                  <AppScreenshot
+                    dark="/screenshots/dark/home-front.webp"
+                    light="/screenshots/light/home-front.webp"
+                    alt="YesCoach app home screen"
+                  />
                 </PhoneFrame>
               </div>
             </motion.div>
