@@ -503,10 +503,6 @@ export default function Home() {
                 a: "In local storage on your device. It is not uploaded to a server, not sold, not shared."
               },
               {
-                q: "How does the body map work?",
-                a: "Each exercise is modeled as a movement pattern with joint actions. Per-muscle dose is derived from joint torque, moment arms, and the reps in reserve you report. Change stance, grip, or implement; recruitment recalculates."
-              },
-              {
                 q: "Android only?",
                 a: "Android is live on Google Play. iOS is on the roadmap."
               },
