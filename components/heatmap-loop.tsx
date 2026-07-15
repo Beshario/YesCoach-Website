@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 
 const FRAMES = [
   {
-    src: '/blog/reading-your-body-honestly/shot-b-heatmap-3sets.webp',
+    src: '/blog/watch-a-lift-light-up/shot-b-heatmap-3sets.webp',
     alt: 'YesCoach live heatmap after 3 sets of bench press — chest and front delts warming',
   },
   {
-    src: '/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp',
+    src: '/blog/watch-a-lift-light-up/shot-c-heatmap-7sets.webp',
     alt: 'YesCoach live heatmap after 7 sets — same chain, deeper red and orange',
   },
 ]

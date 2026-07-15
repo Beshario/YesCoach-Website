@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/blog/reading-your-body-honestly`,
+      url: `${baseUrl}/blog/watch-a-lift-light-up`,
       lastModified: new Date('2026-07-10'),
       changeFrequency: 'monthly',
       priority: 0.7,

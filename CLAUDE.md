@@ -128,16 +128,12 @@ Use verbatim. This is the brand's short-form pitch. Deviations dilute it.
   does the bench press work?") — high-intent, indexable.
 - Use anatomical names in body copy for SEO.
 - Include a `canonical`, OpenGraph image, Twitter card, and Article JSON-LD
-  in `page.tsx` (see `app/blog/reading-your-body-honestly/page.tsx` for the
+  in `page.tsx` (see `app/blog/watch-a-lift-light-up/page.tsx` for the
   pattern).
 - Every page ends with a Download CTA card.
 
 ## Known follow-ups
 
-- **Blog URL drift.** `/blog/reading-your-body-honestly` was published under an
-  H1 that later renamed to "Watch a lift light up." Not urgent — moving the URL
-  would sacrifice indexing built up post-launch. Address before adding a second
-  blog post so the URL scheme doesn't become permanently inconsistent.
 - **Hero video.** Currently a CSS cross-fade between two static heatmap frames
   (`components/heatmap-loop.tsx`). A real screen-recorded clip of the log-a-set
   → heatmap-update flow would prove "live" more forcefully. Only pursue when the

@@ -46,7 +46,7 @@ export default function BlogPostContent() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
                 <img
-                  src="/blog/reading-your-body-honestly/shot-b-heatmap-3sets.webp"
+                  src="/blog/watch-a-lift-light-up/shot-b-heatmap-3sets.webp"
                   alt="YesCoach live heatmap after 3 sets of bench press — chest, front delts, triceps starting to warm"
                   width={500}
                   height={844}
@@ -57,7 +57,7 @@ export default function BlogPostContent() {
               </div>
               <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
                 <img
-                  src="/blog/reading-your-body-honestly/shot-c-heatmap-7sets.webp"
+                  src="/blog/watch-a-lift-light-up/shot-c-heatmap-7sets.webp"
                   alt="Same heatmap after 7 sets — same muscle chain, deeper red and orange"
                   width={500}
                   height={844}
@@ -84,7 +84,7 @@ export default function BlogPostContent() {
               <figure className="mb-5">
                 <div className="mx-auto max-w-sm rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
                   <img
-                    src="/blog/reading-your-body-honestly/shot-a-bench-info.webp"
+                    src="/blog/watch-a-lift-light-up/shot-a-bench-info.webp"
                     alt="YesCoach ExerciseDetailPage for bench press — front and back body map with chest, front delts, and triceps highlighted, plus Equipment and Variant chips"
                     width={500}
                     height={844}
