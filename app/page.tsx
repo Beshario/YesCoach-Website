@@ -102,6 +102,9 @@ export default function Home() {
                     On iPhone? Join the iOS waitlist
                   </a>
                 </div>
+                <p className="text-sm text-muted-foreground mt-4">
+                  <a href="mailto:contact@yescoach.fit" className="text-primary hover:underline">contact@yescoach.fit</a>
+                </p>
               </motion.div>
             </div>
 
