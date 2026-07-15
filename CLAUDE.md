@@ -90,14 +90,21 @@ These have been explicitly ruled out. Do not reintroduce them:
   "on Google Play" instead.
 - **"Awareness layer"** — old framing, dropped when the paid tier was cut.
 
-## Trust triad
+## Free is mentioned once
 
-The three words that repeat across the site — header, hero pill, dedicated
-section, FAQ:
+Say **Free** exactly one time on any page — as a claim, in the primary
+CTA card (the hero card on the home page). Do not stack it across the
+header, an eyebrow pill, a section title, and a card grid. Repeating
+the word weakens the word.
 
-**Free · Local · Private**
+The concept of "local storage / private / no account" carries through
+positively without needing the words: "Runs on your phone," "On your
+device" (FAQ answer). Prefer these positive phrasings over the trio
+"Free · Local · Private."
 
-Use verbatim. This is the brand's short-form pitch. Deviations dilute it.
+CTA button labels ("Download free — Android") are the same button
+pattern used three times — that's not three claims of "free," it's one
+button repeated.
 
 ## Structural rules
 
