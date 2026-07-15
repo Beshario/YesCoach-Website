@@ -72,7 +72,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.16 }}
                   className="text-xl text-muted-foreground max-w-2xl"
                 >
-                  Which muscles worked. How recovered they are. What's emerging. Computed from joint torques, load, stance, and variant — not static labels.
+                  A live body map, updated every set.
                 </motion.p>
               </div>
 
