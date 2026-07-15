@@ -17,7 +17,7 @@ export default function Home() {
             <span className="text-lg font-semibold tracking-tight">YesCoach</span>
           </Link>
           <span className="hidden sm:inline text-sm text-muted-foreground">
-            Body model · free · local · private
+            Biomechanical body model
           </span>
           <div className="flex items-center gap-3">
             <a
@@ -53,7 +53,7 @@ export default function Home() {
                 transition={{ duration: 0.4, delay: 0 }}
                 className="inline-flex items-center rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
               >
-                On Google Play · Free · Local · Private
+                On Google Play
               </motion.p>
               <div className="space-y-5">
                 <motion.h1
@@ -433,7 +433,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Free · Local · Private */}
+      {/* FAQ + closing CTA */}
       <section className="py-24 border-t border-border">
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <motion.h2
@@ -441,38 +441,10 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
             viewport={{ once: true }}
-            className="text-3xl lg:text-4xl font-bold mb-4 text-primary"
+            className="text-3xl lg:text-4xl font-bold mb-10 text-foreground"
           >
-            Free. Local. Private.
+            Questions
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-muted-foreground text-lg mb-12 max-w-2xl"
-          >
-            A fast lifter's log with a body it can reason about. Every feature, no time limit, on your phone.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-3 gap-4 mb-14"
-          >
-            {[
-              { label: "Free", detail: "Every feature." },
-              { label: "Local", detail: "Data stays on your device." },
-              { label: "No account", detail: "Install, open, log." },
-            ].map((item) => (
-              <div key={item.label} className="rounded-2xl border border-border bg-card p-5">
-                <p className="text-sm font-semibold text-foreground mb-1">{item.label}</p>
-                <p className="text-sm text-muted-foreground">{item.detail}</p>
-              </div>
-            ))}
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
