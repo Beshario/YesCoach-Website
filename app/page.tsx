@@ -153,7 +153,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-xl lg:text-2xl text-foreground mb-3"
           >
-            Per-muscle dose derived from joint torque, moment arms, and effort — not category tags.
+            Per-muscle dose derived from joint torque, moment arms, and effort.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground"
           >
-            Change your stance, grip, or implement and the recruitment recalculates. The engine models each exercise as a movement pattern with anatomical joint actions, not a lookup row.
+            Change your stance, grip, or implement and the recruitment recalculates. Each exercise is modeled as a movement pattern with anatomical joint actions.
           </motion.p>
         </div>
       </section>
@@ -200,9 +200,9 @@ export default function Home() {
               className="grid lg:grid-cols-2 gap-12 items-center"
             >
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary">Fast to log. Easy to understand.</h3>
+                <h3 className="text-2xl font-bold text-primary">Fast to log. Clear to read.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  Weight. Reps. RIR. Logged in seconds. Every set feeds the model. No tagging, no setup.
+                  Weight. Reps. RIR. Logged in seconds. Every set feeds the model.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -249,7 +249,7 @@ export default function Home() {
               <div className="space-y-4 lg:order-2 order-1">
                 <h3 className="text-2xl font-bold text-primary">After every session, see the session.</h3>
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  A color-coded body map shows which muscles were stressed and how hard — front and back. Tap any muscle to see the exercises that worked it. A picture, not a list.
+                  A color-coded body map shows which muscles were stressed and how hard — front and back. Tap any muscle to see the exercises that worked it.
                 </p>
               </div>
             </motion.div>
@@ -446,7 +446,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-12 max-w-2xl"
           >
-            A fast lifter's log with a body it can reason about. Every feature, no time limit, running on your phone.
+            A fast lifter's log with a body it can reason about. Every feature, no time limit, on your phone.
           </motion.p>
 
           <motion.div
@@ -457,9 +457,9 @@ export default function Home() {
             className="grid sm:grid-cols-3 gap-4 mb-14"
           >
             {[
-              { label: "Free forever", detail: "Every feature. No ads. No paywall." },
-              { label: "Local-first", detail: "Training history lives in device storage." },
-              { label: "No account", detail: "Install, open, log. Nothing to sign up for." },
+              { label: "Free", detail: "Every feature." },
+              { label: "Local", detail: "Data stays on your device." },
+              { label: "No account", detail: "Install, open, log." },
             ].map((item) => (
               <div key={item.label} className="rounded-2xl border border-border bg-card p-5">
                 <p className="text-sm font-semibold text-foreground mb-1">{item.label}</p>
@@ -495,12 +495,12 @@ export default function Home() {
           >
             {[
               {
-                q: "Is it really free?",
-                a: "Yes. Every feature. No ads, no paywall, no time limit. The engine isn't gated."
+                q: "Is it free?",
+                a: "Yes."
               },
               {
                 q: "Where does my training data live?",
-                a: "In local storage on your device. It is not uploaded to a server, not sold, not shared."
+                a: "On your device."
               },
               {
                 q: "Android only?",

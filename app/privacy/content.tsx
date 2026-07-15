@@ -44,7 +44,7 @@ export default function PrivacyContent() {
                 <li>Usage events: app open, session start/complete, pricing and payment funnel.</li>
                 <li>Technical data: app version, device type, diagnostics.</li>
               </ul>
-              <p>Name and email are only collected if you create an account or sign in.</p>
+              <p>Name and email are collected if you create an account or sign in.</p>
             </section>
 
             <section>
@@ -76,7 +76,7 @@ export default function PrivacyContent() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Retention</h2>
-              <p className="mb-3">Data is retained only as long as needed for the purposes described, legal obligations, and dispute resolution.</p>
+              <p className="mb-3">Data is retained as long as needed for the purposes described, legal obligations, and dispute resolution.</p>
               <p>Local data can be removed via in-app reset or by uninstalling the app. Account-linked data and processor records may persist for operational, legal, tax, and anti-fraud requirements.</p>
             </section>
 

@@ -175,8 +175,7 @@ export default function BlogPostContent() {
 
             {/* Close */}
             <section>
-              <p className="mb-2">Log a set. Read your recruitment map.</p>
-              <p>Free while it is early.</p>
+              <p>Log a set. Read your recruitment map.</p>
             </section>
 
           </div>

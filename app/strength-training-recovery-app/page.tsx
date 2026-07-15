@@ -66,7 +66,7 @@ export default function StrengthTrainingRecoveryAppPage() {
             <article className="rounded-2xl border border-border bg-card p-6">
               <h3 className="text-xl font-semibold text-foreground mb-3">See muscle load</h3>
               <p className="text-muted-foreground">
-                After each session, YesCoach shows which muscles took the work so training stress is easier to interpret than a raw logbook.
+                After each session, YesCoach shows which muscles took the work so training stress is easier to read than a raw logbook.
               </p>
             </article>
             <article className="rounded-2xl border border-border bg-card p-6">
@@ -78,7 +78,7 @@ export default function StrengthTrainingRecoveryAppPage() {
             <article className="rounded-2xl border border-border bg-card p-6">
               <h3 className="text-xl font-semibold text-foreground mb-3">Spot patterns over time</h3>
               <p className="text-muted-foreground">
-                Use weekly and monthly views to see balance, exposure, and how your training evolves over time.
+                Use weekly and monthly views to see balance, exposure, and how your training evolves.
               </p>
             </article>
           </div>
@@ -89,10 +89,10 @@ export default function StrengthTrainingRecoveryAppPage() {
             </h2>
             <div className="grid gap-4 text-muted-foreground text-lg">
               <p>
-                For most lifters, recovery is not just soreness or a guessed readiness score. It is whether recent training has loaded the right tissues, whether the week is balanced, and whether the next session fits what the body has already done.
+                Recovery is whether recent training loaded the right tissues, whether the week is balanced, and whether the next session fits what the body has already done.
               </p>
               <p>
-                YesCoach is built around that idea. Instead of only counting workouts, it aims to make the training effect visible. You can log quickly, review muscle emphasis after the session, and track how training accumulates over time.
+                YesCoach makes the training effect visible. Log, review muscle emphasis after the session, and track how training accumulates.
               </p>
               <p>
                 That makes it easier to answer practical questions: should you push, repeat, back off, or adjust the plan?
@@ -106,10 +106,10 @@ export default function StrengthTrainingRecoveryAppPage() {
                 Why YesCoach fits this category
               </h2>
               <ul className="space-y-3 text-muted-foreground">
-                <li>Tracks session-level muscle stress, not just completed workouts.</li>
-                <li>Helps connect set logging to recovery interpretation.</li>
-                <li>Shows weekly and monthly patterns, not only daily snapshots.</li>
-                <li>Built for strength training rather than generic step or wellness scoring.</li>
+                <li>Tracks session-level muscle stress across every logged workout.</li>
+                <li>Connects set logging to recovery interpretation.</li>
+                <li>Shows weekly and monthly patterns alongside daily snapshots.</li>
+                <li>Built for strength training.</li>
               </ul>
             </div>
 
