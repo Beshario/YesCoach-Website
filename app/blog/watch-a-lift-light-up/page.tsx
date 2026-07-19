@@ -1,24 +1,24 @@
 import type { Metadata } from "next"
 import BlogPostContent from "./content"
 
-const description = "Which muscles does the bench press work? YesCoach renders a live recruitment map — joint torque distributed to pectoralis major, anterior deltoid, and triceps brachii — and updates it set by set as you log."
+const description = "Which muscles does the bench press work? YesCoach renders a live recruitment map: joint torque distributed to pectoralis major, anterior deltoid, and triceps brachii, updated set by set as you log."
 
 export const metadata: Metadata = {
-  title: "Watch a lift light up — YesCoach",
+  title: "Watch a lift light up · YesCoach",
   description,
   authors: [{ name: 'YesCoach' }],
   openGraph: {
-    title: "Watch a lift light up — YesCoach",
+    title: "Watch a lift light up · YesCoach",
     description,
     url: "https://yescoach.fit/blog/watch-a-lift-light-up",
     siteName: "YesCoach",
     type: "article",
     publishedTime: "2026-07-11T00:00:00Z",
-    images: [{ url: '/blog/watch-a-lift-light-up/shot-c-heatmap-7sets.webp', width: 500, height: 844, alt: 'YesCoach live heatmap after 7 sets of bench press — chest, front delts, triceps lit warm' }],
+    images: [{ url: '/blog/watch-a-lift-light-up/shot-c-heatmap-7sets.webp', width: 500, height: 844, alt: 'YesCoach live heatmap after 7 sets of bench press, chest, front delts, triceps lit warm' }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Watch a lift light up — YesCoach",
+    title: "Watch a lift light up · YesCoach",
     description,
     images: ['/blog/watch-a-lift-light-up/shot-c-heatmap-7sets.webp'],
   },
