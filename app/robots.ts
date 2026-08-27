@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: '/cdn-cgi/',
     },
     sitemap: 'https://yescoach.fit/sitemap.xml',
     host: 'https://yescoach.fit',
