@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { playStoreUrl } from '@/lib/playStore'
 
-const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.yescoach.fit"
+const PLAY_STORE_URL = playStoreUrl({ source: 'blog', campaign: 'watch-lift-light-up', content: 'cta' })
 
 export default function BlogPostContent() {
   return (

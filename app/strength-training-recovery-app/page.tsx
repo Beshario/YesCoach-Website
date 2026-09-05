@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { playStoreUrl } from '@/lib/playStore'
 
 export const metadata: Metadata = {
   title: 'Strength Training Recovery App | YesCoach',
@@ -41,7 +42,7 @@ export default function StrengthTrainingRecoveryAppPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mt-8">
             <a
-              href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+              href={playStoreUrl({ source: 'landing-recovery', campaign: 'recovery-seo', content: 'hero' })}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
@@ -120,7 +121,7 @@ export default function StrengthTrainingRecoveryAppPage() {
               </p>
               <div className="flex flex-col gap-3">
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                  href={playStoreUrl({ source: 'landing-recovery', campaign: 'recovery-seo', content: 'next-step' })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"

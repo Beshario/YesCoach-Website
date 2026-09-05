@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
+import { playStoreUrl } from '@/lib/playStore'
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
           </span>
           <div className="flex items-center gap-3">
             <a
-              href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+              href={playStoreUrl({ source: 'home', campaign: 'organic', content: 'header' })}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center rounded-full bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 hover:opacity-90 transition-opacity"
@@ -88,7 +89,7 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-3">
                   <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
                     <a
-                      href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                      href={playStoreUrl({ source: 'home', campaign: 'organic', content: 'hero' })}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -328,7 +329,7 @@ export default function Home() {
           >
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
               <a
-                href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                href={playStoreUrl({ source: 'home', campaign: 'organic', content: 'mid' })}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -458,7 +459,7 @@ export default function Home() {
           >
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-sm">
               <a
-                href="https://play.google.com/store/apps/details?id=com.yescoach.fit"
+                href={playStoreUrl({ source: 'home', campaign: 'organic', content: 'final' })}
                 target="_blank"
                 rel="noopener noreferrer"
               >
