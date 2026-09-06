@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-const description = "Writing from YesCoach — how the muscle-recruitment map works, what changed in each release, and the evidence behind the training and mobility programs."
+const description = "Writing from YesCoach. How the muscle-recruitment map works, what changed in each release, and the evidence behind the training and mobility programs."
 
 export const metadata: Metadata = {
   title: "Blog · YesCoach",
@@ -31,7 +31,7 @@ const posts: Post[] = [
   {
     slug: "programs-and-protocols",
     title: "How to start strength training at home",
-    summary: "Three beginner programs — gym, dumbbells, or nothing at all — plus seven daily mobility routines for the parts that hurt.",
+    summary: "Three beginner programs for gym, dumbbells, or bodyweight. Seven daily mobility routines for the parts that hurt.",
     date: "2026-09-03",
     displayDate: "September 3, 2026",
     readTime: "3 min read",

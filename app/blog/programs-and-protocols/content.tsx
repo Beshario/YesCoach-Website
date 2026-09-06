@@ -39,7 +39,7 @@ export default function BlogPostContent() {
               How to start strength training at home
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Three beginner programs — gym, dumbbells, or nothing at all — plus seven daily mobility routines for the parts that hurt.
+              Three beginner programs for gym, dumbbells, or bodyweight. Seven daily mobility routines for the parts that hurt. All under the Programs tab.
             </p>
           </div>
 
@@ -70,10 +70,10 @@ export default function BlogPostContent() {
               className="space-y-4"
             >
               <p>
-                Until this week, YesCoach shipped with three preset splits — Push/Pull/Legs, Upper/Lower, and Full Body. All three assume you already train, already have a gym, and already know what a compound lift feels like.
+                YesCoach v0.1.17 adds ten preset programs. Three are beginner training splits. Seven are daily mobility routines for common pain and posture issues.
               </p>
               <p>
-                Most people opening a strength app on day one do not fit that description. They want to <em>start</em>. Or their back hurts and they want it to stop. So v0.1.17 doubles the preset library and, more importantly, splits it into two categories that answer two different questions.
+                To find them: open the app, tap <strong className="text-foreground">Programs</strong> (bottom nav). Training presets are at the top. Scroll down for the Pain &amp; Mobility shelf.
               </p>
             </motion.section>
 
@@ -86,13 +86,16 @@ export default function BlogPostContent() {
             >
               <h2 className="text-2xl font-semibold text-foreground">Which beginner program should I pick?</h2>
               <p>
-                Three new starter programs, each a 3-day week, each built on the minimum-effective-dose literature (Androulakis-Korakakis et al., 2020) — beginners gain strength from as few as 1–3 working sets per exercise, once per week per muscle group. Low volume is not a compromise. It is the starting line.
+                Pick by what equipment you have. Each is a 3-day week, built on the minimum-effective-dose literature (Androulakis-Korakakis et al., 2020): beginners gain strength from 1-3 working sets per exercise, once per week per muscle group. Low volume is the starting line, not a compromise.
               </p>
               <ul className="space-y-3 list-none pl-0">
-                <li><strong className="text-foreground">First 4 Weeks</strong> — a gentle 3-day full-body gym starter that builds the habit before it builds the load.</li>
-                <li><strong className="text-foreground">Dumbbells Only</strong> — a 3-day split around a pair of dumbbells and bodyweight. Goblet squat and dumbbell RDL cover the barbell hinge and squat at loads a home lifter can actually reach.</li>
-                <li><strong className="text-foreground">No Equipment</strong> — a 3-day bodyweight program. A chair, a table, a step. Bodyweight squat, push-up, plank, walking lunge, split squat.</li>
+                <li><strong className="text-foreground">First 4 Weeks.</strong> Gentle 3-day full-body gym starter. Builds the habit before the load.</li>
+                <li><strong className="text-foreground">Dumbbells Only.</strong> 3-day split around one pair of dumbbells plus bodyweight. Goblet squat, dumbbell RDL, and split squat cover the hinge and squat patterns at loads a home lifter can reach.</li>
+                <li><strong className="text-foreground">No Equipment.</strong> 3-day bodyweight program. A chair, a table, a step. Bodyweight squat, push-up, plank, walking lunge, split squat.</li>
               </ul>
+              <p>
+                Tap a program to see the sessions. Tap <strong className="text-foreground">Start</strong> to schedule it on your Plan.
+              </p>
               <p className="pt-2">
                 <a href={TRAINING_CTA} className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-foreground font-medium hover:bg-muted transition-colors">
                   Start First 4 Weeks →
@@ -107,15 +110,15 @@ export default function BlogPostContent() {
               transition={{ duration: 0.5 }}
               className="space-y-4"
             >
-              <h2 className="text-2xl font-semibold text-foreground">My back / hip / shoulder hurts — what do I actually do?</h2>
+              <h2 className="text-2xl font-semibold text-foreground">My back / hip / shoulder hurts. What do I do?</h2>
               <p>
-                A protocol is not a training program. It is a single session you can run daily — a targeted mix of stretches at the minimum-effective dose (~2 sets of 30 seconds per muscle group; total accumulated stretch duration is the strongest predictor of ROM gain) paired with brief activation of whichever underused muscles the pattern demands.
+                Open <strong className="text-foreground">Programs</strong>, scroll to <strong className="text-foreground">Pain &amp; Mobility</strong>, tap the routine that matches. Each protocol is one session you run daily. Stretches sit at the minimum-effective dose (about 2 sets of 30 seconds per muscle group; total accumulated stretch time is the strongest predictor of ROM gain). Where the pattern needs it, brief activation of underused muscles is included.
               </p>
               <figure className="py-4">
                 <div className="rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm max-w-sm mx-auto">
                   <img
                     src="/blog/programs-and-protocols/pain-mobility-shelf.jpg"
-                    alt="Pain & Mobility shelf in YesCoach: Ankle Mobility, Knee Health, Pelvic Tilt Reset, Lower Back Relief, Desk & Posture, Hip Mobility — each with move count and cadence"
+                    alt="Pain & Mobility shelf in YesCoach: Ankle Mobility, Knee Health, Pelvic Tilt Reset, Lower Back Relief, Desk & Posture, Hip Mobility, each with move count and cadence"
                     width={923}
                     height={1996}
                     loading="lazy"
@@ -126,15 +129,26 @@ export default function BlogPostContent() {
                   <strong>Honest readouts.</strong> Moves and cadence, not sets/week.
                 </figcaption>
               </figure>
-              <ul className="space-y-3 list-none pl-0">
-                <li><strong className="text-foreground">Lower Back Relief</strong> — hip flexor, hamstring, and thoracic mobility. Restricted hip flexor and hamstring length is itself a risk factor for non-specific LBP.</li>
-                <li><strong className="text-foreground">Hip Mobility</strong> — full coverage: flexors, adductors, glutes, rotators.</li>
-                <li><strong className="text-foreground">Desk &amp; Posture</strong> — stretch what sitting shortens (hip flexors, chest), wake up what sitting silences (deep neck flexors, scapular retractors).</li>
-                <li><strong className="text-foreground">Pelvic Tilt Reset</strong> — brief hip flexor release paired with glute bridges and anti-extension core work, which the modern EMG evidence favors over stretching alone.</li>
-                <li><strong className="text-foreground">Shoulder Health</strong> — cuff, scap, thoracic mobility.</li>
-                <li><strong className="text-foreground">Knee Health</strong> — quads, hamstrings, calves, hip stability.</li>
-                <li><strong className="text-foreground">Ankle Mobility</strong> — calf, soleus, dorsiflexion drills.</li>
-              </ul>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-base">
+                  <thead>
+                    <tr className="border-b border-border/70 text-sm text-muted-foreground">
+                      <th className="py-2 pr-3 font-medium">Protocol</th>
+                      <th className="py-2 pr-3 font-medium">Targets</th>
+                      <th className="py-2 font-medium">Moves</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-foreground">
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Lower Back Relief</td><td className="py-2 pr-3">Hip flexors, hamstrings, thoracic</td><td className="py-2">8</td></tr>
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Hip Mobility</td><td className="py-2 pr-3">Flexors, adductors, glutes, rotators</td><td className="py-2">7</td></tr>
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Desk &amp; Posture</td><td className="py-2 pr-3">Hip flexors, chest, deep neck, scap retractors</td><td className="py-2">8</td></tr>
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Pelvic Tilt Reset</td><td className="py-2 pr-3">Hip flexor release, glute bridges, anti-extension core</td><td className="py-2">7</td></tr>
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Shoulder Health</td><td className="py-2 pr-3">Cuff, scap, thoracic</td><td className="py-2">7</td></tr>
+                    <tr className="border-b border-border/40"><td className="py-2 pr-3 font-medium">Knee Health</td><td className="py-2 pr-3">Quads, hamstrings, calves, hip stability</td><td className="py-2">7</td></tr>
+                    <tr><td className="py-2 pr-3 font-medium">Ankle Mobility</td><td className="py-2 pr-3">Calf, soleus, dorsiflexion</td><td className="py-2">6</td></tr>
+                  </tbody>
+                </table>
+              </div>
               <p className="pt-2">
                 <a href={PROTOCOL_CTA} className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-foreground font-medium hover:bg-muted transition-colors">
                   Open the Pain &amp; Mobility shelf →
@@ -149,12 +163,12 @@ export default function BlogPostContent() {
               transition={{ duration: 0.5 }}
               className="space-y-4"
             >
-              <h2 className="text-2xl font-semibold text-foreground">Why training and mobility live on separate shelves</h2>
+              <h2 className="text-2xl font-semibold text-foreground">Why training and mobility sit on separate shelves</h2>
               <p>
-                A training program is measured in sets per week. A protocol is measured in sessions per day. Displaying a daily mobility routine as "3 sets/week" understates its actual cadence by about 7×, which is why protocols now render with an honest moves-and-cadence readout instead of the training metric they were quietly borrowing.
+                A training program is measured in sets per week. A protocol is measured in sessions per day. Showing a daily routine as "3 sets/week" understates its cadence by about 7x. Protocols now render with a moves-and-cadence readout instead.
               </p>
               <p>
-                The two categories live on separate shelves in the picker — training on one, "Pain &amp; Mobility" on the other — so the first question ("what should I lift?") stops competing with the second ("my back hurts") for the same space.
+                Two shelves in the picker also keep two different questions from competing. "What should I lift?" goes on the training shelf. "My back hurts" goes on Pain &amp; Mobility.
               </p>
             </motion.section>
 
