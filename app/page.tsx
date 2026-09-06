@@ -29,7 +29,7 @@ export default function Home() {
             >
               Get it on Android
             </a>
-            <Link href="/blog/watch-a-lift-light-up" className="inline-flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/blog" className="inline-flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               Blog
             </Link>
             <ThemeToggle />
@@ -529,7 +529,7 @@ export default function Home() {
               Terms & Conditions
             </Link>
             <span aria-hidden="true">·</span>
-            <Link href="/blog/watch-a-lift-light-up" className="hover:text-foreground transition-colors">
+            <Link href="/blog" className="hover:text-foreground transition-colors">
               Blog
             </Link>
             <span aria-hidden="true">·</span>
