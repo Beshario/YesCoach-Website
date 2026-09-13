@@ -26,9 +26,59 @@ export const metadata: Metadata = {
   },
 }
 
+const faqs = [
+  {
+    question: 'How does YesCoach measure recovery?',
+    answer:
+      'Each logged set is converted to a dose per muscle using joint torque and moment arms, not a generic "chest day" label. That dose accumulates across the week and decays over time, so the heatmap shows which muscles carry recent load and which have cleared it.',
+  },
+  {
+    question: 'Which muscles does it track?',
+    answer:
+      'All major muscle groups used in resistance training, including the ones most apps collapse into one block: the three deltoid heads, the long and short head of the biceps, medial and lateral gastrocnemius, soleus, and the individual quadriceps and hamstring heads.',
+  },
+  {
+    question: 'Do I need a chest strap, watch, or wearable?',
+    answer:
+      'No. YesCoach computes muscle load from the exercise, load, and reps you log. There is no hardware to buy and no sensor to pair.',
+  },
+  {
+    question: 'Does it work for bodyweight and dumbbell training?',
+    answer:
+      'Yes. The app ships three beginner programs covering gym, dumbbells-only, and bodyweight-only setups, and the recruitment model handles bodyweight exercises the same way it handles barbell lifts.',
+  },
+  {
+    question: 'Is YesCoach free?',
+    answer:
+      'Yes, free on Android. Log workouts, use the preset programs, and read the recruitment map without paying.',
+  },
+  {
+    question: 'How is this different from a normal workout log?',
+    answer:
+      'A workout log records what you did. YesCoach records what it cost each muscle. Two sessions with the same exercise names can distribute load very differently depending on load, reps, and variation, and the heatmap surfaces that difference.',
+  },
+]
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+}
+
 export default function StrengthTrainingRecoveryAppPage() {
   return (
     <main className="min-h-screen bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <section className="border-b border-border/70">
         <div className="max-w-5xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
@@ -136,6 +186,20 @@ export default function StrengthTrainingRecoveryAppPage() {
                 </a>
               </div>
             </aside>
+          </div>
+
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-8">
+              Common questions
+            </h2>
+            <dl className="space-y-8 max-w-3xl">
+              {faqs.map((faq) => (
+                <div key={faq.question}>
+                  <dt className="text-lg font-semibold text-foreground mb-2">{faq.question}</dt>
+                  <dd className="text-muted-foreground">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>

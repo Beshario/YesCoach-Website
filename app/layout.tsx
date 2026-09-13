@@ -66,17 +66,32 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'SoftwareApplication',
+              '@type': 'MobileApplication',
               name: 'YesCoach',
               applicationCategory: 'HealthApplication',
-              operatingSystem: 'Android',
-              description: 'Strength training recovery and muscle tracking app with biomechanics-based training insight.',
+              applicationSubCategory: 'Strength Training',
+              operatingSystem: 'Android 8.0 or later',
+              description: 'Strength training and mobility app. Log any lift and watch a live muscle-recruitment map fill in set by set. Ships ten preset programs: three beginner training splits and seven daily mobility protocols.',
               url: 'https://yescoach.fit/',
               downloadUrl: 'https://play.google.com/store/apps/details?id=com.yescoach.fit',
               installUrl: 'https://play.google.com/store/apps/details?id=com.yescoach.fit',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+              featureList: [
+                'Live muscle-recruitment heatmap updated per set',
+                'Log any lift with load, reps, and RIR',
+                'Three beginner training programs: gym, dumbbells, bodyweight',
+                'Seven daily mobility protocols for lower back, hips, desk posture, pelvic tilt, shoulders, knees, and ankles',
+                'Custom exercise creation',
+                'Weekly volume and recovery tracking per muscle',
+              ],
               sameAs: [
                 'https://play.google.com/store/apps/details?id=com.yescoach.fit',
                 'https://twitter.com/YCoach58265',
+                'https://youtube.com/shorts/ipL9OOfEQv4',
               ],
             }),
           }}
