@@ -63,6 +63,12 @@ export default function BlogIndex() {
           <div className="mb-12">
             <h1 className="text-4xl font-bold tracking-tight mb-3 text-foreground">Blog</h1>
             <p className="text-lg text-muted-foreground max-w-2xl">{description}</p>
+            <p className="text-base text-muted-foreground max-w-2xl mt-3">
+              Looking for the app itself? See{" "}
+              <Link href="/strength-training-recovery-app" className="text-foreground hover:text-primary transition-colors underline underline-offset-4">
+                the strength training and recovery app
+              </Link>.
+            </p>
           </div>
 
           <ul className="space-y-10">

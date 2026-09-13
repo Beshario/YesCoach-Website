@@ -533,6 +533,10 @@ export default function Home() {
               Blog
             </Link>
             <span aria-hidden="true">·</span>
+            <Link href="/strength-training-recovery-app" className="hover:text-foreground transition-colors">
+              Strength Training &amp; Recovery
+            </Link>
+            <span aria-hidden="true">·</span>
             <span>© 2026 YesCoach</span>
           </div>
         </div>

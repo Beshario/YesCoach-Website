@@ -173,6 +173,24 @@ export default function BlogPostContent() {
             </motion.section>
 
           </div>
+
+          {/* Related */}
+          <div className="mt-16 border-t border-border/70 pt-8">
+            <p className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Related</p>
+            <ul className="space-y-2 text-base">
+              <li>
+                <Link href="/blog/watch-a-lift-light-up" className="text-primary hover:opacity-80 transition-opacity">
+                  Watch a lift light up
+                </Link>
+              </li>
+              <li>
+                <Link href="/strength-training-recovery-app" className="text-primary hover:opacity-80 transition-opacity">
+                  YesCoach: strength training and recovery app
+                </Link>
+              </li>
+            </ul>
+          </div>
+
         </motion.div>
       </main>
     </div>

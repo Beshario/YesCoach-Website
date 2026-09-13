@@ -20,6 +20,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/anterior-pelvic-tilt-exercises`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/desk-posture-routine`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/privacy`,
       lastModified: now,
       changeFrequency: 'monthly',

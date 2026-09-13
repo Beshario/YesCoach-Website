@@ -95,7 +95,7 @@ export default function BlogPostContent() {
               </figure>
 
               <p>
-                Bench press is a compound horizontal push. Three primary movers generate the torque: <strong>pectoralis major</strong> (shoulder horizontal adduction), <strong>anterior deltoid</strong> (shoulder flexion), and <strong>triceps brachii</strong> (elbow extension). YesCoach displays this recruitment map on the exercise info page before you unrack.
+                The bench press works three primary movers: <strong>pectoralis major</strong>, <strong>anterior deltoid</strong>, and <strong>triceps brachii</strong>. Pec major drives shoulder horizontal adduction, anterior delt drives shoulder flexion, and triceps brachii drives elbow extension. Serratus anterior, the rotator cuff, and forearm flexors stabilize the lift without matching that dose. YesCoach displays this recruitment map on the exercise info page before you unrack.
               </p>
             </motion.section>
 
@@ -204,6 +204,23 @@ export default function BlogPostContent() {
               Get YesCoach on Android
             </a>
           </motion.div>
+
+          {/* Related */}
+          <div className="mt-16 border-t border-border/70 pt-8">
+            <p className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Related</p>
+            <ul className="space-y-2 text-base">
+              <li>
+                <Link href="/blog/programs-and-protocols" className="text-primary hover:opacity-80 transition-opacity">
+                  How to start strength training at home
+                </Link>
+              </li>
+              <li>
+                <Link href="/strength-training-recovery-app" className="text-primary hover:opacity-80 transition-opacity">
+                  YesCoach: strength training and recovery app
+                </Link>
+              </li>
+            </ul>
+          </div>
 
         </motion.div>
       </main>

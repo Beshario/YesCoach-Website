@@ -20,6 +20,8 @@ YesCoach computes which muscles a given exercise recruits from joint torque and 
 
 - [Home](https://yescoach.fit/): what the app does, how the recruitment map works, and where to download it.
 - [Strength training recovery app](https://yescoach.fit/strength-training-recovery-app): how YesCoach measures muscle load, tracks recovery state, and surfaces training patterns over time.
+- [Anterior pelvic tilt exercises](https://yescoach.fit/anterior-pelvic-tilt-exercises): the seven-move daily routine for anterior pelvic tilt, pairing hip flexor release with glute and anti-extension core strengthening.
+- [Desk posture routine](https://yescoach.fit/desk-posture-routine): eight moves for people who sit all day, stretching the hip flexors and chest while activating the deep neck flexors and scapular retractors.
 - [Blog](https://yescoach.fit/blog): index of all posts.
 - [How to start strength training at home](https://yescoach.fit/blog/programs-and-protocols): the three beginner programs and seven mobility protocols, with the minimum-effective-dose evidence behind each.
 - [Watch a lift light up](https://yescoach.fit/blog/watch-a-lift-light-up): how one bench press set distributes joint torque across pectoralis major, anterior deltoid, and triceps brachii.
