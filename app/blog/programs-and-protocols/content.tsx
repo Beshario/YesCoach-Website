@@ -39,7 +39,7 @@ export default function BlogPostContent() {
               How to start strength training at home
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Three beginner programs for gym, dumbbells, or bodyweight. Seven daily mobility routines for the parts that hurt. All under the Programs tab.
+              Three beginner programs for gym, dumbbells, or bodyweight. Seven daily mobility routines for the parts that hurt. All under Programs.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function BlogPostContent() {
                 YesCoach v0.1.17 adds ten preset programs. Three are beginner training splits. Seven are daily mobility routines for common pain and posture issues.
               </p>
               <p>
-                To find them: open the app, tap <strong className="text-foreground">Programs</strong> (bottom nav). Training presets are at the top. Scroll down for the Pain &amp; Mobility shelf.
+                To find them: open the <strong className="text-foreground">Plan</strong> tab and tap the <strong className="text-foreground">Programs</strong> icon at the top. Training presets are at the top. Scroll down for the Pain &amp; Mobility shelf.
               </p>
             </motion.section>
 

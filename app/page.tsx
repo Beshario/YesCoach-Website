@@ -29,6 +29,9 @@ export default function Home() {
             >
               Get it on Android
             </a>
+            <Link href="/ai" className="inline-flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              AI plans
+            </Link>
             <Link href="/blog" className="inline-flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               Blog
             </Link>
@@ -527,6 +530,10 @@ export default function Home() {
             <span aria-hidden="true">·</span>
             <Link href="/terms" className="hover:text-foreground transition-colors">
               Terms & Conditions
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/ai" className="hover:text-foreground transition-colors">
+              Track a ChatGPT workout plan
             </Link>
             <span aria-hidden="true">·</span>
             <Link href="/blog" className="hover:text-foreground transition-colors">

@@ -1,0 +1,480 @@
+# YesCoach program format
+
+You are writing a workout program that the user will import into the YesCoach app (Android).
+Follow every rule in this file. The app rejects the whole file if any rule is broken.
+
+## What to give the user
+
+1. Ask about anything you need first: goal, days per week, session length, equipment, experience, injuries.
+2. Produce ONE JSON file named after the program, for example upper-lower-4-day.json.
+   Offer it as a downloadable file. If you cannot create files, put the JSON in a single code block
+   and tell the user to save it as a .json file.
+3. JSON only inside the file: no comments, no trailing commas, no text before or after.
+4. After the file, tell the user how to import it:
+   Open YesCoach > Plan tab (with no workout in progress) > Programs icon at the top > Import (download arrow) > pick the file.
+
+## File structure
+
+{
+  "version": "1.0",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Upper Lower 4-Day",
+    "description": "Optional, one or two sentences.",
+    "category": "training",
+    "frequency": "4 days/week",
+    "days": [
+      {
+        "name": "Upper A",
+        "exercises": [
+          {
+            "exerciseId": "bench_press:flat:barbell:none",
+            "exerciseName": "Barbell Flat Bench Press",
+            "sets": 3,
+            "reps": "6-8",
+            "suggestedRIR": 2,
+            "notes": "Optional coaching cue."
+          }
+        ]
+      }
+    ]
+  }
+}
+
+## Rules
+
+- version: exactly "1.0". type: exactly "yescoach_program".
+- program.name: 1 to 100 characters.
+- program.category (optional): "training" for strength programs, "protocol" for mobility or rehab routines.
+- program.frequency (optional): short text, for example "3 days/week", "3-4x/week", "Daily".
+- days: one entry per session, in order. Day name: 1 to 50 characters.
+- exerciseId: MUST be copied exactly from the exercise list below. Never invent or edit an ID.
+  If the exercise the user wants is not in the list, pick the closest listed exercise and say which substitution you made.
+- exerciseName: copy the name from the same line of the list.
+- sets: whole number from 1 to 20.
+- reps: text in one of these forms only: "8", "8-10", "30s", "30-60s", "10/side", "8-10/leg", "30s/side".
+  No words like "AMRAP" or "to failure". Use seconds ("45s") for holds and stretches.
+- suggestedRIR: whole number from 0 to 10 (reps in reserve: how many more reps the user could have done).
+  Typical: 1-3 for strength work, 3-4 for beginners, 0 only for isolation finishers.
+- notes (optional): a short cue.
+
+## Exercise list
+
+Format: exerciseId | exerciseName
+
+### Strength
+ankle_plantarflexion:seated:dumbbell:none | Dumbbell Seated Calf Raise
+ankle_plantarflexion:seated:machine:none | Machine Seated Calf Raise
+ankle_plantarflexion:single_leg:bodyweight:none | Single-Leg Calf Raise
+ankle_plantarflexion:single_leg:dumbbell:none | Dumbbell Single-Leg Calf Raise
+ankle_plantarflexion:standing:bodyweight:none | Standing Calf Raise
+ankle_plantarflexion:standing:dumbbell:none | Dumbbell Standing Calf Raise
+ankle_plantarflexion:standing:machine:none | Machine Standing Calf Raise
+anti_extension:ab_wheel:ab_wheel:none | Ab Wheel Ab Wheel Rollout
+anti_extension:body_saw:bodyweight:none | Body Saw
+anti_extension:dead_bug:bodyweight:none | Dead Bug
+anti_extension:dead_bug:weighted:none | Weighted Dead Bug
+anti_extension:mountain_climber:bodyweight:none | Mountain Climber
+anti_extension:plank:bodyweight:none | Plank
+anti_extension:plank:weighted:none | Weighted Plank
+anti_extension:rkc_plank:bodyweight:none | RKC Plank
+anti_extension:stir_the_pot:swiss_ball:none | Swiss Ball Stir the Pot
+anti_lateral_flexion:copenhagen_plank:bodyweight:none | Copenhagen Plank
+anti_lateral_flexion:side_plank:bodyweight:none | Side Plank
+anti_lateral_flexion:side_plank:weighted:none | Weighted Side Plank
+anti_rotation:bird_dog:bodyweight:none | Bird Dog
+anti_rotation:pallof_press:band:none | Band Pallof Press
+anti_rotation:pallof_press:cable:none | Cable Pallof Press
+anti_rotation:suitcase_carry:dumbbell:none | Dumbbell Suitcase Carry
+anti_rotation:suitcase_carry:kettlebell:none | Kettlebell Suitcase Carry
+back_extension:back_extension_45:bodyweight:none | 45-Degree Back Extension
+back_extension:back_extension_45:weighted:none | Weighted 45-Degree Back Extension
+back_extension:reverse_hyper:bodyweight:none | Reverse Hyperextension
+back_extension:reverse_hyper:machine:none | Machine Reverse Hyperextension
+back_extension:reverse_hyper:weighted:none | Weighted Reverse Hyperextension
+back_extension:roman_chair:bodyweight:none | Roman Chair Back Extension
+back_extension:roman_chair:weighted:none | Weighted Roman Chair Back Extension
+back_extension:superman_hold:bodyweight:none | Superman Hold
+bench_press:decline:barbell:none | Barbell Decline Bench Press
+bench_press:decline:dumbbell:none | Dumbbell Decline Bench Press
+bench_press:decline:machine:none | Machine Decline Bench Press
+bench_press:flat:barbell:none | Barbell Flat Bench Press
+bench_press:flat:dumbbell:none | Dumbbell Flat Bench Press
+bench_press:flat:machine:none | Machine Flat Bench Press
+bench_press:incline:barbell:none | Barbell Incline Bench Press
+bench_press:incline:dumbbell:none | Dumbbell Incline Bench Press
+bench_press:incline:machine:none | Machine Incline Bench Press
+dip:standard:bodyweight:dip_bars | Dip
+dip:standard:weighted:dip_bars | Weighted Dip
+elbow_extension:kickback:cable:none | Cable Tricep Kickback
+elbow_extension:kickback:dumbbell:none | Dumbbell Tricep Kickback
+elbow_extension:lying:barbell:none | Barbell Lying Extension (Skull Crusher)
+elbow_extension:lying:dumbbell:none | Dumbbell Lying Extension (Skull Crusher)
+elbow_extension:lying:ez_bar:none | EZ Bar Lying Extension (Skull Crusher)
+elbow_extension:overhead:cable:none | Cable Overhead Extension
+elbow_extension:overhead:dumbbell:none | Dumbbell Overhead Extension
+elbow_extension:overhead:ez_bar:none | EZ Bar Overhead Extension
+elbow_extension:pushdown:cable:none | Cable Pushdown
+elbow_extension:pushdown:machine:none | Machine Pushdown
+elbow_flexion:concentration:cable:none | Cable Concentration Curl
+elbow_flexion:concentration:dumbbell:none | Dumbbell Concentration Curl
+elbow_flexion:hammer:cable:none | Cable Hammer Curl
+elbow_flexion:hammer:dumbbell:none | Dumbbell Hammer Curl
+elbow_flexion:hammer:machine:none | Machine Hammer Curl
+elbow_flexion:incline:dumbbell:none | Dumbbell Incline Curl
+elbow_flexion:preacher:barbell:none | Barbell Preacher Curl
+elbow_flexion:preacher:cable:none | Cable Preacher Curl
+elbow_flexion:preacher:dumbbell:none | Dumbbell Preacher Curl
+elbow_flexion:preacher:ez_bar:none | EZ Bar Preacher Curl
+elbow_flexion:preacher:machine:none | Machine Preacher Curl
+elbow_flexion:seated:barbell:none | Barbell Seated Curl
+elbow_flexion:seated:cable:none | Cable Seated Curl
+elbow_flexion:seated:dumbbell:none | Dumbbell Seated Curl
+elbow_flexion:seated:ez_bar:none | EZ Bar Seated Curl
+elbow_flexion:seated:machine:none | Machine Seated Curl
+elbow_flexion:standing:barbell:none | Barbell Standing Curl
+elbow_flexion:standing:cable:none | Cable Standing Curl
+elbow_flexion:standing:dumbbell:none | Dumbbell Standing Curl
+elbow_flexion:standing:ez_bar:none | EZ Bar Standing Curl
+flexion:cable_crunch:cable:none | Cable Cable Crunch
+flexion:cable_crunch:machine:none | Machine Cable Crunch
+flexion:crunch:bodyweight:none | Crunch
+flexion:crunch:weighted:none | Weighted Crunch
+flexion:v_up:bodyweight:none | V-Up
+flexion:v_up:weighted:none | Weighted V-Up
+handstand_push_up:freestanding:bodyweight:none | Freestanding Handstand Push-Up
+handstand_push_up:freestanding:weighted:none | Weighted Freestanding Handstand Push-Up
+handstand_push_up:handstand:bodyweight:none | Handstand Push-Up
+handstand_push_up:handstand:weighted:none | Weighted Handstand Push-Up
+handstand_push_up:pike:bodyweight:none | Pike Push-Up
+handstand_push_up:pike:weighted:none | Weighted Pike Push-Up
+handstand_push_up:wall:bodyweight:none | Wall Handstand Push-Up
+handstand_push_up:wall:weighted:none | Weighted Wall Handstand Push-Up
+hinge:conventional:barbell:none | Barbell Deadlift
+hinge:conventional:kettlebell:none | Kettlebell Deadlift
+hinge:good_morning:barbell:none | Barbell Good Morning
+hinge:good_morning:dumbbell:none | Dumbbell Good Morning
+hinge:good_morning:kettlebell:none | Kettlebell Good Morning
+hinge:rdl:barbell:none | Barbell Romanian Deadlift
+hinge:rdl:dumbbell:none | Dumbbell Romanian Deadlift
+hinge:rdl:kettlebell:none | Kettlebell Romanian Deadlift
+hinge:single_leg_romanian:dumbbell:none | Dumbbell Single-Leg Romanian Deadlift
+hinge:single_leg_romanian:kettlebell:none | Kettlebell Single-Leg Romanian Deadlift
+hinge:stiff_leg:dumbbell:none | Dumbbell Stiff-Leg Deadlift
+hinge:stiff_leg:kettlebell:none | Kettlebell Stiff-Leg Deadlift
+hinge:sumo:barbell:none | Barbell Sumo Deadlift
+hinge:sumo:dumbbell:none | Dumbbell Sumo Deadlift
+hinge:sumo:kettlebell:none | Kettlebell Sumo Deadlift
+hinge:trap_bar:barbell:none | Barbell Trap Bar Deadlift
+hip_abduction:banded_lateral_walk:band:none | Band Lateral Walk
+hip_abduction:side_lying:ankle_weights:none | Ankle Weights Side-Lying Hip Abduction
+hip_abduction:side_lying:band:none | Band Side-Lying Hip Abduction
+hip_abduction:side_lying:bodyweight:none | Side-Lying Hip Abduction
+hip_abduction:standard:cable:none | Cable Hip Abduction
+hip_abduction:standard:machine:none | Machine Hip Abduction
+hip_abduction:standing:cable:none | Cable Standing Hip Abduction
+hip_abduction:standing:machine:none | Machine Standing Hip Abduction
+hip_adduction:copenhagen:bodyweight:none | Copenhagen Plank
+hip_adduction:side_lying:ankle_weights:none | Ankle Weights Side-Lying Hip Adduction
+hip_adduction:side_lying:bodyweight:none | Side-Lying Hip Adduction
+hip_adduction:standard:cable:none | Cable Hip Adduction
+hip_adduction:standard:machine:none | Machine Hip Adduction
+hip_adduction:standing:ankle_weights:none | Ankle Weights Standing Hip Adduction
+hip_adduction:standing:band:none | Band Standing Hip Adduction
+hip_adduction:standing:cable:none | Cable Standing Hip Adduction
+hip_extension:cable:band:none | Band Cable Kickback
+hip_extension:cable:cable:none | Cable Cable Kickback
+hip_extension:cable:machine:none | Machine Cable Kickback
+hip_extension:donkey:band:none | Band Donkey Kickback
+hip_extension:donkey:bodyweight:none | Donkey Kickback
+hip_extension:donkey:cable:none | Cable Donkey Kickback
+hip_extension:donkey:machine:none | Machine Donkey Kickback
+hip_extension:machine:band:none | Band Machine Kickback
+hip_extension:machine:cable:none | Cable Machine Kickback
+hip_extension:machine:machine:none | Machine Machine Kickback
+hip_extension:prone:bodyweight:none | Prone Kickback
+hip_flexion:captains_chair:ankle_weights:none | Ankle Weights Captain's Chair Leg Raise
+hip_flexion:captains_chair:bodyweight:none | Captain's Chair Leg Raise
+hip_flexion:captains_chair:cable:none | Cable Captain's Chair Leg Raise
+hip_flexion:captains_chair_knee_tuck:ankle_weights:none | Ankle Weights Captain's Chair Knee Tuck
+hip_flexion:captains_chair_knee_tuck:bodyweight:none | Captain's Chair Knee Tuck
+hip_flexion:captains_chair_knee_tuck:cable:none | Cable Captain's Chair Knee Tuck
+hip_flexion:captains_chair:machine:none | Machine Captain's Chair Leg Raise
+hip_flexion:hanging:ankle_weights:none | Ankle Weights Hanging Leg Raise
+hip_flexion:hanging:bodyweight:none | Hanging Leg Raise
+hip_flexion:hanging:cable:none | Cable Hanging Leg Raise
+hip_flexion:hanging_knee_tuck:ankle_weights:none | Ankle Weights Hanging Knee Tuck
+hip_flexion:hanging_knee_tuck:bodyweight:none | Hanging Knee Tuck
+hip_flexion:hanging_knee_tuck:cable:none | Cable Hanging Knee Tuck
+hip_flexion:hanging:machine:none | Machine Hanging Leg Raise
+hip_flexion:lying:ankle_weights:none | Ankle Weights Lying Leg Raise
+hip_flexion:lying:bodyweight:none | Lying Leg Raise
+hip_flexion:lying:cable:none | Cable Lying Leg Raise
+hip_flexion:lying_knee_tuck:ankle_weights:none | Ankle Weights Lying Knee Tuck
+hip_flexion:lying_knee_tuck:bodyweight:none | Lying Knee Tuck
+hip_flexion:lying:machine:none | Machine Lying Leg Raise
+hip_flexion:toes_to_bar:bodyweight:none | Toes-to-Bar
+hip_thrust:glute_bridge:barbell:none | Barbell Glute Bridge
+hip_thrust:glute_bridge:bodyweight:none | Glute Bridge
+hip_thrust:glute_bridge:dumbbell:none | Dumbbell Glute Bridge
+hip_thrust:glute_bridge:machine:none | Machine Glute Bridge
+hip_thrust:hip_thrust:barbell:none | Barbell Hip Thrust
+hip_thrust:hip_thrust:bodyweight:none | Hip Thrust
+hip_thrust:hip_thrust:dumbbell:none | Dumbbell Hip Thrust
+hip_thrust:hip_thrust:machine:none | Machine Hip Thrust
+hip_thrust:single_leg:barbell:none | Barbell Single-Leg Hip Thrust
+hip_thrust:single_leg:bodyweight:none | Single-Leg Hip Thrust
+hip_thrust:single_leg:dumbbell:none | Dumbbell Single-Leg Hip Thrust
+horizontal_pull:bent_over:barbell:none | Barbell Bent-Over Row
+horizontal_pull:bent_over:dumbbell:none | Dumbbell Bent-Over Row
+horizontal_pull:chest_supported_row:dumbbell:none | Dumbbell Chest-Supported Row
+horizontal_pull:inverted_row:bodyweight:none | Inverted Row
+horizontal_pull:pendlay_row:barbell:none | Barbell Pendlay Row
+horizontal_pull:rings_inverted_row:bodyweight:none | Rings Inverted Row
+horizontal_pull:rings_inverted_row:weighted:none | Weighted Rings Inverted Row
+horizontal_pull:seated:cable:none | Cable Seated Row
+horizontal_pull:seated:machine:none | Machine Seated Row
+horizontal_pull:single_arm_row:dumbbell:none | Dumbbell Single-Arm Row
+horizontal_pull:yates_row:barbell:none | Barbell Yates Row
+knee_extension:seated:machine:none | Seated Leg Extension
+knee_extension:single_leg:machine:none | Machine Single-Leg Leg Extension
+knee_flexion:lying:machine:none | Lying Leg Curl
+knee_flexion:nordic:bodyweight:none | Nordic Hamstring Curl
+knee_flexion:seated:machine:none | Seated Leg Curl
+knee_flexion:single_leg:machine:none | Machine Single-Leg Leg Curl
+knee_flexion:stability_ball:bodyweight:none | Stability Ball Hamstring Curl
+knee_flexion:standing:machine:none | Standing Leg Curl
+lateral_flexion:lateral_knee_raise:bodyweight:none | Lateral Knee Raise
+lateral_flexion:lateral_leg_raise:bodyweight:none | Lateral Leg Raise
+lateral_flexion:side_bend:cable:none | Cable Side Bend
+lateral_flexion:side_bend:dumbbell:none | Dumbbell Side Bend
+lateral_flexion:side_bend:kettlebell:none | Kettlebell Side Bend
+lateral_flexion:windshield_wiper:bodyweight:none | Hanging Windshield Wiper
+lat_pulldown:neutral:cable:none | Cable Neutral-Grip Lat Pulldown
+lat_pulldown:neutral:machine:none | Machine Neutral-Grip Lat Pulldown
+lat_pulldown:underhand:cable:none | Cable Underhand Lat Pulldown
+lat_pulldown:underhand:machine:none | Machine Underhand Lat Pulldown
+lat_pulldown:wide:cable:none | Cable Wide-Grip Lat Pulldown
+lat_pulldown:wide:machine:none | Machine Wide-Grip Lat Pulldown
+lunge:curtsy:bodyweight:none | Curtsy Lunge
+lunge:curtsy:dumbbell:none | Dumbbell Curtsy Lunge
+lunge:curtsy:kettlebell:none | Kettlebell Curtsy Lunge
+lunge:forward:barbell:none | Barbell Forward Lunge
+lunge:forward:bodyweight:none | Forward Lunge
+lunge:forward:dumbbell:none | Dumbbell Forward Lunge
+lunge:forward:kettlebell:none | Kettlebell Forward Lunge
+lunge:lateral:bodyweight:none | Lateral Lunge
+lunge:lateral:dumbbell:none | Dumbbell Lateral Lunge
+lunge:lateral:kettlebell:none | Kettlebell Lateral Lunge
+lunge:reverse:barbell:none | Barbell Reverse Lunge
+lunge:reverse:bodyweight:none | Reverse Lunge
+lunge:reverse:dumbbell:none | Dumbbell Reverse Lunge
+lunge:reverse:kettlebell:none | Kettlebell Reverse Lunge
+lunge:walking_lunge:barbell:none | Barbell Walking Lunge
+lunge:walking_lunge:bodyweight:none | Walking Lunge
+lunge:walking_lunge:dumbbell:none | Dumbbell Walking Lunge
+overhead_press:arnold_press:dumbbell:none | Dumbbell Arnold Press
+overhead_press:push_press:barbell:none | Barbell Push Press
+overhead_press:seated:barbell:none | Barbell Seated Overhead Press
+overhead_press:seated:dumbbell:none | Dumbbell Seated Overhead Press
+overhead_press:seated:machine:none | Machine Seated Overhead Press
+overhead_press:standing:barbell:none | Barbell Overhead Press
+overhead_press:standing:dumbbell:none | Dumbbell Overhead Press
+pull_up:chin_up:assisted:none | Assisted Chin-Up
+pull_up:chin_up:bodyweight:none | Chin-Up
+pull_up:chin_up:weighted:none | Weighted Chin-Up
+pull_up:pull_up:assisted:none | Assisted Pull-Up
+pull_up:pull_up:bodyweight:none | Pull-Up
+pull_up:pull_up:weighted:none | Weighted Pull-Up
+pull_up:rings:assisted:none | Assisted Rings Pull-Up
+pull_up:rings:bodyweight:none | Rings Pull-Up
+pull_up:rings:weighted:none | Weighted Rings Pull-Up
+pull_up:wide:assisted:none | Assisted Wide Pull-Up
+pull_up:wide:bodyweight:none | Wide Pull-Up
+pull_up:wide:weighted:none | Weighted Wide Pull-Up
+push_up:decline:bodyweight:none | Decline Push-Up
+push_up:decline:weighted:none | Weighted Decline Push-Up
+push_up:incline:bodyweight:none | Incline Push-Up
+push_up:incline:weighted:none | Weighted Incline Push-Up
+push_up:rings:bodyweight:none | Rings Push-Up
+push_up:rings:weighted:none | Weighted Rings Push-Up
+push_up:standard:bodyweight:none | Push-Up
+push_up:standard:weighted:none | Weighted Push-Up
+rotation:russian_twist:bodyweight:none | Russian Twist
+rotation:russian_twist:dumbbell:none | Dumbbell Russian Twist
+rotation:russian_twist:medicine_ball:none | Medicine Ball Russian Twist
+rotation:wood_chop_high_to_low:cable:none | Cable Wood Chop (High-to-Low)
+rotation:wood_chop_low_to_high:cable:none | Cable Wood Chop (Low-to-High)
+scapular_elevation:behind_back:barbell:none | Barbell Behind-Back Shrug
+scapular_elevation:behind_back:smith_machine:none | Smith Machine Behind-Back Shrug
+scapular_elevation:incline:dumbbell:none | Dumbbell Incline Shrug
+scapular_elevation:standing:barbell:none | Barbell Shrug
+scapular_elevation:standing:dumbbell:none | Dumbbell Shrug
+scapular_elevation:standing:machine:none | Machine Shrug
+scapular_elevation:standing:smith_machine:none | Smith Machine Shrug
+shoulder_abduction:leaning:cable:none | Cable Leaning Lateral Raise
+shoulder_abduction:leaning:dumbbell:none | Dumbbell Leaning Lateral Raise
+shoulder_abduction:leaning:machine:none | Machine Leaning Lateral Raise
+shoulder_abduction:standard:cable:none | Cable Lateral Raise
+shoulder_abduction:standard:dumbbell:none | Dumbbell Lateral Raise
+shoulder_abduction:standard:machine:none | Machine Lateral Raise
+shoulder_extension:lying:barbell:none | Barbell Lying Pullover
+shoulder_extension:lying:cable:none | Cable Lying Pullover
+shoulder_extension:lying:dumbbell:none | Dumbbell Lying Pullover
+shoulder_extension:lying:machine:none | Machine Lying Pullover
+shoulder_extension:standing:barbell:none | Barbell Standing Pullover
+shoulder_extension:standing:cable:none | Cable Standing Pullover
+shoulder_extension:standing:dumbbell:none | Dumbbell Standing Pullover
+shoulder_extension:standing:machine:none | Machine Standing Pullover
+shoulder_flexion:standard:barbell:none | Barbell Front Raise
+shoulder_flexion:standard:cable:none | Cable Front Raise
+shoulder_flexion:standard:dumbbell:none | Dumbbell Front Raise
+shoulder_flexion:standard:machine:none | Machine Front Raise
+shoulder_horizontal_abduction:bent_over:cable:none | Cable Bent-Over Reverse Fly
+shoulder_horizontal_abduction:bent_over:dumbbell:none | Dumbbell Bent-Over Reverse Fly
+shoulder_horizontal_abduction:bent_over:machine:none | Machine Bent-Over Reverse Fly
+shoulder_horizontal_abduction:cable:cable:none | Cable Reverse Fly
+shoulder_horizontal_abduction:cable:dumbbell:none | Dumbbell Reverse Fly
+shoulder_horizontal_abduction:cable:machine:none | Machine Reverse Fly
+shoulder_horizontal_abduction:seated:cable:none | Cable Seated Reverse Fly
+shoulder_horizontal_abduction:seated:dumbbell:none | Dumbbell Seated Reverse Fly
+shoulder_horizontal_abduction:seated:machine:none | Machine Seated Reverse Fly
+shoulder_horizontal_adduction:decline:dumbbell:none | Dumbbell Decline Fly
+shoulder_horizontal_adduction:decline:machine:none | Machine Decline Fly
+shoulder_horizontal_adduction:flat:dumbbell:none | Dumbbell Chest Fly
+shoulder_horizontal_adduction:flat:machine:none | Machine Chest Fly
+shoulder_horizontal_adduction:high:cable:none | Cable High Fly
+shoulder_horizontal_adduction:incline:dumbbell:none | Dumbbell Incline Fly
+shoulder_horizontal_adduction:incline:machine:none | Machine Incline Fly
+shoulder_horizontal_adduction:low:cable:none | Cable Low Fly
+shoulder_horizontal_adduction:mid:cable:none | Cable Fly
+split_squat:bulgarian_split_squat:barbell:none | Barbell Bulgarian Split Squat
+split_squat:bulgarian_split_squat:bodyweight:none | Bulgarian Split Squat
+split_squat:bulgarian_split_squat:dumbbell:none | Dumbbell Bulgarian Split Squat
+split_squat:bulgarian_split_squat:kettlebell:none | Kettlebell Bulgarian Split Squat
+split_squat:elevated_split_squat:barbell:none | Barbell Elevated Split Squat
+split_squat:elevated_split_squat:bodyweight:none | Elevated Split Squat
+split_squat:elevated_split_squat:dumbbell:none | Dumbbell Elevated Split Squat
+split_squat:elevated_split_squat:kettlebell:none | Kettlebell Elevated Split Squat
+split_squat:split_squat:barbell:none | Barbell Split Squat
+split_squat:split_squat:bodyweight:none | Split Squat
+split_squat:split_squat:dumbbell:none | Dumbbell Split Squat
+split_squat:split_squat:kettlebell:none | Kettlebell Split Squat
+squat:atg:bodyweight:none | ATG Squat
+squat:back:barbell:none | Barbell Back Squat
+squat:box:barbell:none | Barbell Box Squat
+squat:box:bodyweight:none | Box Squat
+squat:front:barbell:none | Barbell Front Squat
+squat:front:dumbbell:none | Dumbbell Front Squat
+squat:goblet:dumbbell:none | Dumbbell Goblet Squat
+squat:hack_squat:machine:none | Hack Squat
+squat:leg_press:machine:none | Leg Press
+squat:overhead:barbell:none | Barbell Overhead Squat
+squat:overhead:dumbbell:none | Dumbbell Overhead Squat
+squat:sissy:bodyweight:none | Sissy Squat
+squat:sissy:weighted:none | Weighted Sissy Squat
+squat:sumo:barbell:none | Barbell Sumo Squat
+squat:sumo:bodyweight:none | Sumo Squat
+squat:sumo:dumbbell:none | Dumbbell Sumo Squat
+step_up:forward_step_up:barbell:none | Barbell Forward Step-Up
+step_up:forward_step_up:bodyweight:none | Forward Step-Up
+step_up:forward_step_up:dumbbell:none | Dumbbell Forward Step-Up
+step_up:lateral_step_up:barbell:none | Barbell Lateral Step-Up
+step_up:lateral_step_up:bodyweight:none | Lateral Step-Up
+step_up:lateral_step_up:dumbbell:none | Dumbbell Lateral Step-Up
+upright_pull:standard:barbell:none | Barbell Upright Row
+upright_pull:standard:cable:none | Cable Upright Row
+upright_pull:standard:dumbbell:none | Dumbbell Upright Row
+upright_pull:standard:ez_bar:none | EZ Bar Upright Row
+wrist_extension:seated:barbell:none | Barbell Reverse Wrist Curl
+wrist_extension:seated:dumbbell:none | Dumbbell Reverse Wrist Curl
+wrist_flexion:behind_back:barbell:none | Barbell Behind-Back Wrist Curl
+wrist_flexion:seated:barbell:none | Barbell Wrist Curl
+wrist_flexion:seated:dumbbell:none | Dumbbell Wrist Curl
+
+### Mobility
+adductor-stretch:butterfly:bodyweight:none | Butterfly Stretch
+adductor-stretch:side-lunge:bodyweight:none | Wide-Stance Side Lunge Stretch
+adductor-stretch:side-lying:bodyweight:none | Side-Lying Adductor Stretch
+ankle-circles:standard:bodyweight:none | Ankle Circles
+arm-swings:band-circles:bodyweight:none | Arm Circles with Band Pull-Apart
+arm-swings:cross-body-overhead:bodyweight:none | Arm Swings (Cross-Body + Overhead)
+biceps-stretch:doorway:bodyweight:doorway | Doorway Biceps Stretch
+biceps-stretch:seated:bodyweight:none | Seated Reverse-Grip Table Stretch
+biceps-stretch:wall:bodyweight:wall | Wall Biceps Stretch
+bird-dog:dynamic:bodyweight:none | Bird Dog (Dynamic)
+calf-stretch:bent:bodyweight:wall | Wall Calf Stretch (Bent Knee)
+calf-stretch:downward-dog:bodyweight:none | Downward Dog
+calf-stretch:seated:bodyweight:none | Seated Soleus Stretch
+calf-stretch:step-drop:bodyweight:step | Step Drop Calf Stretch
+calf-stretch:straight:bodyweight:wall | Wall Calf Stretch (Straight Leg)
+cuban-rotations:standard:bodyweight:none | Cuban Rotations
+finger-flexor-stretch:standard:bodyweight:none | Finger Flexor Stretch
+glute-bridges-dynamic:standard:bodyweight:none | Glute Bridges (Dynamic)
+glute-stretch:figure-four:bodyweight:none | Supine Figure-Four Stretch
+glute-stretch:pigeon:bodyweight:none | Pigeon Pose
+glute-stretch:pigeon-forward:bodyweight:none | Pigeon Pose Forward Lean
+glute-stretch:seated:bodyweight:none | Seated Crossover Glute Stretch
+hamstring-stretch:forward-fold:bodyweight:none | Seated Forward Fold
+hamstring-stretch:seated:bodyweight:none | Seated Hamstring Stretch
+hamstring-stretch:standing:bodyweight:none | Standing Forward Fold
+hamstring-stretch:supine:bodyweight:none | Supine Straight-Leg Raise Stretch
+hip-flexor-stretch:elevated:bodyweight:wall | Half-Kneeling Hip Flexor Stretch (Elevated)
+hip-flexor-stretch:half-kneeling:bodyweight:none | Half-Kneeling Hip Flexor Stretch
+hip-flexor-stretch:standing:bodyweight:none | Standing Lunge Hip Flexor Stretch
+hip-flexor-stretch:tfl-thomas:bodyweight:none | Standing IT Band / TFL Stretch
+hip-flexor-stretch:thomas:bodyweight:none | Thomas Stretch
+hip-rotation-stretch:seated:bodyweight:none | Seated Crossover Twist
+hip-rotation-stretch:supine:bodyweight:none | Supine Cross-Body Knee Pull
+inchworms:standard:bodyweight:none | Inchworms
+it-band-stretch:lateral-lean:bodyweight:none | Seated Figure-Four with Lateral Lean
+it-band-stretch:side-bend:bodyweight:none | Standing Cross-Leg Side Bend
+it-band-stretch:standing:bodyweight:none | Standing IT Band Stretch
+it-band-stretch:supine:bodyweight:none | Supine IT Band Stretch
+lat-stretch:childs-pose:bodyweight:none | Child's Pose with Lateral Reach
+lat-stretch:dead-hang:bodyweight:pull-up-bar | Dead Hang
+lat-stretch:overhead:bodyweight:wall | Overhead Lat Stretch
+lat-stretch:overhead-side-reach:bodyweight:none | Overhead Side Reach
+lat-stretch:side-lying:bodyweight:none | Side-Lying Overhead Reach
+leg-swings:forward-back:bodyweight:none | Leg Swings (Forward/Back)
+leg-swings:lateral:bodyweight:none | Leg Swings (Side-to-Side)
+neck-stretch:chin-tuck:bodyweight:none | Chin Tuck with Flexion
+neck-stretch:ear-to-shoulder:bodyweight:none | Ear-to-Shoulder Stretch
+neck-stretch:lateral:bodyweight:none | Lateral Neck Flexion Stretch
+neck-stretch:levator:bodyweight:none | Levator Scapulae Stretch
+neck-stretch:trap-rotation:bodyweight:none | Upper Trap Stretch with Rotation
+pec-stretch:anterior:bodyweight:doorway | Doorway Pec and Anterior Deltoid Stretch
+pec-stretch:clasped:bodyweight:none | Clasped Hands Behind Back
+pec-stretch:high:bodyweight:doorway | Doorway Pec Stretch (135°)
+pec-stretch:low:bodyweight:doorway | Doorway Pec Stretch (90°)
+pec-stretch:supine:bodyweight:none | Supine Floor Pec Stretch
+quad-stretch:couch:bodyweight:wall | Couch Stretch
+quad-stretch:half-kneeling:bodyweight:none | Half-Kneeling Quad Stretch
+quad-stretch:standing:bodyweight:none | Standing Quad Stretch
+scapular-wall-slides:standard:bodyweight:none | Scapular Wall Slides
+shoulder-circles:standard:bodyweight:none | Shoulder Circles
+shoulder-stretch:cross-body-adduction:bodyweight:none | Cross-Body Adduction Stretch
+shoulder-stretch:cross-body:bodyweight:none | Cross-Body Shoulder Stretch
+shoulder-stretch:doorway-low-arm:bodyweight:doorway | Doorway Low-Arm Pec Stretch
+shoulder-stretch:doorway-protraction:bodyweight:doorway | Doorway Reach + Protraction Block
+shoulder-stretch:sleeper:bodyweight:none | Sleeper Stretch
+shoulder-stretch:sleeper-teres-minor:bodyweight:none | Sleeper Stretch — Teres Minor Emphasis
+spinal-extension-stretch:cobra:bodyweight:none | Cobra Stretch
+spinal-extension-stretch:standing:bodyweight:none | Standing Back Extension
+spinal-flexion-stretch:childs-pose:bodyweight:none | Child's Pose
+spinal-flexion-stretch:knees-to-chest:bodyweight:none | Knees-to-Chest Stretch
+spinal-flow:cat-cow:bodyweight:none | Cat-Cow (Thoracic Flexion/Extension)
+thoracic-stretch:cat:bodyweight:none | Seated Cat Stretch
+thoracic-stretch:hug:bodyweight:none | Cross-Body Hug Stretch
+thoracic-stretch:side-bend:bodyweight:none | Standing Side Bend
+thoracic-stretch:side-lying:bodyweight:none | Side-Lying Trunk Rotation
+thoracic-stretch:thread:bodyweight:none | Thread the Needle
+thoracic-stretch:twist:bodyweight:none | Seated Spinal Twist
+toe-heel-walks:standard:bodyweight:none | Walking Toe Raises + Heel Walks
+torso-twists:standing-reach:bodyweight:none | Standing Torso Twists with Reach
+triceps-stretch:overhead:bodyweight:none | Overhead Triceps Stretch
+triceps-stretch:wall-assisted:bodyweight:wall | Wall-Assisted Overhead Triceps Stretch
+walking-quad-stretch:standard:bodyweight:none | Walking Quad Stretch (Dynamic)
+worlds-greatest-stretch:standard:bodyweight:none | World's Greatest Stretch (Modified)
+wrist-extensor-stretch:standard:bodyweight:none | Wrist Extensor Stretch
+wrist-flexor-stretch:standard:bodyweight:none | Wrist Flexor Stretch
