@@ -48,6 +48,10 @@ Follow every rule in this file. The app rejects the whole file if any rule is br
 - program.category (optional): "training" for strength programs, "protocol" for mobility or rehab routines.
 - program.frequency (optional): short text, for example "3 days/week", "3-4x/week", "Daily".
 - days: one entry per session, in order. Day name: 1 to 50 characters.
+- Multi-week plans: the format has no weeks level. For a plan that changes week to week, write every
+  week's sessions as their own days, prefixed with the week: "W1 Upper A", "W1 Lower A", "W2 Upper A", ...
+  Put each week's sets, reps and RIR on its own days, and tell the user the plan runs in order, one day per session.
+  For a plan that repeats the same week, write that one week only.
 - exerciseId: MUST be copied exactly from the exercise list below. Never invent or edit an ID.
   If the exercise the user wants is not in the list, pick the closest listed exercise and say which substitution you made.
 - exerciseName: copy the name from the same line of the list.
