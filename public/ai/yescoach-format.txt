@@ -1,7 +1,8 @@
-# YesCoach program format
+# YesCoach program format (version 1.2)
 
 You are writing a workout program that the user will import into the YesCoach app (Android).
-Follow every rule in this file. The app rejects the whole file if any rule is broken.
+Follow every rule in this file. The app rejects the whole file if any rule is broken,
+and tells the user which rule failed.
 
 ## What to give the user
 
@@ -12,11 +13,14 @@ Follow every rule in this file. The app rejects the whole file if any rule is br
 3. JSON only inside the file: no comments, no trailing commas, no text before or after.
 4. After the file, tell the user how to import it:
    Open YesCoach > Plan tab (with no workout in progress) > Programs icon at the top > Import (download arrow) > pick the file.
+   If the app says "Unsupported version", the user needs to update YesCoach from Google Play.
 
-## File structure
+## Complete example
+
+One day with a warm-up, a main lift, a superset, and a cool-down.
 
 {
-  "version": "1.0",
+  "version": "1.2",
   "type": "yescoach_program",
   "program": {
     "name": "Upper Lower 4-Day",
@@ -27,31 +31,43 @@ Follow every rule in this file. The app rejects the whole file if any rule is br
       {
         "name": "Upper A",
         "exercises": [
-          {
-            "exerciseId": "bench_press:flat:barbell:none",
-            "exerciseName": "Barbell Flat Bench Press",
-            "sets": 3,
-            "reps": "6-8",
-            "suggestedRIR": 2,
-            "notes": "Optional coaching cue."
-          }
+          { "exerciseId": "shoulder-circles:standard:bodyweight:none", "exerciseName": "Shoulder Circles",
+            "sets": 1, "reps": "10", "suggestedRIR": 5, "section": "warmup" },
+          { "exerciseId": "thoracic-stretch:thread:bodyweight:none", "exerciseName": "Thread the Needle",
+            "sets": 1, "reps": "30s/side", "suggestedRIR": 5, "section": "warmup" },
+          { "exerciseId": "bench_press:flat:barbell:none", "exerciseName": "Barbell Flat Bench Press",
+            "sets": 3, "reps": "6-8", "suggestedRIR": 2, "restSec": 150, "notes": "Pause on the chest." },
+          { "exerciseId": "horizontal_pull:bent_over:dumbbell:none", "exerciseName": "Dumbbell Bent-Over Row",
+            "sets": 3, "reps": "10", "suggestedRIR": 2, "groupId": "A" },
+          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise",
+            "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A",
+            "technique": { "kind": "drop", "appliesTo": "last", "drops": 1, "loadDropPct": 25 } },
+          { "exerciseId": "pec-stretch:low:bodyweight:doorway", "exerciseName": "Doorway Pec Stretch (90°)",
+            "sets": 2, "reps": "30s", "suggestedRIR": 5, "section": "cooldown" }
+        ],
+        "groups": [
+          { "id": "A", "type": "superset", "rounds": 3, "restBetweenSec": 15, "restAfterSec": 90, "section": "accessories" }
         ]
       }
     ]
   }
 }
 
-## Rules
+## Rules: program and days
 
-- version: exactly "1.0". type: exactly "yescoach_program".
+- version: "1.2". type: exactly "yescoach_program".
 - program.name: 1 to 100 characters.
 - program.category (optional): "training" for strength programs, "protocol" for mobility or rehab routines.
 - program.frequency (optional): short text, for example "3 days/week", "3-4x/week", "Daily".
 - days: one entry per session, in order. Day name: 1 to 50 characters.
+- exercises: in the order they are performed. Group members sit next to each other (see Groups).
 - Multi-week plans: the format has no weeks level. For a plan that changes week to week, write every
   week's sessions as their own days, prefixed with the week: "W1 Upper A", "W1 Lower A", "W2 Upper A", ...
   Put each week's sets, reps and RIR on its own days, and tell the user the plan runs in order, one day per session.
   For a plan that repeats the same week, write that one week only.
+
+## Rules: every exercise
+
 - exerciseId: MUST be copied exactly from the exercise list below. Never invent or edit an ID.
   If the exercise the user wants is not in the list, pick the closest listed exercise and say which substitution you made.
 - exerciseName: copy the name from the same line of the list.
@@ -59,8 +75,39 @@ Follow every rule in this file. The app rejects the whole file if any rule is br
 - reps: text in one of these forms only: "8", "8-10", "30s", "30-60s", "10/side", "8-10/leg", "30s/side".
   No words like "AMRAP" or "to failure". Use seconds ("45s") for holds and stretches.
 - suggestedRIR: whole number from 0 to 10 (reps in reserve: how many more reps the user could have done).
-  Typical: 1-3 for strength work, 3-4 for beginners, 0 only for isolation finishers.
-- notes (optional): a short cue.
+  Typical: 1-3 for strength work, 3-4 for beginners, 0 only for isolation finishers, 5 for warm-up and mobility moves.
+- notes (optional): a short coaching cue. Put load guidance here ("start at 60% of your best").
+- restSec (optional): rest after each set, in seconds, for an exercise that is NOT in a group.
+  Leave it out to let the app suggest rest from the rep range.
+
+## Rules: sections
+
+- section (optional): "warmup", "power", "accessories" or "cooldown". Leave it out for main work.
+  Never write "main".
+- Put section on a standalone exercise, or on a group. Never on a group member.
+- Use warm-up and cool-down for mobility and activation moves (the Mobility part of the list works well).
+
+## Rules: groups (supersets and circuits)
+
+- Declare groups in the day's "groups" array: { "id", "type", "rounds", "restBetweenSec", "restAfterSec" },
+  optional "note" and "section".
+  - id: any short text, unique within the day ("A", "B").
+  - type: "superset" (usually 2 moves) or "circuit" (3 or more moves done in rounds).
+  - rounds: whole number from 1 to 20.
+  - restBetweenSec: rest between moves inside a round. restAfterSec: rest after each full round. Seconds, 0 or more.
+- Each member exercise carries "groupId" equal to the group's id.
+- A group needs at least 2 members, and its members must be next to each other in the exercises list.
+- Each member's sets must equal the group's rounds.
+- Members never carry restSec or section.
+- Leave out "groups" on days without any.
+
+## Rules: techniques (optional)
+
+- technique applies to the LAST set of an exercise only, and is not allowed on barbell exercises
+  (any exerciseId whose third part is "barbell").
+- Drop set: { "kind": "drop", "appliesTo": "last", "drops": 1 or 2, "loadDropPct": 10 to 40 }
+- Rest-pause: { "kind": "rest_pause", "appliesTo": "last", "miniSets": 1 to 3, "restSec": 10 to 30 }
+- Use them sparingly, on isolation and machine work for intermediate or advanced users.
 
 ## Exercise list
 
@@ -345,6 +392,7 @@ shoulder_horizontal_abduction:seated:dumbbell:none | Dumbbell Seated Reverse Fly
 shoulder_horizontal_abduction:seated:machine:none | Machine Seated Reverse Fly
 shoulder_horizontal_adduction:decline:dumbbell:none | Dumbbell Decline Fly
 shoulder_horizontal_adduction:decline:machine:none | Machine Decline Fly
+shoulder_horizontal_adduction:flat:cable:none | Cable Chest Fly
 shoulder_horizontal_adduction:flat:dumbbell:none | Dumbbell Chest Fly
 shoulder_horizontal_adduction:flat:machine:none | Machine Chest Fly
 shoulder_horizontal_adduction:high:cable:none | Cable High Fly
