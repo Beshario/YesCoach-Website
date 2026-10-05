@@ -43,6 +43,20 @@ About me:
 
 Give me the program as a downloadable .json file.`
 
+const workoutPrompt = `Build me one workout I can import into the YesCoach app.
+
+First, read ${SPEC_URL} and follow it exactly. Write exactly one day.
+If you cannot open that link, stop and ask me to paste its contents here before you continue.
+
+About me:
+- Focus: [push / pull / legs / full body]
+- Session length: [45 minutes]
+- Equipment: [full gym / dumbbells only / no equipment]
+- Experience: [beginner / intermediate / advanced]
+- Injuries or limits: [none]
+
+Give me the workout as a downloadable .json file, or as one JSON code block.`
+
 const steps = [
   {
     title: 'Install YesCoach',
@@ -65,6 +79,10 @@ const steps = [
     body: 'In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import (the download arrow), and pick the file.',
   },
   {
+    title: 'Or import one workout',
+    body: 'Use the one workout prompt below. In YesCoach, open the Plan tab on an empty day and tap Import a workout. Tap Paste workout after copying the AI reply, or Choose a file. From ChatGPT you can also use Share to YesCoach.',
+  },
+  {
     title: 'Train and watch the map',
     body: 'Start a session from the program. Every set you log lights up the muscles it worked.',
   },
@@ -80,6 +98,11 @@ const faqs = [
     question: 'How do I track a workout plan from ChatGPT?',
     answer:
       'Ask for the plan as a YesCoach .json file using the prompt above, download it, and import it in YesCoach from the Plan tab: tap the Programs icon at the top, then Import. Each session then shows up ready to log.',
+  },
+  {
+    question: 'Can I import a single workout?',
+    answer:
+      'Yes. Use the one workout prompt on this page so the AI writes exactly one day. Then open the Plan tab on an empty day, tap Import a workout, and tap Paste workout or Choose a file.',
   },
   {
     question: 'What if the AI cannot open the link?',
@@ -168,8 +191,17 @@ export default function AiPage() {
           </div>
 
           <div>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">2. The prompt for one workout</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              Want a single session instead of a program? Copy this, fill in the brackets, and import the reply from
+              the Plan tab with Import a workout.
+            </p>
+            <CopyBlock label="Copy workout prompt" text={workoutPrompt} />
+          </div>
+
+          <div>
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">
-              2. If the AI can&apos;t open links
+              3. If the AI can&apos;t open links
             </h2>
             <p className="text-muted-foreground mb-6 max-w-3xl">
               Some AI chats cannot browse. Copy the full instructions and paste them into the same chat. They
