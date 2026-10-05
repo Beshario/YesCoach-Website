@@ -109,7 +109,8 @@ export default function PrivacyContent() {
               <p className="mb-3">What we read: nothing. YesCoach does not read data from Health Connect.</p>
               <p className="mb-3">Where it goes: the data moves from your device to Health Connect on the same device. It is not sent to YesCoach servers.</p>
               <p className="mb-3">Your control: you can disconnect in YesCoach under Account, Settings, Connected apps, or in Health Connect. Deleting a session, deleting your account, or resetting the app deletes the workout records YesCoach wrote. You can also remove them in Health Connect.</p>
-              <p className="mb-3">YesCoach's use and transfer of information received from Health Connect will adhere to the Health Connect Permissions policy, including the Limited Use requirements. We use this data only to provide the Health Connect feature you see in the app. We do not use it for advertising, we do not sell it, and we do not transfer it to others.</p>
+              <p className="mb-3">YesCoach's use and transfer of information received from Health Connect will adhere to the Health Connect Permissions policy, including the Limited Use requirements. We use this data only to provide the Health Connect feature you see in the app. We do not use it for advertising, credit or insurance decisions, or medical devices. We do not sell it, and we do not share it with analytics or other third parties, except where the law requires.</p>
+              <p className="mb-3">Security: Health Connect stores this data on your device under Android's protections. YesCoach does not copy it anywhere else.</p>
             </section>
 
             <section>
