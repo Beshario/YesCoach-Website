@@ -1,71 +1,24 @@
 import type { MetadataRoute } from 'next'
+import registry from '@/lib/pages.json'
 
 export const dynamic = 'force-static'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yescoach.fit'
-  const now = new Date()
+const BASE_URL = 'https://yescoach.fit'
 
-  return [
-    {
-      url: `${baseUrl}/`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/strength-training-recovery-app`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/anterior-pelvic-tilt-exercises`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/desk-posture-routine`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/ai`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/watch-a-lift-light-up`,
-      lastModified: new Date('2026-07-10'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/programs-and-protocols`,
-      lastModified: new Date('2026-09-03'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-  ]
+type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>
+
+/** Real per-page dates from lib/pages.json, so crawlers can trust lastmod. */
+export default function sitemap(): MetadataRoute.Sitemap {
+  return registry.pages.map((page) => {
+    const lastModified = new Date(`${page.lastModified}T00:00:00Z`)
+    if (Number.isNaN(lastModified.getTime())) {
+      throw new Error(`sitemap: invalid lastModified "${page.lastModified}" for ${page.path}`)
+    }
+    return {
+      url: `${BASE_URL}${page.path === '/' ? '/' : page.path}`,
+      lastModified,
+      changeFrequency: page.changeFrequency as ChangeFrequency,
+      priority: page.priority,
+    }
+  })
 }

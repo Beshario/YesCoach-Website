@@ -1,0 +1,19 @@
+{
+  "$comment": "Every public URL. Drives sitemap.ts (lastModified, changeFrequency, priority) and the IndexNow workflow (sources). When you change a page's content, set lastModified to the day it ships. scripts/check-pages.mjs fails the build if an app/**/page.tsx has no entry here.",
+  "pages": [
+    { "path": "/", "sources": ["app/page.tsx"], "lastModified": "2026-10-04", "changeFrequency": "weekly", "priority": 1 },
+    { "path": "/strength-training-recovery-app", "sources": ["app/strength-training-recovery-app/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.8 },
+    { "path": "/anterior-pelvic-tilt-exercises", "sources": ["app/anterior-pelvic-tilt-exercises/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
+    { "path": "/desk-posture-routine", "sources": ["app/desk-posture-routine/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
+    { "path": "/ai", "sources": ["app/ai/", "components/copy-block.tsx"], "lastModified": "2026-10-04", "changeFrequency": "monthly", "priority": 0.8 },
+    { "path": "/blog", "sources": ["app/blog/page.tsx"], "lastModified": "2026-09-13", "changeFrequency": "weekly", "priority": 0.6 },
+    { "path": "/blog/watch-a-lift-light-up", "sources": ["app/blog/watch-a-lift-light-up/", "public/blog/watch-a-lift-light-up/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
+    { "path": "/blog/programs-and-protocols", "sources": ["app/blog/programs-and-protocols/", "public/blog/programs-and-protocols/"], "lastModified": "2026-10-04", "changeFrequency": "monthly", "priority": 0.7 },
+    { "path": "/privacy", "sources": ["app/privacy/"], "lastModified": "2026-07-19", "changeFrequency": "yearly", "priority": 0.3 },
+    { "path": "/terms", "sources": ["app/terms/"], "lastModified": "2026-07-19", "changeFrequency": "yearly", "priority": 0.3 }
+  ],
+  "files": [
+    { "path": "/ai/yescoach-format.txt", "sources": ["public/ai/yescoach-format.txt"] },
+    { "path": "/llms.txt", "sources": ["app/llms.txt/"] }
+  ]
+}
