@@ -26,7 +26,7 @@ export default function PrivacyContent() {
             Privacy Policy
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last updated: June 23, 2026
+            Last updated: October 4, 2026
           </p>
 
           <div className="space-y-8 text-muted-foreground">
@@ -103,7 +103,17 @@ export default function PrivacyContent() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">10. Changes</h2>
+              <h2 id="health-connect" className="text-2xl font-semibold mb-4 text-foreground scroll-mt-24">10. Health Connect</h2>
+              <p className="mb-3">On Android, you can choose to send your finished workouts to Health Connect, so they appear in the health apps you use. This is optional and off until you turn it on.</p>
+              <p className="mb-3">What we write: each finished workout as an exercise session, with its exercises, sets and reps. On devices where Health Connect supports it, we also write weight, set order and effort.</p>
+              <p className="mb-3">What we read: nothing. YesCoach does not read data from Health Connect.</p>
+              <p className="mb-3">Where it goes: the data moves from your device to Health Connect on the same device. It is not sent to YesCoach servers.</p>
+              <p className="mb-3">Your control: you can disconnect in YesCoach under Account, Settings, Connected apps, or in Health Connect. Deleting a session, deleting your account, or resetting the app deletes the workout records YesCoach wrote. You can also remove them in Health Connect.</p>
+              <p className="mb-3">YesCoach's use and transfer of information received from Health Connect will adhere to the Health Connect Permissions policy, including the Limited Use requirements. We use this data only to provide the Health Connect feature you see in the app. We do not use it for advertising, we do not sell it, and we do not transfer it to others.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">11. Changes</h2>
               <p>This Policy may be updated. Continued use after updates means the updated Policy applies.</p>
             </section>
           </div>
