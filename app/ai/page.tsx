@@ -60,11 +60,11 @@ Give me the workout as a downloadable .json file, or as one JSON code block.`
 const steps = [
   {
     title: 'Copy the prompt',
-    body: 'Use the prompt below, or tap Get the prompt in YesCoach. Fill in the brackets with your focus, session length, and equipment.',
+    body: 'Copy the prompt below. Fill in the brackets with your focus, session length, and equipment.',
   },
   {
     title: 'Ask your AI',
-    body: 'Paste it into ChatGPT, Claude, Gemini, or any AI chat. It writes one workout in the YesCoach format.',
+    body: 'Paste it into ChatGPT, Claude, Gemini, or any other AI chat. Any AI that can write JSON works. It writes one workout in the YesCoach format.',
   },
   {
     title: 'Copy the whole reply',
