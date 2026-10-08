@@ -26,7 +26,7 @@ export default function PrivacyContent() {
             Privacy Policy
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last updated: October 4, 2026
+            Last updated: October 8, 2026
           </p>
 
           <div className="space-y-8 text-muted-foreground">
@@ -41,7 +41,7 @@ export default function PrivacyContent() {
               <ul className="list-disc pl-6 space-y-2 mb-4">
                 <li>Account info if you sign up or sign in: email and account identifiers.</li>
                 <li>Training data you enter: exercises, sets, reps, load.</li>
-                <li>Usage events: app open, session start/complete, pricing and payment funnel.</li>
+                <li>Usage events, such as app open, session start/complete, which screens and features are used, and the pricing and payment funnel.</li>
                 <li>Technical data: app version, device type, diagnostics.</li>
               </ul>
               <p>Name and email are collected if you create an account or sign in.</p>
