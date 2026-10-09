@@ -7,14 +7,14 @@ const SPEC_PATH = '/ai/yescoach-format.txt'
 const SPEC_URL = `https://yescoach.fit${SPEC_PATH}`
 
 const description =
-  'Turn a ChatGPT, Claude, or Gemini workout plan into a program you can follow and track. Import it into YesCoach free and watch every set light up the muscles it worked.'
+  'Ask ChatGPT, Claude, or Gemini for a workout with the YesCoach prompt, copy the reply, and tap Paste workout. Free on Android. Exercises YesCoach lacks are swapped for the closest match.'
 
 export const metadata: Metadata = {
-  title: 'Track your ChatGPT workout plan | YesCoach',
+  title: 'Import a ChatGPT workout | YesCoach',
   description,
   alternates: { canonical: 'https://yescoach.fit/ai' },
   openGraph: {
-    title: 'Track your ChatGPT workout plan | YesCoach',
+    title: 'Import a ChatGPT workout | YesCoach',
     description,
     url: 'https://yescoach.fit/ai',
     type: 'article',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Track your ChatGPT workout plan | YesCoach',
+    title: 'Import a ChatGPT workout | YesCoach',
     description,
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
@@ -43,30 +43,36 @@ About me:
 
 Give me the program as a downloadable .json file.`
 
+const workoutPrompt = `Build me one workout I can import into the YesCoach app.
+
+First, read ${SPEC_URL} and follow it exactly. Write exactly one day.
+If you cannot open that link, stop and ask me to paste its contents here before you continue.
+
+About me:
+- Focus: [push / pull / legs / full body]
+- Session length: [45 minutes]
+- Equipment: [full gym / dumbbells only / no equipment]
+- Experience: [beginner / intermediate / advanced]
+- Injuries or limits: [none]
+
+Give me the workout as a downloadable .json file, or as one JSON code block.`
+
 const steps = [
   {
-    title: 'Install YesCoach',
-    body: 'Free on Android. No account needed.',
-  },
-  {
     title: 'Copy the prompt',
-    body: 'Fill in the brackets with your goal, schedule, and equipment, then paste it into ChatGPT, Claude, Gemini, or any AI chat.',
+    body: 'Copy the prompt below. Fill in the brackets with your focus, session length, and equipment.',
   },
   {
-    title: 'Let the AI read the format',
-    body: 'The prompt points the AI to our format file, which lists every exercise the app can track. If the AI says it cannot open links, copy the full instructions below and paste them in.',
+    title: 'Ask your AI',
+    body: 'Paste it into ChatGPT, Claude, Gemini, or any other AI chat. Any AI that can write JSON works. It writes one workout in the YesCoach format.',
   },
   {
-    title: 'Download the file',
-    body: 'The AI gives you a .json file. Download it to your phone.',
+    title: 'Copy the whole reply',
+    body: 'Select everything the AI wrote, code block included. Or download the .json file it offers.',
   },
   {
     title: 'Import it',
-    body: 'In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import (the download arrow), and pick the file.',
-  },
-  {
-    title: 'Train and watch the map',
-    body: 'Start a session from the program. Every set you log lights up the muscles it worked.',
+    body: 'In YesCoach, open the Plan tab on an empty day and tap Import from AI. Tap Paste workout, or Choose a file for a download. In the ChatGPT app you can also use Share to send the reply to YesCoach, then tap Import shared workout.',
   },
 ]
 
@@ -74,12 +80,22 @@ const faqs = [
   {
     question: 'Can ChatGPT make a workout plan?',
     answer:
-      'Yes. ChatGPT, Claude, and Gemini can all write a program from your goal, schedule, and equipment. The prompt on this page makes them write it in a format YesCoach can import, using only exercises the app can track.',
+      'Yes. ChatGPT, Claude, and Gemini can all write a workout from your focus, session length, and equipment. The prompt on this page makes them write it in a format YesCoach can import.',
   },
   {
-    question: 'How do I track a workout plan from ChatGPT?',
+    question: 'How do I import a workout from ChatGPT?',
     answer:
-      'Ask for the plan as a YesCoach .json file using the prompt above, download it, and import it in YesCoach from the Plan tab: tap the Programs icon at the top, then Import. Each session then shows up ready to log.',
+      'Copy the prompt on this page, paste it into ChatGPT, and copy its whole reply. In YesCoach, open the Plan tab on an empty day, tap Import from AI, then tap Paste workout.',
+  },
+  {
+    question: 'What if YesCoach does not have an exercise the AI picked?',
+    answer:
+      'YesCoach swaps it for the closest match and tells you which exercise it used. The workout still imports.',
+  },
+  {
+    question: 'Can I import a whole program?',
+    answer:
+      'Yes. Use the program prompt on this page so the AI writes every day. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import and pick the file.',
   },
   {
     question: 'What if the AI cannot open the link?',
@@ -88,7 +104,7 @@ const faqs = [
   },
   {
     question: 'Is YesCoach free?',
-    answer: 'Yes. Importing programs, logging sets, and the muscle map are free on Android.',
+    answer: 'Yes. Importing workouts and programs, logging sets, and the muscle map are free on Android.',
   },
 ]
 
@@ -115,8 +131,8 @@ export default function AiPage() {
             Your AI wrote the workout plan. Now follow it.
           </h1>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mt-6">
-            A plan in a chat window gets lost by week two. Ask your AI for the plan as a YesCoach file, import it,
-            and log every set. The muscle map shows what each session trained.
+            Ask ChatGPT, Claude, or Gemini for a workout with our prompt. Copy the reply, tap Paste workout in
+            YesCoach, and log every set. The muscle map shows what each session trained.
           </p>
           <div className="mt-8">
             <a
@@ -145,7 +161,7 @@ export default function AiPage() {
           </figure>
 
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6">How do I track a workout plan from ChatGPT?</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6">Import a workout from AI in four steps</h2>
             <ol className="space-y-6 max-w-3xl">
               {steps.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
@@ -162,14 +178,34 @@ export default function AiPage() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">1. The prompt</h2>
-            <p className="text-muted-foreground mb-6 max-w-3xl">Copy this into your AI chat and fill in the brackets.</p>
-            <CopyBlock label="Copy prompt" text={prompt} />
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">The prompt</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              Copy this into your AI chat and fill in the brackets. It asks for one workout.
+            </p>
+            <CopyBlock label="Copy prompt" text={workoutPrompt} />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">One workout or a whole program</h2>
+            <p className="text-muted-foreground mb-6 max-w-3xl">
+              Import from AI takes one workout for the day you are on. For a multi-week program, copy this prompt
+              instead. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top,
+              then Import, and pick the file.
+            </p>
+            <CopyBlock label="Copy program prompt" text={prompt} />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">Exercises YesCoach does not have yet</h2>
+            <p className="text-muted-foreground max-w-3xl">
+              If the AI picks an exercise YesCoach lacks, YesCoach swaps in the closest match. The import
+              message names each exercise it used, so you can swap it again.
+            </p>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">
-              2. If the AI can&apos;t open links
+              If the AI can&apos;t open links
             </h2>
             <p className="text-muted-foreground mb-6 max-w-3xl">
               Some AI chats cannot browse. Copy the full instructions and paste them into the same chat. They

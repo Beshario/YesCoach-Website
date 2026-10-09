@@ -11,6 +11,7 @@ and tells the user which rule failed.
    Offer it as a downloadable file. If you cannot create files, put the JSON in a single code block
    and tell the user to save it as a .json file.
 3. JSON only inside the file: no comments, no trailing commas, no text before or after.
+   A single workout has exactly one day: write exactly one entry in days. Import a workout takes one day only.
 4. After the file, tell the user how to import it:
    Open YesCoach > Plan tab (with no workout in progress) > Programs icon at the top > Import (download arrow) > pick the file.
    If the app says "Unsupported version", the user needs to update YesCoach from Google Play.
