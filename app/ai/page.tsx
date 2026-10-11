@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CopyBlock } from '@/components/copy-block'
+import { PromptBuilder } from '@/components/prompt-builder'
 import { playStoreUrl } from '@/lib/playStore'
 
 const SPEC_PATH = '/ai/yescoach-format.txt'
-const SPEC_URL = `https://yescoach.fit${SPEC_PATH}`
 
 const description =
   'Ask ChatGPT, Claude, or Gemini for a workout with the YesCoach prompt, copy the reply, and tap Paste workout. Free on Android. Exercises YesCoach lacks are swapped for the closest match.'
@@ -28,39 +28,10 @@ export const metadata: Metadata = {
   },
 }
 
-const prompt = `Build me a workout program I can import into the YesCoach app.
-
-First, read ${SPEC_URL} and follow it exactly. It has the file format and the only exercise IDs the app accepts.
-If you cannot open that link, stop and ask me to paste its contents here before you continue.
-
-About me:
-- Goal: [build muscle / get stronger / fix lower back pain / ...]
-- Days per week: [3]
-- Session length: [45 minutes]
-- Equipment: [full gym / dumbbells only / no equipment]
-- Experience: [beginner / intermediate / advanced]
-- Injuries or limits: [none]
-
-Give me the program as a downloadable .json file.`
-
-const workoutPrompt = `Build me one workout I can import into the YesCoach app.
-
-First, read ${SPEC_URL} and follow it exactly. Write exactly one day.
-If you cannot open that link, stop and ask me to paste its contents here before you continue.
-
-About me:
-- Focus: [push / pull / legs / full body]
-- Session length: [45 minutes]
-- Equipment: [full gym / dumbbells only / no equipment]
-- Experience: [beginner / intermediate / advanced]
-- Injuries or limits: [none]
-
-Give me the workout as a downloadable .json file, or as one JSON code block.`
-
 const steps = [
   {
     title: 'Copy the prompt',
-    body: 'Copy the prompt below. Fill in the brackets with your focus, session length, and equipment.',
+    body: 'Copy the prompt above. Tap any choices first to tailor it, or leave them open and the AI will ask.',
   },
   {
     title: 'Ask your AI',
@@ -95,7 +66,7 @@ const faqs = [
   {
     question: 'Can I import a whole program?',
     answer:
-      'Yes. Use the program prompt on this page so the AI writes every day. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import and pick the file.',
+      'Yes. Switch the prompt to Program so the AI writes every day. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import and pick the file.',
   },
   {
     question: 'What if the AI cannot open the link?',
@@ -123,26 +94,31 @@ export default function AiPage() {
     <main className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <section className="border-b border-border/70">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12 py-10 lg:py-20">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
             ChatGPT, Claude, Gemini
           </p>
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-foreground max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-foreground max-w-4xl">
             Your AI wrote the workout plan. Now follow it.
           </h1>
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mt-6">
-            Ask ChatGPT, Claude, or Gemini for a workout with our prompt. Copy the reply, tap Paste workout in
-            YesCoach, and log every set. The muscle map shows what each session trained.
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mt-4">
+            Copy the prompt, ask ChatGPT, Claude, or Gemini, then paste the reply into YesCoach. Every set you log
+            shows on your muscle map.
           </p>
-          <div className="mt-8">
-            <a
-              href={playStoreUrl({ source: 'ai-page', campaign: 'ai-import', content: 'hero' })}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
-            >
-              Get YesCoach free on Android
-            </a>
+          <div className="mt-10 max-w-3xl">
+            <PromptBuilder />
+            <p className="mt-4 text-sm text-muted-foreground">
+              New to YesCoach?{' '}
+              <a
+                href={playStoreUrl({ source: 'ai-page', campaign: 'ai-import', content: 'hero' })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary hover:underline"
+              >
+                Get it free on Android
+              </a>
+              , then import the workout from the Plan tab.
+            </p>
           </div>
         </div>
       </section>
@@ -177,23 +153,7 @@ export default function AiPage() {
             </ol>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">The prompt</h2>
-            <p className="text-muted-foreground mb-6 max-w-3xl">
-              Copy this into your AI chat and fill in the brackets. It asks for one workout.
-            </p>
-            <CopyBlock label="Copy prompt" text={workoutPrompt} />
-          </div>
 
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">One workout or a whole program</h2>
-            <p className="text-muted-foreground mb-6 max-w-3xl">
-              Import from AI takes one workout for the day you are on. For a multi-week program, copy this prompt
-              instead. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top,
-              then Import, and pick the file.
-            </p>
-            <CopyBlock label="Copy program prompt" text={prompt} />
-          </div>
 
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">Exercises YesCoach does not have yet</h2>
