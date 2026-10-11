@@ -63,9 +63,9 @@ const faqs = [
       'Yes. Switch the prompt to Program so the AI writes every day. In YesCoach, open the Plan tab with no workout in progress, tap the Programs icon at the top, then Import and pick the file.',
   },
   {
-    question: 'What if the AI cannot open the link?',
+    question: 'Does the AI need to browse the web?',
     answer:
-      'Tap Copy full instructions under the prompt and paste the text into the same chat. It contains the file format and the full exercise list, so the AI does not need to browse.',
+      'No. The prompt carries the format and the list of exercises that fit your choices, so any AI chat can write the workout, even one that cannot open links.',
   },
   {
     question: 'Is YesCoach free?',

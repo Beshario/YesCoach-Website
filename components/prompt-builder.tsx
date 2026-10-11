@@ -19,8 +19,6 @@ declare global {
 
 type CopyState = 'idle' | 'copied' | 'failed'
 
-const SPEC_PATH = '/ai/yescoach-format.txt'
-
 const MODES: { value: Mode; label: string; hint: string }[] = [
   { value: 'workout', label: 'One workout', hint: 'One session for today. Paste the reply in the app.' },
   { value: 'program', label: 'Program', hint: 'Every day of a plan, as a .json file to import.' },
@@ -42,7 +40,6 @@ function Check() {
 export function PromptBuilder() {
   const [choices, setChoices] = useState<Choices>({ mode: 'workout' })
   const [copy, setCopy] = useState<CopyState>('idle')
-  const [specCopy, setSpecCopy] = useState<CopyState>('idle')
   const [showMore, setShowMore] = useState(false)
   const prompt = useMemo(() => buildPrompt(choices), [choices])
   const groups = visibleGroups(choices)
@@ -60,26 +57,16 @@ export function PromptBuilder() {
 
   async function copyPrompt() {
     try {
-      await navigator.clipboard.writeText(prompt)
+      await navigator.clipboard.writeText(prompt.text)
       setCopy('copied')
       window.gtag?.('event', 'ai_prompt_copied', {
         mode: choices.mode,
         kind: choices.kind ?? 'open',
         answered: groups.filter((g) => choices[g.key] !== undefined).length,
+        exercises: prompt.exerciseCount,
       })
     } catch {
       setCopy('failed')
-    }
-  }
-
-  async function copySpec() {
-    try {
-      const res = await fetch(SPEC_PATH)
-      if (!res.ok) throw new Error(`spec fetch ${res.status}`)
-      await navigator.clipboard.writeText(await res.text())
-      setSpecCopy('copied')
-    } catch {
-      setSpecCopy('failed')
     }
   }
 
@@ -139,7 +126,7 @@ export function PromptBuilder() {
           </div>
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
-          {mode.hint} Choices are optional: anything you leave open, the AI asks you about.
+          {mode.hint} Choices are optional: anything you leave open, the AI chooses for you.
         </p>
 
         <div className="mt-5 space-y-5">{core.map(renderGroup)}</div>
@@ -165,21 +152,10 @@ export function PromptBuilder() {
             Preview prompt
           </summary>
           <pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words border-t border-border px-4 py-3 font-mono text-sm leading-relaxed text-foreground">
-            {prompt}
+            {prompt.preview}
           </pre>
         </details>
 
-        <p className="mt-4 text-sm text-muted-foreground">
-          AI can&apos;t open links?{' '}
-          <button type="button" onClick={copySpec} className={`font-medium text-primary hover:underline ${focusRing}`}>
-            Copy full instructions
-          </button>{' '}
-          and paste them in the same chat.
-          <span aria-live="polite">
-            {specCopy === 'copied' && ' Copied.'}
-            {specCopy === 'failed' && ' Copy failed. Open /ai/yescoach-format.txt and copy it manually.'}
-          </span>
-        </p>
       </div>
 
       <div className="sticky bottom-0 z-10 rounded-b-2xl border-t border-border bg-card/95 p-3 backdrop-blur sm:p-4">
@@ -201,7 +177,7 @@ export function PromptBuilder() {
                 : copy === 'failed'
                   ? 'Copy failed. Open Preview prompt and copy it.'
                   : set.length === 0
-                    ? 'The AI will ask you.'
+                    ? 'The AI picks the rest.'
                     : null}
             </p>
           </div>

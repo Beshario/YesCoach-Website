@@ -6,7 +6,7 @@ and tells the user which rule failed.
 
 ## What to give the user
 
-1. Ask about anything you need first: goal, days per week, session length, equipment, experience, injuries.
+1. Do not ask follow-up questions. Use what the user told you; where they said nothing, choose what suits them and write the plan straight away.
 2. Produce ONE JSON file named after the program, for example upper-lower-4-day.json.
    Offer it as a downloadable file. If you cannot create files, put the JSON in a single code block
    and tell the user to save it as a .json file.
@@ -125,7 +125,6 @@ ankle_plantarflexion:standing:bodyweight:none | Standing Calf Raise
 ankle_plantarflexion:standing:dumbbell:none | Dumbbell Standing Calf Raise
 ankle_plantarflexion:standing:machine:none | Machine Standing Calf Raise
 anti_extension:ab_wheel:ab_wheel:none | Ab Wheel Ab Wheel Rollout
-anti_extension:body_saw:bodyweight:none | Body Saw
 anti_extension:dead_bug:bodyweight:none | Dead Bug
 anti_extension:dead_bug:weighted:none | Weighted Dead Bug
 anti_extension:mountain_climber:bodyweight:none | Mountain Climber

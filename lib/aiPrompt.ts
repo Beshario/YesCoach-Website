@@ -1,12 +1,13 @@
 /**
  * Builds the /ai prompt from the visitor's choices.
  *
- * Nothing is assumed: an unanswered choice is never filled with a default. The
- * core ones (focus, length, where, level) are instead listed for the AI to ask
- * about, and the optional ones (warm-up, supersets) are left to the AI.
+ * The copied prompt is self-contained: format rules, an example and the exact
+ * exercise ids (lib/exerciseCatalog.json, filtered by the choices) travel in
+ * the prompt, so the AI never has to open a link or ask a question. Choices
+ * the visitor leaves open are not defaulted here; the AI picks what suits.
  */
 
-export const SPEC_URL = 'https://yescoach.fit/ai/yescoach-format.txt'
+import catalog from './exerciseCatalog.json'
 
 export type Mode = 'workout' | 'program'
 export type Kind = 'strength' | 'mobility'
@@ -152,29 +153,77 @@ export function pruneChoices(c: Choices): Choices {
   return next
 }
 
-/** Topics the AI should ask about when the visitor left them open. */
-function openQuestions(c: Choices): string[] {
-  const open: string[] = []
-  if (!c.kind) open.push('strength or mobility')
-  if (!c.focus) open.push('focus')
-  if (c.mode === 'program' && !c.days) open.push('days per week')
-  if (!c.minutes) open.push('session length')
-  if (c.kind !== 'mobility' && !c.where) open.push('equipment')
-  if (!c.level) open.push('experience')
-  return open
+interface CatalogEntry {
+  id: string
+  name: string
+  kind: 'strength' | 'mobility'
 }
 
-export function buildPrompt(c: Choices): string {
-  const program = c.mode === 'program'
-  const lines: string[] = []
+/** Implements a home setup can use, by `where` choice. Absent = every implement. */
+const HOME_IMPLEMENTS: Record<string, string[]> = {
+  'Home, dumbbells only': ['bodyweight', 'dumbbell'],
+  'Home, no equipment': ['bodyweight'],
+}
 
-  lines.push(
+/** The exercises this prompt offers: only what the visitor's choices allow. */
+export function exercisesFor(c: Choices): CatalogEntry[] {
+  const all = catalog as CatalogEntry[]
+  if (c.kind === 'mobility') return all.filter((e) => e.kind === 'mobility')
+  const implementsAllowed = c.where ? HOME_IMPLEMENTS[c.where] : undefined
+  return all.filter((e) => {
+    if (e.kind === 'mobility') return c.warmup !== 'no'
+    return !implementsAllowed || implementsAllowed.includes(e.id.split(':')[2])
+  })
+}
+
+const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Push Day",
+    "category": "training",
+    "days": [
+      {
+        "name": "Push",
+        "exercises": [
+          { "exerciseId": "shoulder-circles:standard:bodyweight:none", "exerciseName": "Shoulder Circles", "sets": 1, "reps": "10", "suggestedRIR": 5, "section": "warmup" },
+          { "exerciseId": "bench_press:flat:dumbbell:none", "exerciseName": "Dumbbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
+          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
+          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }
+        ],
+        "groups": [ { "id": "A", "type": "superset", "rounds": 3, "restBetweenSec": 15, "restAfterSec": 90 } ]
+      }
+    ]
+  }
+}
+Rules:
+- exerciseId and exerciseName: copy BOTH exactly from one line of the EXERCISES list below. Never invent, shorten or edit an id.
+- category: "training" for strength, "protocol" for mobility.
+- sets: whole number 1-20. suggestedRIR: whole number 0-10 (reps left in reserve; 5 for warm-up and mobility moves).
+- reps: only "8", "8-10", "30s", "30-60s", "10/side", "8-10/leg" or "30s/side". Seconds for holds and stretches. Never words like AMRAP.
+- restSec (optional): seconds of rest after each set. Not on group members.
+- section (optional): "warmup", "power", "accessories" or "cooldown". Leave it out for main work. Never on a group member (put it on the group).
+- groups (optional, supersets and circuits): each group {"id","type":"superset" or "circuit","rounds","restBetweenSec","restAfterSec"}; members carry "groupId", sit next to each other in the list, number at least 2, and their sets equal the group's rounds. Leave "groups" out when there are none.
+- No comments, no trailing commas.`
+
+export interface BuiltPrompt {
+  /** What is copied. */
+  text: string
+  /** What the preview shows: the same text with the exercise list collapsed to a count. */
+  preview: string
+  exerciseCount: number
+}
+
+export function buildPrompt(c: Choices): BuiltPrompt {
+  const program = c.mode === 'program'
+  const head: string[] = []
+
+  head.push(
     program
-      ? 'Build me a workout program I can import into the YesCoach app.'
-      : 'Build me one workout I can import into the YesCoach app.',
-    '',
-    `First, read ${SPEC_URL} and follow it exactly.${program ? '' : ' Write exactly one day.'}`,
-    'If you cannot open that link, stop and ask me to paste its contents here before you continue.',
+      ? 'Write me a workout program in the YesCoach format below, ready to import into the YesCoach app.'
+      : 'Write me one workout in the YesCoach format below, ready to paste into the YesCoach app.',
+    'Do not ask me any questions. Where I have not said something, choose what suits me and write it now.',
   )
 
   const about: string[] = []
@@ -188,22 +237,26 @@ export function buildPrompt(c: Choices): string {
   if (c.warmup === 'no') about.push('- No warm-up section')
   if (c.supersets === 'yes') about.push('- Use supersets where they save time')
   if (c.supersets === 'no') about.push('- No supersets or circuits')
-  if (about.length) lines.push('', 'About me:', ...about)
+  if (about.length) head.push('', 'About me:', ...about)
 
-  const open = openQuestions(c)
-  if (open.length) {
-    lines.push('', `Before you write it, ask me about: ${open.join(', ')}. Also ask about injuries or anything to avoid.`)
-  } else {
-    lines.push('', 'Before you write it, ask me about injuries or anything to avoid.')
-  }
-
-  lines.push(
+  head.push(
     '',
     program
-      ? 'Give me the program as a downloadable .json file.'
-      : 'Give me the workout as one JSON code block, or a downloadable .json file.',
+      ? 'Write one entry in "days" per session, in order. Reply with the program as one ```json code block (or a downloadable .json file), then one line on how it is split. Nothing else.'
+      : 'Write exactly one entry in "days". Reply with the workout as one ```json code block, then one short line on what it trains. Nothing else.',
+    '',
+    FORMAT_RULES,
+    '',
   )
-  return lines.join('\n')
+
+  const exercises = exercisesFor(c)
+  const list = exercises.map((e) => `${e.id} | ${e.name}`)
+  const listHeader = 'EXERCISES (exerciseId | exerciseName). Use only these:'
+  return {
+    text: [...head, listHeader, ...list].join('\n'),
+    preview: [...head, listHeader, `[${exercises.length} exercises that fit your choices]`].join('\n'),
+    exerciseCount: exercises.length,
+  }
 }
 
 export function answeredCount(c: Choices): number {
