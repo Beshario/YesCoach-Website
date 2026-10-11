@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { CopyBlock } from '@/components/copy-block'
 import { PromptBuilder } from '@/components/prompt-builder'
 import { playStoreUrl } from '@/lib/playStore'
 
-const SPEC_PATH = '/ai/yescoach-format.txt'
 
 const description =
   'Ask ChatGPT, Claude, or Gemini for a workout with the YesCoach prompt, copy the reply, and tap Paste workout. Free on Android. Exercises YesCoach lacks are swapped for the closest match.'
@@ -29,10 +27,6 @@ export const metadata: Metadata = {
 }
 
 const steps = [
-  {
-    title: 'Copy the prompt',
-    body: 'Copy the prompt above. Tap any choices first to tailor it, or leave them open and the AI will ask.',
-  },
   {
     title: 'Ask your AI',
     body: 'Paste it into ChatGPT, Claude, Gemini, or any other AI chat. Any AI that can write JSON works. It writes one workout in the YesCoach format.',
@@ -71,7 +65,7 @@ const faqs = [
   {
     question: 'What if the AI cannot open the link?',
     answer:
-      'Use the Copy full instructions button and paste the text into the same chat. It contains the file format and the full exercise list, so the AI does not need to browse.',
+      'Tap Copy full instructions under the prompt and paste the text into the same chat. It contains the file format and the full exercise list, so the AI does not need to browse.',
   },
   {
     question: 'Is YesCoach free?',
@@ -95,7 +89,7 @@ export default function AiPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <section className="border-b border-border/70">
         <div className="max-w-5xl mx-auto px-6 lg:px-12 py-10 lg:py-20">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
+          <p className="font-mono text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-5">
             ChatGPT, Claude, Gemini
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-foreground max-w-4xl">
@@ -137,7 +131,7 @@ export default function AiPage() {
           </figure>
 
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6">Import a workout from AI in four steps</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6">After you copy the prompt</h2>
             <ol className="space-y-6 max-w-3xl">
               {steps.map((step, i) => (
                 <li key={step.title} className="flex gap-4">
@@ -154,29 +148,6 @@ export default function AiPage() {
           </div>
 
 
-
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">Exercises YesCoach does not have yet</h2>
-            <p className="text-muted-foreground max-w-3xl">
-              If the AI picks an exercise YesCoach lacks, YesCoach swaps in the closest match. The import
-              message names each exercise it used, so you can swap it again.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">
-              If the AI can&apos;t open links
-            </h2>
-            <p className="text-muted-foreground mb-6 max-w-3xl">
-              Some AI chats cannot browse. Copy the full instructions and paste them into the same chat. They
-              include the file format and the complete exercise list.{' '}
-              <a href={SPEC_PATH} className="text-primary hover:underline">
-                View the instructions
-              </a>
-              .
-            </p>
-            <CopyBlock label="Copy full instructions" source={SPEC_PATH} />
-          </div>
 
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-foreground mb-8">Common questions</h2>

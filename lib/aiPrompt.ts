@@ -26,11 +26,15 @@ export interface Choices {
 export interface Option {
   value: string
   label: string
+  /** Label in the summary line when `label` alone reads ambiguously there. */
+  short?: string
 }
 
 export interface ChoiceGroup {
   key: keyof Choices
   label: string
+  /** Core groups show by default; 'more' sit behind More options. */
+  tier: 'core' | 'more'
   options: Option[]
   /** Shown only when this returns true. */
   when?: (c: Choices) => boolean
@@ -40,7 +44,15 @@ const strength = (c: Choices) => c.kind !== 'mobility'
 
 export const GROUPS: ChoiceGroup[] = [
   {
+    key: 'days',
+    tier: 'core',
+    label: 'Days per week',
+    when: (c) => c.mode === 'program',
+    options: ['2', '3', '4', '5', '6'].map((d) => ({ value: d, label: d, short: `${d} days/week` })),
+  },
+  {
     key: 'kind',
+    tier: 'core',
     label: 'Type',
     options: [
       { value: 'strength', label: 'Strength' },
@@ -49,6 +61,7 @@ export const GROUPS: ChoiceGroup[] = [
   },
   {
     key: 'focus',
+    tier: 'core',
     label: 'Focus',
     when: strength,
     options: [
@@ -62,6 +75,7 @@ export const GROUPS: ChoiceGroup[] = [
   },
   {
     key: 'focus',
+    tier: 'core',
     label: 'Focus',
     when: (c) => c.kind === 'mobility',
     options: [
@@ -74,18 +88,14 @@ export const GROUPS: ChoiceGroup[] = [
     ],
   },
   {
-    key: 'days',
-    label: 'Days per week',
-    when: (c) => c.mode === 'program',
-    options: ['2', '3', '4', '5', '6'].map((d) => ({ value: d, label: d })),
-  },
-  {
     key: 'minutes',
+    tier: 'core',
     label: 'Time',
     options: ['15', '30', '45', '60', '75'].map((m) => ({ value: m, label: `${m} min` })),
   },
   {
     key: 'where',
+    tier: 'core',
     label: 'Where',
     when: strength,
     options: [
@@ -96,6 +106,7 @@ export const GROUPS: ChoiceGroup[] = [
   },
   {
     key: 'level',
+    tier: 'more',
     label: 'Level',
     options: [
       { value: 'Beginner', label: 'Beginner' },
@@ -105,20 +116,22 @@ export const GROUPS: ChoiceGroup[] = [
   },
   {
     key: 'warmup',
+    tier: 'more',
     label: 'Warm-up',
     when: strength,
     options: [
-      { value: 'yes', label: 'Include' },
-      { value: 'no', label: 'Skip' },
+      { value: 'yes', label: 'Include', short: 'Warm-up' },
+      { value: 'no', label: 'Skip', short: 'No warm-up' },
     ],
   },
   {
     key: 'supersets',
+    tier: 'more',
     label: 'Supersets',
     when: strength,
     options: [
-      { value: 'yes', label: 'Use them' },
-      { value: 'no', label: 'None' },
+      { value: 'yes', label: 'Use them', short: 'Supersets' },
+      { value: 'no', label: 'None', short: 'No supersets' },
     ],
   },
 ]
@@ -195,4 +208,13 @@ export function buildPrompt(c: Choices): string {
 
 export function answeredCount(c: Choices): number {
   return visibleGroups(c).filter((g) => c[g.key] !== undefined).length
+}
+
+/** Short summary of what is set, e.g. "Strength · Push · 45 min · Gym". */
+export function summary(c: Choices): string {
+  return visibleGroups(c)
+    .map((g) => g.options.find((o) => o.value === c[g.key]))
+    .filter((o): o is Option => o !== undefined)
+    .map((o) => o.short ?? o.label)
+    .join(' · ')
 }

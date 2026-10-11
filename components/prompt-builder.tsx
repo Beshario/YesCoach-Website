@@ -1,7 +1,15 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { answeredCount, buildPrompt, pruneChoices, visibleGroups, type Choices, type Mode } from '@/lib/aiPrompt'
+import {
+  buildPrompt,
+  pruneChoices,
+  summary,
+  visibleGroups,
+  type ChoiceGroup,
+  type Choices,
+  type Mode,
+} from '@/lib/aiPrompt'
 
 declare global {
   interface Window {
@@ -11,34 +19,35 @@ declare global {
 
 type CopyState = 'idle' | 'copied' | 'failed'
 
-const MODES: { value: Mode; label: string }[] = [
-  { value: 'workout', label: 'One workout' },
-  { value: 'program', label: 'Program' },
+const SPEC_PATH = '/ai/yescoach-format.txt'
+
+const MODES: { value: Mode; label: string; hint: string }[] = [
+  { value: 'workout', label: 'One workout', hint: 'One session for today. Paste the reply in the app.' },
+  { value: 'program', label: 'Program', hint: 'Every day of a plan, as a .json file to import.' },
 ]
 
-const chipBase =
-  'min-h-[44px] rounded-full border px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50'
-const chipOff = 'border-border bg-background text-foreground hover:bg-muted'
-const chipOn = 'border-primary bg-primary text-primary-foreground'
+const focusRing = 'focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50'
+// Dark text on the orange accent: the theme's light accent-foreground is too faint on it.
+const copyButton = `inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-lg bg-accent px-6 text-base font-semibold text-[oklch(0.18_0_0)] hover:bg-accent/90 ${focusRing}`
+const label = 'font-mono text-xs font-semibold uppercase tracking-[0.14em]'
 
-function CopyButton({ onCopy, state, className = '' }: { onCopy: () => void; state: CopyState; className?: string }) {
+function Check() {
   return (
-    <button
-      type="button"
-      onClick={onCopy}
-      className={`inline-flex min-h-[48px] items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-accent-foreground hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 ${className}`}
-    >
-      {state === 'copied' ? 'Copied' : 'Copy prompt'}
-    </button>
+    <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 
 export function PromptBuilder() {
   const [choices, setChoices] = useState<Choices>({ mode: 'workout' })
   const [copy, setCopy] = useState<CopyState>('idle')
+  const [specCopy, setSpecCopy] = useState<CopyState>('idle')
+  const [showMore, setShowMore] = useState(false)
   const prompt = useMemo(() => buildPrompt(choices), [choices])
   const groups = visibleGroups(choices)
-  const answered = answeredCount(choices)
+  const set = summary(choices)
+  const mode = MODES.find((m) => m.value === choices.mode)!
 
   function update(next: Choices) {
     setChoices(pruneChoices(next))
@@ -53,91 +62,141 @@ export function PromptBuilder() {
     try {
       await navigator.clipboard.writeText(prompt)
       setCopy('copied')
-      window.gtag?.('event', 'ai_prompt_copied', { mode: choices.mode, kind: choices.kind ?? 'open', answered })
+      window.gtag?.('event', 'ai_prompt_copied', {
+        mode: choices.mode,
+        kind: choices.kind ?? 'open',
+        answered: groups.filter((g) => choices[g.key] !== undefined).length,
+      })
     } catch {
       setCopy('failed')
     }
   }
 
+  async function copySpec() {
+    try {
+      const res = await fetch(SPEC_PATH)
+      if (!res.ok) throw new Error(`spec fetch ${res.status}`)
+      await navigator.clipboard.writeText(await res.text())
+      setSpecCopy('copied')
+    } catch {
+      setSpecCopy('failed')
+    }
+  }
+
+  function renderGroup(group: ChoiceGroup) {
+    return (
+      <fieldset key={`${group.key}-${group.label}`}>
+        <legend className={`mb-2 ${label} text-muted-foreground`}>{group.label}</legend>
+        <div className="flex flex-wrap gap-2">
+          {group.options.map((option) => {
+            const on = choices[group.key] === option.value
+            return (
+              <button
+                key={option.value}
+                type="button"
+                aria-pressed={on}
+                onClick={() => toggle(group.key, option.value)}
+                className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border px-3.5 text-sm font-medium transition-colors ${focusRing} ${
+                  on
+                    ? 'border-primary bg-primary/10 text-foreground'
+                    : 'border-border bg-background text-foreground hover:bg-muted'
+                }`}
+              >
+                {on && <span className="text-primary"><Check /></span>}
+                {option.label}
+              </button>
+            )
+          })}
+        </div>
+      </fieldset>
+    )
+  }
+
+  const core = groups.filter((g) => g.tier === 'core')
+  const more = groups.filter((g) => g.tier === 'more')
+  const moreSet = more.filter((g) => choices[g.key] !== undefined).length
+
   return (
     <div className="rounded-2xl border border-border bg-card shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4 sm:p-5">
-        <div role="radiogroup" aria-label="What to ask for" className="inline-flex rounded-full border border-border bg-muted p-1">
-          {MODES.map((m) => (
-            <button
-              key={m.value}
-              type="button"
-              role="radio"
-              aria-checked={choices.mode === m.value}
-              onClick={() => update({ ...choices, mode: m.value })}
-              className={`min-h-[40px] rounded-full px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 ${
-                choices.mode === m.value ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {m.label}
-            </button>
-          ))}
+      <div className="p-4 sm:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className={`${label} text-primary`}>Your prompt</p>
+          <div role="radiogroup" aria-label="What to ask for" className="inline-flex rounded-lg border border-border bg-muted p-1">
+            {MODES.map((m) => (
+              <button
+                key={m.value}
+                type="button"
+                role="radio"
+                aria-checked={choices.mode === m.value}
+                onClick={() => update({ ...choices, mode: m.value })}
+                className={`min-h-[40px] rounded-md px-3.5 text-sm font-medium transition-colors ${focusRing} ${
+                  choices.mode === m.value ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {m.label}
+              </button>
+            ))}
+          </div>
         </div>
-        <CopyButton onCopy={copyPrompt} state={copy} className="w-full sm:w-auto" />
-      </div>
-
-      <pre
-        aria-label="Prompt preview"
-        tabIndex={0}
-        className="max-h-64 overflow-auto whitespace-pre-wrap break-words p-4 sm:p-5 font-mono text-sm leading-relaxed text-foreground"
-      >
-        {prompt}
-      </pre>
-
-      <div className="border-t border-border p-4 sm:p-5">
-        <div className="mb-4 flex items-baseline justify-between gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Tailor it (optional)</p>
-          {answered > 0 && (
-            <button
-              type="button"
-              onClick={() => update({ mode: choices.mode })}
-              className="min-h-[44px] text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
-            >
-              Clear choices
-            </button>
-          )}
-        </div>
-        <p className="mb-5 text-sm text-muted-foreground">
-          Tap to set, tap again to clear. Anything you leave open, the AI asks you about.
+        <p className="mt-2 text-sm text-muted-foreground">
+          {mode.hint} Choices are optional: anything you leave open, the AI asks you about.
         </p>
 
-        <div className="space-y-5">
-          {groups.map((group) => (
-            <fieldset key={`${group.key}-${group.label}`}>
-              <legend className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                {group.label}
-              </legend>
-              <div className="flex flex-wrap gap-2">
-                {group.options.map((option) => {
-                  const on = choices[group.key] === option.value
-                  return (
-                    <button
-                      key={option.value}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() => toggle(group.key, option.value)}
-                      className={`${chipBase} ${on ? chipOn : chipOff}`}
-                    >
-                      {option.label}
-                    </button>
-                  )
-                })}
-              </div>
-            </fieldset>
-          ))}
-        </div>
+        <div className="mt-5 space-y-5">{core.map(renderGroup)}</div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <CopyButton onCopy={copyPrompt} state={copy} className="w-full sm:w-auto" />
-          <span className="text-sm text-muted-foreground" aria-live="polite">
-            {copy === 'copied' && 'Now paste it into ChatGPT, Claude, or Gemini.'}
-            {copy === 'failed' && 'Copy failed. Select the prompt text above and copy it manually.'}
+        {more.length > 0 && (
+          <div className="mt-5">
+            <button
+              type="button"
+              aria-expanded={showMore}
+              onClick={() => setShowMore((v) => !v)}
+              className={`min-h-[44px] text-sm font-medium text-primary hover:underline ${focusRing}`}
+            >
+              {showMore ? 'Fewer options' : `More options${moreSet ? ` (${moreSet} set)` : ''}`}
+            </button>
+            {showMore && <div className="mt-3 space-y-5">{more.map(renderGroup)}</div>}
+          </div>
+        )}
+
+        <details className="mt-5 rounded-lg border border-border">
+          <summary className={`min-h-[44px] cursor-pointer px-4 py-3 text-sm font-medium text-foreground ${focusRing}`}>
+            Preview prompt
+          </summary>
+          <pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words border-t border-border px-4 py-3 font-mono text-sm leading-relaxed text-foreground">
+            {prompt}
+          </pre>
+        </details>
+
+        <p className="mt-4 text-sm text-muted-foreground">
+          AI can&apos;t open links?{' '}
+          <button type="button" onClick={copySpec} className={`font-medium text-primary hover:underline ${focusRing}`}>
+            Copy full instructions
+          </button>{' '}
+          and paste them in the same chat.
+          <span aria-live="polite">
+            {specCopy === 'copied' && ' Copied.'}
+            {specCopy === 'failed' && ' Copy failed. Open /ai/yescoach-format.txt and copy it manually.'}
           </span>
+        </p>
+      </div>
+
+      <div className="sticky bottom-0 z-10 rounded-b-2xl border-t border-border bg-card/95 p-3 backdrop-blur sm:p-4">
+        <div className="flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="break-words text-sm font-medium text-foreground">{set || 'Nothing set'}</p>
+            <p className="text-xs text-muted-foreground" aria-live="polite">
+              {copy === 'copied'
+                ? 'Paste it into ChatGPT, Claude, or Gemini.'
+                : copy === 'failed'
+                  ? 'Copy failed. Open Preview prompt and copy it.'
+                  : set
+                    ? 'Updates as you tap.'
+                    : 'The AI will ask you.'}
+            </p>
+          </div>
+          <button type="button" onClick={copyPrompt} className={copyButton}>
+            {copy === 'copied' ? 'Copied ✓' : 'Copy prompt'}
+          </button>
         </div>
       </div>
     </div>
