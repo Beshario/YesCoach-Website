@@ -152,7 +152,9 @@ export function PromptBuilder() {
               onClick={() => setShowMore((v) => !v)}
               className={`min-h-[44px] text-sm font-medium text-primary hover:underline ${focusRing}`}
             >
-              {showMore ? 'Fewer options' : `More options${moreSet ? ` (${moreSet} set)` : ''}`}
+              {showMore
+                ? 'Fewer options'
+                : `More options: ${more.map((g) => g.label.toLowerCase()).join(', ')}${moreSet ? ` (${moreSet} set)` : ''}`}
             </button>
             {showMore && <div className="mt-3 space-y-5">{more.map(renderGroup)}</div>}
           </div>
@@ -183,15 +185,24 @@ export function PromptBuilder() {
       <div className="sticky bottom-0 z-10 rounded-b-2xl border-t border-border bg-card/95 p-3 backdrop-blur sm:p-4">
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className="break-words text-sm font-medium text-foreground">{set || 'Nothing set'}</p>
+            <p className="text-sm font-medium text-foreground">
+              {set.length === 0
+                ? 'Nothing set'
+                : set.map((item, i) => (
+                    <span key={item} className="whitespace-nowrap">
+                      {i > 0 && <span className="text-muted-foreground" aria-hidden="true"> · </span>}
+                      {item}
+                    </span>
+                  ))}
+            </p>
             <p className="text-xs text-muted-foreground" aria-live="polite">
               {copy === 'copied'
                 ? 'Paste it into ChatGPT, Claude, or Gemini.'
                 : copy === 'failed'
                   ? 'Copy failed. Open Preview prompt and copy it.'
-                  : set
-                    ? 'Updates as you tap.'
-                    : 'The AI will ask you.'}
+                  : set.length === 0
+                    ? 'The AI will ask you.'
+                    : null}
             </p>
           </div>
           <button type="button" onClick={copyPrompt} className={copyButton}>

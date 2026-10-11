@@ -120,7 +120,7 @@ export const GROUPS: ChoiceGroup[] = [
     label: 'Warm-up',
     when: strength,
     options: [
-      { value: 'yes', label: 'Include', short: 'Warm-up' },
+      { value: 'yes', label: 'Include', short: 'With warm-up' },
       { value: 'no', label: 'Skip', short: 'No warm-up' },
     ],
   },
@@ -130,7 +130,7 @@ export const GROUPS: ChoiceGroup[] = [
     label: 'Supersets',
     when: strength,
     options: [
-      { value: 'yes', label: 'Use them', short: 'Supersets' },
+      { value: 'yes', label: 'Use them', short: 'With supersets' },
       { value: 'no', label: 'None', short: 'No supersets' },
     ],
   },
@@ -210,11 +210,10 @@ export function answeredCount(c: Choices): number {
   return visibleGroups(c).filter((g) => c[g.key] !== undefined).length
 }
 
-/** Short summary of what is set, e.g. "Strength · Push · 45 min · Gym". */
-export function summary(c: Choices): string {
+/** What is set, one item per answered group, e.g. ["Strength", "Push", "45 min", "Gym"]. */
+export function summary(c: Choices): string[] {
   return visibleGroups(c)
     .map((g) => g.options.find((o) => o.value === c[g.key]))
     .filter((o): o is Option => o !== undefined)
     .map((o) => o.short ?? o.label)
-    .join(' · ')
 }
