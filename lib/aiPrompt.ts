@@ -205,7 +205,8 @@ Rules:
 - restSec (optional): seconds of rest after each set. Not on group members.
 - section (optional): "warmup", "power", "accessories" or "cooldown". Leave it out for main work. Never on a group member (put it on the group).
 - groups (optional, supersets and circuits): each group {"id","type":"superset" or "circuit","rounds","restBetweenSec","restAfterSec"}; members carry "groupId", sit next to each other in the list, number at least 2, and their sets equal the group's rounds. Leave "groups" out when there are none.
-- No comments, no trailing commas.`
+- No comments, no trailing commas.
+Before you reply, check every rule above, especially that each exerciseId is copied from the list.`
 
 export interface BuiltPrompt {
   /** What is copied. */
