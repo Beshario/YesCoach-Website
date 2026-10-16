@@ -1,10 +1,12 @@
 /**
  * Builds the /ai prompt from the visitor's choices.
  *
- * The copied prompt is self-contained: format rules, an example and the exact
- * exercise ids (lib/exerciseCatalog.json, filtered by the choices) travel in
- * the prompt, so the AI never has to open a link or ask a question. Choices
- * the visitor leaves open are not defaulted here; the AI picks what suits.
+ * The copied prompt is self-contained: format rules, an example, and the
+ * exercise id parts (lib/exerciseCatalog.json grouped by pattern, filtered by
+ * the choices) travel in the prompt, so the AI never has to open a link or ask
+ * a question. The full id list stays at /ai/yescoach-format.txt for an AI that
+ * can read it; a pairing the parts allow but the app lacks is swapped on
+ * import. Choices the visitor leaves open are not defaulted here; the AI picks.
  */
 
 import catalog from './exerciseCatalog.json'
@@ -176,6 +178,35 @@ export function exercisesFor(c: Choices): CatalogEntry[] {
   })
 }
 
+/**
+ * The exercises as id parts, one line per pattern: strength
+ * "pattern: variants | implements" (plus a non-default apparatus), mobility
+ * "pattern: variants".
+ */
+function partsFor(c: Choices): { strength: string[]; mobility: string[] } {
+  const patterns = new Map<string, { kind: CatalogEntry['kind']; parts: [Set<string>, Set<string>, Set<string>] }>()
+  for (const e of exercisesFor(c)) {
+    const [pattern, ...rest] = e.id.split(':')
+    const entry = patterns.get(pattern) ?? { kind: e.kind, parts: [new Set(), new Set(), new Set()] }
+    rest.forEach((part, i) => entry.parts[i].add(part))
+    patterns.set(pattern, entry)
+  }
+  const strength: string[] = []
+  const mobility: string[] = []
+  for (const [pattern, { kind, parts: [variants, implementsUsed, apparatus] }] of patterns) {
+    const join = (set: Set<string>) => [...set].join(', ')
+    if (kind === 'mobility') {
+      mobility.push(`${pattern}: ${join(variants)}`)
+    } else {
+      const special = [...apparatus].filter((a) => a !== 'none')
+      strength.push(`${pattern}: ${join(variants)} | ${join(implementsUsed)}${special.length ? ` | apparatus ${special.join(', ')}` : ''}`)
+    }
+  }
+  return { strength, mobility }
+}
+
+const FULL_LIST_URL = 'https://yescoach.fit/ai/yescoach-format.txt'
+
 const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
 {
   "version": "1.2",
@@ -198,7 +229,8 @@ const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the 
   }
 }
 Rules:
-- exerciseId and exerciseName: copy BOTH exactly from one line of the EXERCISES list below. Never invent, shorten or edit an id.
+- exerciseId: "pattern:variant:implement:apparatus", every part taken from one line of EXERCISE PARTS below. Apparatus is "none" unless the line names one. Mobility moves use implement "bodyweight". Never invent a pattern; a variant and implement the app lacks together is swapped for the closest match.
+- exerciseName: a short plain name, e.g. "Incline Dumbbell Bench Press".
 - category: "training" for strength, "protocol" for mobility.
 - sets: whole number 1-20. suggestedRIR: whole number 0-10 (reps left in reserve; 5 for warm-up and mobility moves).
 - reps: only "8", "8-10", "30s", "30-60s", "10/side", "8-10/leg" or "30s/side". Seconds for holds and stretches. Never words like AMRAP.
@@ -206,13 +238,10 @@ Rules:
 - section (optional): "warmup", "power", "accessories" or "cooldown". Leave it out for main work. Never on a group member (put it on the group).
 - groups (optional, supersets and circuits): each group {"id","type":"superset" or "circuit","rounds","restBetweenSec","restAfterSec"}; members carry "groupId", sit next to each other in the list, number at least 2, and their sets equal the group's rounds. Leave "groups" out when there are none.
 - No comments, no trailing commas.
-Before you reply, check every rule above, especially that each exerciseId is copied from the list.`
+Before you reply, check every rule above, especially that each exerciseId is built from the parts.`
 
 export interface BuiltPrompt {
-  /** What is copied. */
   text: string
-  /** What the preview shows: the same text with the exercise list collapsed to a count. */
-  preview: string
   exerciseCount: number
 }
 
@@ -250,14 +279,15 @@ export function buildPrompt(c: Choices): BuiltPrompt {
     '',
   )
 
-  const exercises = exercisesFor(c)
-  const list = exercises.map((e) => `${e.id} | ${e.name}`)
-  const listHeader = 'EXERCISES (exerciseId | exerciseName). Use only these:'
-  return {
-    text: [...head, listHeader, ...list].join('\n'),
-    preview: [...head, listHeader, `[${exercises.length} exercises that fit your choices]`].join('\n'),
-    exerciseCount: exercises.length,
-  }
+  const parts = partsFor(c)
+  head.push(
+    `The exact id of every exercise is listed at ${FULL_LIST_URL}. If you can open it, copy exact ids from there that match the parts below. If you cannot, build them from the parts. Do not ask me for it.`,
+    '',
+    'EXERCISE PARTS. Use only these.',
+    ...(parts.strength.length ? ['STRENGTH (pattern: variants | implements):', ...parts.strength] : []),
+    ...(parts.mobility.length ? ['MOBILITY (pattern: variants):', ...parts.mobility] : []),
+  )
+  return { text: head.join('\n'), exerciseCount: exercisesFor(c).length }
 }
 
 export function answeredCount(c: Choices): number {

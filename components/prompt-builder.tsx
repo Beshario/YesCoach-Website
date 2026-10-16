@@ -152,7 +152,7 @@ export function PromptBuilder() {
             Preview prompt
           </summary>
           <pre className="max-h-72 overflow-auto whitespace-pre-wrap break-words border-t border-border px-4 py-3 font-mono text-sm leading-relaxed text-foreground">
-            {prompt.preview}
+            {prompt.text}
           </pre>
         </details>
 
