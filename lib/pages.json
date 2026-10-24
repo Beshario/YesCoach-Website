@@ -5,7 +5,7 @@
     { "path": "/strength-training-recovery-app", "sources": ["app/strength-training-recovery-app/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.8 },
     { "path": "/anterior-pelvic-tilt-exercises", "sources": ["app/anterior-pelvic-tilt-exercises/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
     { "path": "/desk-posture-routine", "sources": ["app/desk-posture-routine/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
-    { "path": "/ai", "sources": ["app/ai/", "components/prompt-builder.tsx", "lib/aiPrompt.ts", "lib/exerciseCatalog.json"], "lastModified": "2026-10-15", "changeFrequency": "monthly", "priority": 0.8 },
+    { "path": "/ai", "sources": ["app/ai/", "components/prompt-builder.tsx", "lib/aiPrompt.ts", "lib/exerciseCatalog.json"], "lastModified": "2026-10-24", "changeFrequency": "monthly", "priority": 0.8 },
     { "path": "/blog", "sources": ["app/blog/page.tsx"], "lastModified": "2026-09-13", "changeFrequency": "weekly", "priority": 0.6 },
     { "path": "/blog/watch-a-lift-light-up", "sources": ["app/blog/watch-a-lift-light-up/", "public/blog/watch-a-lift-light-up/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
     { "path": "/blog/programs-and-protocols", "sources": ["app/blog/programs-and-protocols/", "public/blog/programs-and-protocols/"], "lastModified": "2026-10-04", "changeFrequency": "monthly", "priority": 0.7 },
