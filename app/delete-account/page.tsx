@@ -69,8 +69,9 @@ export default function DeleteAccountPage() {
             <h2 className="text-2xl font-semibold text-foreground">Usage analytics</h2>
             <p>
               If you allowed usage analytics, past analytics events are held by our analytics provider, PostHog, under
-              a random ID. Deleting your account in the app stops new analytics from being linked to you. To delete
-              the analytics already collected, email {EMAIL} and we delete them within 30 days.
+              a random ID. Deleting your account in the app stops new analytics from being linked to you. Analytics
+              events are deleted after 3 months and session recordings after 30 days. To delete them sooner, email{' '}
+              {EMAIL} and we delete them within 30 days.
             </p>
           </section>
 

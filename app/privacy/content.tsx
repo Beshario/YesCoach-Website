@@ -26,7 +26,7 @@ export default function PrivacyContent() {
             Privacy Policy
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last updated: October 8, 2026
+            Last updated: November 5, 2026
           </p>
 
           <div className="space-y-8 text-muted-foreground">
@@ -54,7 +54,8 @@ export default function PrivacyContent() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">4. Analytics Identity</h2>
-              <p>Analytics are anonymous by default. If you sign in, events may be linked to your account identifier for product reliability and usage analysis.</p>
+              <p className="mb-3">Analytics run only if you allow them. They are linked to a random ID on your device, not your name or email. If you sign in, events may also be linked to your account identifier for product reliability and usage analysis.</p>
+              <p>With analytics on, we may also record how you move through screens (session recordings) to find bugs. Text you type is hidden in recordings.</p>
             </section>
 
             <section>
@@ -76,7 +77,7 @@ export default function PrivacyContent() {
 
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Retention</h2>
-              <p className="mb-3">Data is retained as long as needed for the purposes described, legal obligations, and dispute resolution.</p>
+              <p className="mb-3">Analytics events are deleted after 3 months, and session recordings after 30 days. Other data is retained as long as needed for the purposes described, legal obligations, and dispute resolution.</p>
               <p>Local data can be removed via in-app reset or by uninstalling the app. Account-linked data and processor records may persist for operational, legal, tax, and anti-fraud requirements.</p>
             </section>
 
