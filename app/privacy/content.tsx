@@ -86,7 +86,7 @@ export default function PrivacyContent() {
               <ul className="list-disc pl-6 space-y-2 mb-3">
                 <li>Access information associated with your account.</li>
                 <li>Correct or update account information.</li>
-                <li>Delete your account-linked data.</li>
+                <li>Delete your account-linked data. <Link href="/delete-account" className="text-primary hover:underline">How to delete your account</Link>.</li>
                 <li>Object to or restrict certain processing where applicable.</li>
               </ul>
               <p>

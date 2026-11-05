@@ -10,7 +10,8 @@
     { "path": "/blog/train-with-ai", "sources": ["app/blog/train-with-ai/", "public/blog/train-with-ai/"], "lastModified": "2026-11-04", "changeFrequency": "monthly", "priority": 0.7 },
     { "path": "/blog/watch-a-lift-light-up", "sources": ["app/blog/watch-a-lift-light-up/", "public/blog/watch-a-lift-light-up/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
     { "path": "/blog/programs-and-protocols", "sources": ["app/blog/programs-and-protocols/", "public/blog/programs-and-protocols/"], "lastModified": "2026-10-04", "changeFrequency": "monthly", "priority": 0.7 },
-    { "path": "/privacy", "sources": ["app/privacy/"], "lastModified": "2026-07-19", "changeFrequency": "yearly", "priority": 0.3 },
+    { "path": "/delete-account", "sources": ["app/delete-account/"], "lastModified": "2026-11-05", "changeFrequency": "yearly", "priority": 0.3 },
+    { "path": "/privacy", "sources": ["app/privacy/"], "lastModified": "2026-11-05", "changeFrequency": "yearly", "priority": 0.3 },
     { "path": "/terms", "sources": ["app/terms/"], "lastModified": "2026-07-19", "changeFrequency": "yearly", "priority": 0.3 }
   ],
   "files": [
