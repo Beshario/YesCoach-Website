@@ -86,9 +86,9 @@ export default function BlogPostContent() {
                 <div className="mx-auto max-w-sm rounded-2xl border border-border/80 bg-card/85 backdrop-blur-sm p-3 shadow-sm">
                   <img
                     src="/blog/watch-a-lift-light-up/shot-a-bench-info.webp"
-                    alt="YesCoach ExerciseDetailPage for bench press, front and back body map with chest, front delts, and triceps highlighted, plus Equipment and Variant chips"
+                    alt="YesCoach exercise page for Barbell Flat Bench Press, front and back body map with chest, front delts, and triceps highlighted, plus Equipment and Variation chips"
                     width={500}
-                    height={844}
+                    height={1083}
                     className="w-full h-auto rounded-lg"
                   />
                 </div>
