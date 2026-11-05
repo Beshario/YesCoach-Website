@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { PromptBuilder } from '@/components/prompt-builder'
 import { playStoreUrl } from '@/lib/playStore'
 
+const title = 'ChatGPT workout plan prompt (Claude, Gemini) | YesCoach'
 const description =
-  'Ask ChatGPT, Claude, or Gemini for a workout with the YesCoach prompt, copy the reply, and tap Paste workout. Free on Android. Exercises YesCoach lacks are swapped for the closest match.'
+  'Free workout plan prompt for ChatGPT, Claude, and Gemini. Pick focus, time, place, and level, copy the prompt, then import the reply into YesCoach on Android and log every set.'
 
 export const metadata: Metadata = {
-  title: 'Import a ChatGPT workout | YesCoach',
+  title,
   description,
   alternates: { canonical: 'https://yescoach.fit/ai' },
   openGraph: {
-    title: 'Import a ChatGPT workout | YesCoach',
+    title,
     description,
     url: 'https://yescoach.fit/ai',
     type: 'article',
@@ -18,17 +20,21 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Import a ChatGPT workout | YesCoach',
+    title,
     description,
     images: [{ url: '/icon-512.png', width: 512, height: 512, alt: 'YesCoach logo' }],
   },
 }
 
-const faqs = [
+const faqs: { question: string; answer: string; link?: { href: string; label: string } }[] = [
   {
-    question: 'Can ChatGPT make a workout plan?',
+    question: 'What does the workout prompt ask the AI for?',
     answer:
-      'Yes. ChatGPT, Claude, and Gemini can all write a workout from your focus, session length, and equipment. The prompt on this page makes them write it in a format YesCoach can import.',
+      'Each exercise with sets, reps, rest in seconds, and reps in reserve, built from the focus, time, place, and level you pick. The reply comes back in a format YesCoach imports.',
+  },
+  {
+    question: 'Does the prompt work in Claude and Gemini?',
+    answer: 'Yes. The same prompt works in ChatGPT, Claude, Gemini, and any other AI chat.',
   },
   {
     question: 'How do I import a workout from ChatGPT?',
@@ -54,6 +60,12 @@ const faqs = [
     question: 'Is YesCoach free?',
     answer: 'Yes. Importing workouts and programs, logging sets, and the muscle map are free on Android.',
   },
+  {
+    question: 'How do I check a workout plan from ChatGPT?',
+    answer:
+      'Count hard sets per muscle across the week, compare push and pull sets, and look for an effort target, a rule for week 2, and equipment you do not have.',
+    link: { href: '/blog/train-with-ai', label: 'How to train with AI' },
+  },
 ]
 
 const faqJsonLd = {
@@ -71,10 +83,10 @@ export default function AiPage() {
     <main className="min-h-screen bg-background">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">Workout prompt for ChatGPT, Claude, Gemini</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">ChatGPT workout plan prompt</h1>
         <p className="mt-2 text-muted-foreground">
-          Copy the prompt, paste it into your AI, then copy its whole reply. In YesCoach: Plan tab, Import from AI,
-          Paste workout.
+          Pick your options, copy the prompt into ChatGPT, Claude, or Gemini, then copy its whole reply. In YesCoach:
+          Plan tab, Import from AI, Paste workout.
         </p>
 
         <div className="mt-6">
@@ -102,7 +114,17 @@ export default function AiPage() {
                 <summary className="flex min-h-[44px] cursor-pointer items-center px-4 py-3 font-medium text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50">
                   {faq.question}
                 </summary>
-                <p className="px-4 pb-4 text-muted-foreground">{faq.answer}</p>
+                <p className="px-4 pb-4 text-muted-foreground">
+                  {faq.answer}
+                  {faq.link && (
+                    <>
+                      {' '}
+                      <Link href={faq.link.href} className="font-medium text-primary hover:underline">
+                        {faq.link.label}
+                      </Link>
+                    </>
+                  )}
+                </p>
               </details>
             ))}
           </div>

@@ -29,6 +29,14 @@ interface Post {
 
 const posts: Post[] = [
   {
+    slug: "train-with-ai",
+    title: "How to train with AI: make a workout plan with ChatGPT, then track it",
+    summary: "What to put in the prompt, six things to check in the reply, and why logging every set decides whether the plan works.",
+    date: "2026-11-04",
+    displayDate: "November 4, 2026",
+    readTime: "5 min read",
+  },
+  {
     slug: "programs-and-protocols",
     title: "How to start strength training at home",
     summary: "Three beginner programs for gym, dumbbells, or bodyweight. Seven daily mobility routines for the parts that hurt.",

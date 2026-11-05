@@ -22,9 +22,10 @@ YesCoach computes which muscles a given exercise recruits from joint torque and 
 - [Strength training recovery app](https://yescoach.fit/strength-training-recovery-app): how YesCoach measures muscle load, tracks recovery state, and surfaces training patterns over time.
 - [Anterior pelvic tilt exercises](https://yescoach.fit/anterior-pelvic-tilt-exercises): the seven-move daily routine for anterior pelvic tilt, pairing hip flexor release with glute and anti-extension core strengthening.
 - [Desk posture routine](https://yescoach.fit/desk-posture-routine): eight moves for people who sit all day, stretching the hip flexors and chest while activating the deep neck flexors and scapular retractors.
-- [Track your ChatGPT workout plan](https://yescoach.fit/ai): how to turn a program from ChatGPT, Claude, or any AI into a file YesCoach imports, as a full program or a single workout.
+- [ChatGPT workout plan prompt](https://yescoach.fit/ai): a prompt builder for ChatGPT, Claude, or any AI chat that returns a single workout or a full program YesCoach imports.
 - [YesCoach program format](https://yescoach.fit/ai/yescoach-format.txt): AI-readable instructions for writing an importable program, with the full list of valid exercise IDs. Read this before writing a YesCoach program.
 - [Blog](https://yescoach.fit/blog): index of all posts.
+- [How to train with AI](https://yescoach.fit/blog/train-with-ai): how to make a workout plan with ChatGPT, what to put in the prompt, six checks for the reply, and how to log it and see what it trained.
 - [How to start strength training at home](https://yescoach.fit/blog/programs-and-protocols): the three beginner programs and seven mobility protocols, with the minimum-effective-dose evidence behind each.
 - [Watch a lift light up](https://yescoach.fit/blog/watch-a-lift-light-up): how one bench press set distributes joint torque across pectoralis major, anterior deltoid, and triceps brachii.
 
