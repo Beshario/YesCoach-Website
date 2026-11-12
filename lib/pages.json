@@ -1,5 +1,5 @@
 {
-  "$comment": "Every public URL. Drives sitemap.ts (lastModified, changeFrequency, priority) and the IndexNow workflow (sources). When you change a page's content, set lastModified to the day it ships. scripts/check-pages.mjs fails the build if an app/**/page.tsx has no entry here.",
+  "$comment": "Every public URL; unlisted routes (noindex) go under unlisted. Drives sitemap.ts (lastModified, changeFrequency, priority) and the IndexNow workflow (sources). When you change a page's content, set lastModified to the day it ships. scripts/check-pages.mjs fails the build if an app/**/page.tsx has no entry here.",
   "pages": [
     { "path": "/", "sources": ["app/page.tsx"], "lastModified": "2026-10-04", "changeFrequency": "weekly", "priority": 1 },
     { "path": "/strength-training-recovery-app", "sources": ["app/strength-training-recovery-app/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.8 },
@@ -13,6 +13,9 @@
     { "path": "/delete-account", "sources": ["app/delete-account/"], "lastModified": "2026-11-05", "changeFrequency": "yearly", "priority": 0.3 },
     { "path": "/privacy", "sources": ["app/privacy/"], "lastModified": "2026-11-05", "changeFrequency": "yearly", "priority": 0.3 },
     { "path": "/terms", "sources": ["app/terms/"], "lastModified": "2026-07-19", "changeFrequency": "yearly", "priority": 0.3 }
+  ],
+  "unlisted": [
+    { "path": "/admin", "reason": "owner's picture review page, noindex, kept out of the sitemap and IndexNow" }
   ],
   "files": [
     { "path": "/ai/yescoach-format.txt", "sources": ["public/ai/yescoach-format.txt"] },

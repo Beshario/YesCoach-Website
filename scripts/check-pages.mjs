@@ -19,12 +19,16 @@ const routes = pageFiles('app').map((file) => {
   return dir === '' ? '/' : `/${dir}`
 })
 
-const registered = new Set(registry.pages.map((p) => p.path))
+// Unlisted routes (noindex) are registered too, but stay out of the sitemap and IndexNow.
+const listed = [...registry.pages, ...registry.unlisted]
+const registered = new Set(listed.map((p) => p.path))
 for (const route of routes) {
   if (!registered.has(route)) problems.push(`app route ${route} has no entry in lib/pages.json`)
 }
-for (const page of registry.pages) {
+for (const page of listed) {
   if (!routes.includes(page.path)) problems.push(`lib/pages.json lists ${page.path} but no app/**/page.tsx serves it`)
+}
+for (const page of registry.pages) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(page.lastModified)) problems.push(`${page.path}: lastModified must be YYYY-MM-DD`)
 }
 for (const entry of [...registry.pages, ...registry.files]) {
