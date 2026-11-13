@@ -1,10 +1,10 @@
-// An exercise's YouTube links: open each for review, approve or reject the set, or edit in place (saving publishes at once).
+// An exercise's YouTube links: open each for review, approve or reject the set, or edit in place (saved for the next Publish).
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { editContent, reviewRecord } from '@/lib/adminApi'
 import type { ContentRecord, RecordItem, Source, YoutubeLink } from '@/lib/adminApi'
 import { parseYoutubeUrl, youtubeUrl } from '@/lib/youtube'
-import { Decide, ItemState, publishEdit, reviewable } from './parts'
+import { Decide, ItemState, reviewable, saveEdit } from './parts'
 import type { Run } from './parts'
 
 const field = 'h-11 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground'
@@ -19,9 +19,9 @@ interface LinkDraft {
 function linksOf(drafts: LinkDraft[], sources: Map<string, Source>): YoutubeLink[] {
   return drafts.map((d, i) => {
     const clip = parseYoutubeUrl(d.url)
-    if (!clip) throw new Error(`Not published: link ${i + 1} is not a YouTube URL`)
+    if (!clip) throw new Error(`Not saved: link ${i + 1} is not a YouTube URL`)
     const source = sources.get(d.sourceId)
-    if (!source) throw new Error(`Not published: link ${i + 1} has no source`)
+    if (!source) throw new Error(`Not saved: link ${i + 1} has no source`)
     return { ...clip, sourceId: source.id, title: d.title.trim(), language: source.language }
   })
 }
@@ -46,7 +46,7 @@ export default function Videos({
 
   async function save() {
     if (!draft) return
-    const ok = await run(async (token) => publishEdit(editContent(token, identity, 'youtube', { links: linksOf(draft, sources) })))
+    const ok = await run(async (token) => saveEdit(editContent(token, identity, 'youtube', { links: linksOf(draft, sources) })))
     if (ok) setDraft(null)
   }
 
@@ -102,7 +102,7 @@ export default function Videos({
           </Button>
           <div className="flex gap-2">
             <Button className="h-11 flex-1" disabled={busy} onClick={() => void save()}>
-              Save and publish
+              Save
             </Button>
             <Button variant="outline" className="h-11 flex-1" disabled={busy} onClick={() => setDraft(null)}>
               Cancel
@@ -130,8 +130,8 @@ export default function Videos({
           {item && reviewable(item.status) && (
             <Decide
               busy={busy}
-              onApprove={() => void run((token) => reviewRecord(token, 'content', item.key, 'approve'))}
-              onReject={() => void run((token) => reviewRecord(token, 'content', item.key, 'reject'))}
+              onApprove={() => void run((token) => reviewRecord(token, 'content', item.key, { decision: 'approve' }))}
+              onReject={(note) => run((token) => reviewRecord(token, 'content', item.key, { decision: 'reject', note }))}
             />
           )}
         </>

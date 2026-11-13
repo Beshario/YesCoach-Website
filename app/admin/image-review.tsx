@@ -1,9 +1,8 @@
 // An exercise's picture candidates, each beside its heat map with the image-checker's verdict.
-import { Button } from '@/components/ui/button'
+// A rejection's comment is the correction for the next picture (runbook CONTENT_API_DEPLOY.md §11.1, --redo).
 import { imageUrl, mapUrl, reviewCandidate } from '@/lib/adminApi'
 import type { ImageItem, RecordItem } from '@/lib/adminApi'
-import { exerciseName } from './labels'
-import { Decide, ItemState } from './parts'
+import { Decide, ItemState, Withdraw } from './parts'
 import type { Run } from './parts'
 
 export default function Pictures({
@@ -20,10 +19,7 @@ export default function Pictures({
   busy: boolean
   run: Run
 }) {
-  function review(c: ImageItem, decision: 'approve' | 'reject') {
-    if (c.status === 'approved' && !window.confirm(`Withdraw the picture for ${exerciseName(identity)}?`)) return
-    void run((token) => reviewCandidate(token, identity, c.sha256, decision))
-  }
+  const reject = (c: ImageItem) => (note: string) => run((token) => reviewCandidate(token, identity, c.sha256, { decision: 'reject', note }))
 
   return (
     <section className="space-y-3">
@@ -46,12 +42,14 @@ export default function Pictures({
             {c.model} · {c.promptVersion} · {Math.round(c.bytes / 1000)} KB
           </p>
           <ItemState status={c.status} history={c.history} needsReview={c.needsReview} />
-          {c.status === 'draft' && <Decide busy={busy} onApprove={() => review(c, 'approve')} onReject={() => review(c, 'reject')} />}
-          {c.status === 'approved' && (
-            <Button variant="outline" className="h-11 w-full" disabled={busy} onClick={() => review(c, 'reject')}>
-              Withdraw
-            </Button>
+          {c.status === 'draft' && (
+            <Decide
+              busy={busy}
+              onApprove={() => void run((token) => reviewCandidate(token, identity, c.sha256, { decision: 'approve' }))}
+              onReject={reject(c)}
+            />
           )}
+          {c.status === 'approved' && <Withdraw busy={busy} onReject={reject(c)} />}
         </div>
       ))}
     </section>

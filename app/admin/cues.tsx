@@ -1,9 +1,9 @@
-// An exercise's cue set: read, approve or reject, or edit in place (saving publishes at once).
+// An exercise's cue set: read, approve or reject, or edit in place (saved for the next Publish).
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { editContent, reviewRecord } from '@/lib/adminApi'
 import type { ContentRecord, Cues, RecordItem } from '@/lib/adminApi'
-import { Decide, ItemState, publishEdit, reviewable } from './parts'
+import { Decide, ItemState, reviewable, saveEdit } from './parts'
 import type { Run } from './parts'
 
 const field = 'h-11 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-sm text-foreground'
@@ -21,7 +21,7 @@ export default function CuesSection({ identity, item, busy, run }: { identity: s
   async function save() {
     if (!draft) return
     const body = { setup: draft.setup.map((c) => c.trim()).filter(Boolean), execution: draft.execution.map((c) => c.trim()).filter(Boolean) }
-    if (await run((token) => publishEdit(editContent(token, identity, 'cues', body)))) setDraft(null)
+    if (await run((token) => saveEdit(editContent(token, identity, 'cues', body)))) setDraft(null)
   }
 
   return (
@@ -74,7 +74,7 @@ export default function CuesSection({ identity, item, busy, run }: { identity: s
       {draft ? (
         <div className="flex gap-2">
           <Button className="h-11 flex-1" disabled={busy} onClick={() => void save()}>
-            Save and publish
+            Save
           </Button>
           <Button variant="outline" className="h-11 flex-1" disabled={busy} onClick={() => setDraft(null)}>
             Cancel
@@ -85,8 +85,8 @@ export default function CuesSection({ identity, item, busy, run }: { identity: s
         reviewable(item.status) && (
           <Decide
             busy={busy}
-            onApprove={() => void run((token) => reviewRecord(token, 'content', item.key, 'approve'))}
-            onReject={() => void run((token) => reviewRecord(token, 'content', item.key, 'reject'))}
+            onApprove={() => void run((token) => reviewRecord(token, 'content', item.key, { decision: 'approve' }))}
+            onReject={(note) => run((token) => reviewRecord(token, 'content', item.key, { decision: 'reject', note }))}
           />
         )
       )}

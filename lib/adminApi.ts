@@ -89,6 +89,15 @@ export interface PublishItem {
   key: string
 }
 
+/** A review: a rejection carries the owner's one-line comment, the feedback for the next attempt. */
+export type Decision = { decision: 'approve' } | { decision: 'reject'; note: string }
+
+export interface SavedEdit {
+  section: 'content'
+  key: string
+  status: 'approved'
+}
+
 export interface PublishResult {
   manifestVersion: number
   items: PublishItem[]
@@ -138,17 +147,17 @@ export function listContent(token: string): Promise<ContentList> {
   return call<ContentList>(token, '/v1/admin/content')
 }
 
-/** The owner's edit: approved and published at once. A publish refusal is an ApiError and nothing is saved. */
+/** The owner's edit: saved approved, it goes out with the next Publish. A refusal is an ApiError and nothing is saved. */
 export function editContent(token: string, identity: string, kind: 'cues' | 'youtube', body: Cues | { links: YoutubeLink[] }) {
-  return call<PublishResult>(token, `/v1/admin/content/${encodeURIComponent(identity)}/${kind}`, jsonInit({ body }))
+  return call<SavedEdit>(token, `/v1/admin/content/${encodeURIComponent(identity)}/${kind}`, jsonInit({ body }))
 }
 
-export function reviewRecord(token: string, section: 'content' | 'sources', key: string, decision: 'approve' | 'reject') {
-  return call(token, `/v1/admin/records/${section}/${encodeURIComponent(key)}/review`, jsonInit({ decision }))
+export function reviewRecord(token: string, section: 'content' | 'sources', key: string, decision: Decision) {
+  return call(token, `/v1/admin/records/${section}/${encodeURIComponent(key)}/review`, jsonInit(decision))
 }
 
-export function reviewCandidate(token: string, identity: string, sha256: string, decision: 'approve' | 'reject') {
-  return call(token, `${candidatePath(identity)}/${sha256}/review`, jsonInit({ decision }))
+export function reviewCandidate(token: string, identity: string, sha256: string, decision: Decision) {
+  return call(token, `${candidatePath(identity)}/${sha256}/review`, jsonInit(decision))
 }
 
 export function publish(token: string, dryRun: boolean) {

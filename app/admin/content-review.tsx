@@ -216,8 +216,8 @@ export default function ContentReview() {
                       {reviewable(s.status) && (
                         <Decide
                           busy={busy}
-                          onApprove={() => void run((token) => reviewRecord(token, 'sources', s.key, 'approve'))}
-                          onReject={() => void run((token) => reviewRecord(token, 'sources', s.key, 'reject'))}
+                          onApprove={() => void run((token) => reviewRecord(token, 'sources', s.key, { decision: 'approve' }))}
+                          onReject={(note) => run((token) => reviewRecord(token, 'sources', s.key, { decision: 'reject', note }))}
                         />
                       )}
                     </article>
