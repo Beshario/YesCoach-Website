@@ -7,6 +7,14 @@ export const CDN_URL = 'https://content.yescoach.fit'
 export const STATUSES = ['draft', 'approved', 'rejected'] as const
 export type Status = (typeof STATUSES)[number]
 
+/** The local image-checker's verdict against the heat map (YesCoachReact runbook CONTENT_API_DEPLOY.md §11.1). */
+export interface Check {
+  verdict: 'match' | 'mismatch'
+  note: string
+  by: string
+  at: string
+}
+
 export interface Candidate {
   identity: string
   sha256: string
@@ -19,6 +27,7 @@ export interface Candidate {
   bytes: number
   createdAt: string
   updatedAt: string
+  check: Check | null
 }
 
 export interface UploadMeta {
@@ -35,6 +44,8 @@ export class ApiError extends Error {
 }
 
 export const imageUrl = (sha256: string): string => `${CDN_URL}/img/${sha256}.webp`
+/** The heat-map reference the picture was generated from (R2 refs/, served by the CDN). */
+export const mapUrl = (identity: string): string => `${CDN_URL}/refs/maps/${encodeURIComponent(identity)}.png`
 
 const candidatePath = (identity: string): string => `/v1/admin/images/${encodeURIComponent(identity)}/candidates`
 

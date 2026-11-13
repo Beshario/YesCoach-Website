@@ -7,7 +7,7 @@ import type { User } from 'firebase/auth'
 import { Button } from '@/components/ui/button'
 import { auth } from '@/lib/firebaseWeb'
 import catalog from '@/lib/exerciseCatalog.json'
-import { ApiError, STATUSES, imageUrl, listCandidates, reviewCandidate, uploadCandidate } from '@/lib/adminApi'
+import { ApiError, STATUSES, imageUrl, listCandidates, mapUrl, reviewCandidate, uploadCandidate } from '@/lib/adminApi'
 import type { Candidate, Status } from '@/lib/adminApi'
 
 const exerciseNames = new Map(catalog.map((e) => [e.id, e.name]))
@@ -132,11 +132,21 @@ export default function ImageReview() {
                     {exerciseNames.get(identity) ?? identity}
                     <span className="ml-2 font-mono text-xs text-muted-foreground">{identity}</span>
                   </h2>
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid gap-4 lg:grid-cols-2">
                     {candidates.map((c) => (
                       <article key={c.sha256} className="rounded-lg border border-border bg-card overflow-hidden">
-                        <img src={imageUrl(c.sha256)} alt={c.alt} width={c.w} height={c.h} className="w-full h-auto aspect-square bg-muted" />
+                        <div className="grid grid-cols-2">
+                          <img src={imageUrl(c.sha256)} alt={c.alt} width={c.w} height={c.h} className="w-full h-auto aspect-square bg-muted" />
+                          <img src={mapUrl(identity)} alt="Heat map" width={1024} height={1024} className="w-full h-auto aspect-square bg-muted" />
+                        </div>
                         <div className="p-3 space-y-3 text-sm">
+                          {c.check && (
+                            <p className={c.check.verdict === 'match' ? 'text-foreground' : 'text-destructive'}>
+                              <span className="font-semibold">{c.check.verdict === 'match' ? 'Matches' : "Doesn't match"}</span>
+                              {' · '}
+                              {c.check.note}
+                            </p>
+                          )}
                           <p className="text-muted-foreground">
                             {c.model} · {c.promptVersion} · {Math.round(c.bytes / 1000)} KB
                           </p>
