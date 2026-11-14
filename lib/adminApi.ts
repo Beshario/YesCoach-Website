@@ -61,6 +61,13 @@ export interface Source {
   emoji: string
 }
 
+/** The owner's latest comment on a rejected record, kept after a re-draft for the next attempt. */
+export interface Rejection {
+  note: string
+  by: History['by']
+  at: string
+}
+
 export interface RecordItem<R = unknown> {
   section: 'content' | 'sources'
   key: string
@@ -69,6 +76,7 @@ export interface RecordItem<R = unknown> {
   publishedIn: number | null
   needsReview: boolean
   history: History
+  rejection: Rejection | null
 }
 
 export type ContentRecord = { identity: string; kind: string; version: number; body: Record<string, unknown> }
@@ -91,6 +99,11 @@ export interface PublishItem {
 
 /** A review: a rejection carries the owner's one-line comment, the feedback for the next attempt. */
 export type Decision = { decision: 'approve' } | { decision: 'reject'; note: string }
+/** A record's review also takes Undo of an approval (content-api src/records.ts `review`). */
+export type RecordDecision = Decision | { decision: 'reset' }
+
+/** A link as the owner saves it: the API names its creator from the video's channel (content-api src/creators.ts). */
+export type LinkInput = Omit<YoutubeLink, 'sourceId'>
 
 export interface SavedEdit {
   section: 'content'
@@ -147,13 +160,16 @@ export function listContent(token: string): Promise<ContentList> {
   return call<ContentList>(token, '/v1/admin/content')
 }
 
-/** The owner's edit: saved approved, it goes out with the next Publish. A refusal is an ApiError and nothing is saved. */
-export function editContent(token: string, identity: string, kind: 'cues' | 'youtube', body: Cues | { links: YoutubeLink[] }) {
+/**
+ * The owner's edit: saved approved, it goes out with the next Publish. Links are checked on YouTube
+ * at Save. A refusal is an ApiError and nothing is saved.
+ */
+export function editContent(token: string, identity: string, kind: 'cues' | 'youtube', body: Cues | { links: LinkInput[] }) {
   return call<SavedEdit>(token, `/v1/admin/content/${encodeURIComponent(identity)}/${kind}`, jsonInit({ body }))
 }
 
-export function reviewRecord(token: string, section: 'content' | 'sources', key: string, decision: Decision) {
-  return call(token, `/v1/admin/records/${section}/${encodeURIComponent(key)}/review`, jsonInit(decision))
+export function reviewRecord(token: string, key: string, decision: RecordDecision) {
+  return call(token, `/v1/admin/records/content/${encodeURIComponent(key)}/review`, jsonInit(decision))
 }
 
 export function reviewCandidate(token: string, identity: string, sha256: string, decision: Decision) {
