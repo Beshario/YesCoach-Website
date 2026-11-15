@@ -18,7 +18,13 @@ import { Review } from './parts'
 import type { ReviewState } from './parts'
 import ExerciseCard, { cardHeadingId } from './exercise-card'
 import PublishSheet from './publish-sheet'
+import EquipmentReview from './equipment-review'
 import type { SheetState } from './publish-sheet'
+
+/** The content tabs, then Equipment: sheets the exercise pictures are drawn with, outside Publish. */
+type View = Tab | 'equipment'
+const VIEWS: View[] = [...TABS, 'equipment']
+const VIEW_LABELS: Record<View, string> = { ...TAB_LABELS, equipment: 'Equipment' }
 
 type Load = { state: 'loading' } | { state: 'forbidden' } | { state: 'failed'; message: string } | { state: 'ready'; content: ContentList; snap: Snapshot }
 
@@ -83,7 +89,7 @@ export default function ContentReview() {
 
 function Signed({ user }: { user: User }) {
   const [load, setLoad] = useState<Load>({ state: 'loading' })
-  const [tab, setTab] = useState<Tab>('review')
+  const [tab, setTab] = useState<View>('review')
   const [search, setSearch] = useState('')
   const [saving, setSaving] = useState<Set<string>>(new Set())
   const [errors, setErrors] = useState<Map<string, string>>(new Map())
@@ -95,7 +101,7 @@ function Signed({ user }: { user: User }) {
   const [sheet, setSheet] = useState<SheetState | null>(null)
   const [published, setPublished] = useState<string | null>(null)
   const [focusNext, setFocusNext] = useState<string | null>(null)
-  const tabRefs = useRef<Record<Tab, HTMLButtonElement | null>>({ review: null, going_out: null, published: null })
+  const tabRefs = useRef<Record<View, HTMLButtonElement | null>>({ review: null, going_out: null, published: null, equipment: null })
 
   const fetchList = useCallback(async () => listContent(await user.getIdToken()), [user])
 
@@ -182,7 +188,7 @@ function Signed({ user }: { user: User }) {
     setNote: (id, text) => setNotes((m) => new Map(m).set(id, text)),
   }
 
-  function selectTab(next: Tab) {
+  function selectTab(next: View) {
     setTab(next)
     if (content) setLoad({ state: 'ready', content, snap: snapshot(content) })
   }
@@ -191,7 +197,7 @@ function Signed({ user }: { user: User }) {
     const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0
     if (!step) return
     event.preventDefault()
-    const next = TABS[(TABS.indexOf(tab) + step + TABS.length) % TABS.length]
+    const next = VIEWS[(VIEWS.indexOf(tab) + step + VIEWS.length) % VIEWS.length]
     selectTab(next)
     tabRefs.current[next]?.focus()
   }
@@ -243,7 +249,7 @@ function Signed({ user }: { user: User }) {
   const pending = content ? new Set(content.exercises.filter(needsReview).map((e) => e.identity)) : new Set<string>()
   const done = snap ? snap.toReview.filter((id) => !pending.has(id)).length : 0
   const query = search.trim().toLowerCase()
-  const listed = (snap?.tabs[tab] ?? [])
+  const listed = (snap && tab !== 'equipment' ? snap.tabs[tab] : [])
     .map((id) => byId.get(id))
     .filter((e): e is Exercise => e !== undefined)
     .filter((e) => tab !== 'published' || !query || e.identity.toLowerCase().includes(query) || exerciseName(e.identity).toLowerCase().includes(query))
@@ -267,7 +273,7 @@ function Signed({ user }: { user: User }) {
       </p>
       <main className="mx-auto max-w-6xl space-y-4 px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-4 sm:px-6">
         <div role="tablist" aria-label="Content" className="flex gap-1 border-b border-border" onKeyDown={onTabKey}>
-          {TABS.map((t, i) => (
+          {VIEWS.map((t, i) => (
             <button
               key={t}
               ref={(el) => {
@@ -278,15 +284,15 @@ function Signed({ user }: { user: User }) {
               type="button"
               aria-selected={tab === t}
               aria-controls="tab-panel"
-              aria-label={counts ? `${TAB_LABELS[t]}, ${counts[i]}` : TAB_LABELS[t]}
+              aria-label={counts && i < counts.length ? `${VIEW_LABELS[t]}, ${counts[i]}` : VIEW_LABELS[t]}
               tabIndex={tab === t ? 0 : -1}
               onClick={() => selectTab(t)}
               className={`-mb-px min-h-11 border-b-2 px-2 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-3 ${
                 tab === t ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground'
               }`}
             >
-              {TAB_LABELS[t]}
-              {counts && <span className="ml-1.5 tabular-nums">{counts[i]}</span>}
+              {VIEW_LABELS[t]}
+              {counts && i < counts.length && <span className="ml-1.5 tabular-nums">{counts[i]}</span>}
             </button>
           ))}
         </div>
@@ -312,7 +318,8 @@ function Signed({ user }: { user: User }) {
               </Button>
             </div>
           )}
-          {content && listed.length === 0 && (
+          {tab === 'equipment' && <EquipmentReview user={user} />}
+          {content && tab !== 'equipment' && listed.length === 0 && (
             <div className="space-y-3 py-8 text-center">
               <p className="text-muted-foreground">
                 {tab === 'review' ? 'Nothing to review' : tab === 'going_out' ? 'Nothing going out' : query ? 'No matches' : 'Nothing published'}
@@ -342,7 +349,7 @@ function Signed({ user }: { user: User }) {
         </footer>
       </main>
 
-      {content && snap && tab !== 'published' && (
+      {content && snap && tab !== 'published' && tab !== 'equipment' && (
         <div className="fixed inset-x-0 bottom-0 z-10 border-t border-border bg-background pb-[env(safe-area-inset-bottom)]">
           <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
             <p role="status" className="text-sm">

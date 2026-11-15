@@ -138,6 +138,24 @@ export function refusal(err: ApiError): string {
 export const imageUrl = (sha256: string): string => `${CDN_URL}/img/${sha256}.webp`
 /** The heat-map reference the picture was generated from (R2 refs/, served by the CDN). */
 export const mapUrl = (identity: string): string => `${CDN_URL}/refs/maps/${encodeURIComponent(identity)}.png`
+/** The style reference every picture and equipment sheet is drawn in. */
+export const STYLE_URL = `${CDN_URL}/refs/style.webp`
+
+/** An equipment sheet candidate (id `equipment:<key>`), from GET /v1/admin/images?kind=equipment (YesCoachReact images.ts). */
+export interface SheetCandidate {
+  identity: string
+  sha256: string
+  status: 'draft' | 'approved' | 'rejected'
+  alt: string
+  w: number
+  h: number
+  check: Check | null
+  rejection: { note: string; at: string } | null
+}
+
+export function listSheets(token: string): Promise<{ items: SheetCandidate[] }> {
+  return call<{ items: SheetCandidate[] }>(token, '/v1/admin/images?kind=equipment')
+}
 
 const candidatePath = (identity: string): string => `/v1/admin/images/${encodeURIComponent(identity)}/candidates`
 const jsonInit = (body: unknown): RequestInit => ({
