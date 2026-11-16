@@ -31,10 +31,7 @@ export function pictureState(images: ImageItem[], record: RecordItem | undefined
   return record.status === 'published' ? 'published' : 'going_out'
 }
 
-/** A transparent copy's prompt version is its dark source's plus this (YesCoachReact content-api src/images.ts ALPHA_SUFFIX). */
-const ALPHA_SUFFIX = '+alpha-v2'
-
-export const isTransparent = (c: ImageItem): boolean => c.promptVersion.endsWith(ALPHA_SUFFIX)
+export const isTransparent = (c: ImageItem): boolean => c.source !== null
 
 /** One picture to decide: a transparent copy with its dark source when both wait, else a single candidate. */
 export interface PictureCard {
@@ -42,12 +39,11 @@ export interface PictureCard {
   source: ImageItem | null
 }
 
-/** Pairs each transparent copy with the dark source of its prompt version; the API approves the copy for either (images.ts pairOf). */
+/** Pairs each transparent copy with the source it names; the API approves the copy for either (images.ts pairOf). */
 export function pictureCards(candidates: ImageItem[]): PictureCard[] {
-  const copies = candidates.filter(isTransparent)
-  const sourceOf = (copy: ImageItem) => candidates.find((c) => `${c.promptVersion}${ALPHA_SUFFIX}` === copy.promptVersion) ?? null
-  const paired = new Set(copies.map(sourceOf).filter((s): s is ImageItem => s !== null))
-  return candidates.filter((c) => !paired.has(c)).map((c) => ({ shown: c, source: copies.includes(c) ? sourceOf(c) : null }))
+  const sourceOf = (c: ImageItem) => candidates.find((s) => s.sha256 === c.source) ?? null
+  const paired = new Set(candidates.map(sourceOf).filter((s): s is ImageItem => s !== null))
+  return candidates.filter((c) => !paired.has(c)).map((c) => ({ shown: c, source: sourceOf(c) }))
 }
 
 export function itemStates(e: Exercise): Partial<Record<ItemKind, ItemState>> {

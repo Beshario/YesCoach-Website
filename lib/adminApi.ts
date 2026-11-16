@@ -30,6 +30,8 @@ export interface ImageItem {
   bytes: number
   model: string
   promptVersion: string
+  /** A transparent copy's dark source (its sha256); null for any other picture (content-api src/images.ts pairOf). */
+  source: string | null
   check: Check | null
   needsReview: boolean
   history: History
