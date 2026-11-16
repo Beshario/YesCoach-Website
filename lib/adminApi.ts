@@ -145,7 +145,7 @@ export const STYLE_URL = `${CDN_URL}/refs/style.webp`
 export interface SheetCandidate {
   identity: string
   sha256: string
-  status: 'draft' | 'approved' | 'rejected'
+  status: 'draft' | 'approved' | 'rejected' | 'superseded'
   alt: string
   w: number
   h: number

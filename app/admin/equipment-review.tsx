@@ -86,7 +86,7 @@ export default function EquipmentReview({ user }: { user: User }) {
   const [failed, setFailed] = useState<string | null>(null)
   const refresh = useCallback(async () => {
     try {
-      setItems((await listSheets(await user.getIdToken())).items.filter((c) => c.status !== 'rejected'))
+      setItems((await listSheets(await user.getIdToken())).items.filter((c) => c.status === 'draft' || c.status === 'approved'))
       setFailed(null)
     } catch (err) {
       setFailed(err instanceof Error ? err.message : String(err))

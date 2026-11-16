@@ -8,6 +8,7 @@ import { Check, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { imageUrl, mapUrl, reviewCandidate, uploadCandidate } from '@/lib/adminApi'
 import type { Exercise, ImageItem } from '@/lib/adminApi'
+import { isTransparent, pictureCards } from './model'
 import type { ItemState } from './model'
 import { historyLine } from './labels'
 import { Decide, ItemError, ItemHeading, useReview } from './parts'
@@ -29,16 +30,33 @@ function Verdict({ check }: { check: ImageItem['check'] }) {
   )
 }
 
-/** The picture and its heat map, side by side, captioned. Nothing tints the map. */
+/** The app's base-200, light and dark (YesCoachReact src/index.css): a transparent picture is shown on each. */
+const APP_BASES = [
+  { label: 'Light', color: '#F8F9FA' },
+  { label: 'Dark', color: '#1E1E1E' },
+]
+
+/** The picture and its heat map, side by side, captioned; a transparent picture on the app's light and dark base. Nothing tints the map. */
 function Pair({ identity, name, candidate, stacked = false }: { identity: string; name: string; candidate: ImageItem; stacked?: boolean }) {
   const figure = 'space-y-1'
-  const img = 'w-full h-auto aspect-square rounded-md border border-border bg-background'
+  const img = 'w-full h-auto aspect-square rounded-md border border-border'
+  const tiles = isTransparent(candidate) ? APP_BASES : [{ label: 'Picture', color: undefined }]
+  const columns = tiles.length === 2 ? 'grid-cols-3 lg:max-w-[924px]' : 'grid-cols-2 lg:max-w-[616px]'
   return (
-    <div className={stacked ? 'space-y-4' : 'grid grid-cols-2 gap-2 lg:max-w-[616px]'}>
-      <figure className={figure}>
-        <img src={imageUrl(candidate.sha256)} alt={candidate.alt} width={candidate.w} height={candidate.h} className={img} />
-        <figcaption className="text-xs text-muted-foreground">Picture</figcaption>
-      </figure>
+    <div className={stacked ? 'space-y-4' : `grid ${columns} gap-2`}>
+      {tiles.map(({ label, color }, i) => (
+        <figure key={label} className={figure}>
+          <img
+            src={imageUrl(candidate.sha256)}
+            alt={i === 0 ? candidate.alt : ''}
+            width={candidate.w}
+            height={candidate.h}
+            className={`${img} ${color ? '' : 'bg-background'}`}
+            style={color ? { backgroundColor: color } : undefined}
+          />
+          <figcaption className="text-xs text-muted-foreground">{label}</figcaption>
+        </figure>
+      ))}
       <figure className={figure}>
         <img src={mapUrl(identity)} alt={`Heat map for ${name}`} width={1024} height={1024} className={img} />
         <figcaption className="text-xs text-muted-foreground">Heat map</figcaption>
@@ -47,14 +65,21 @@ function Pair({ identity, name, candidate, stacked = false }: { identity: string
   )
 }
 
-function Candidate({ identity, name, candidate, state }: { identity: string; name: string; candidate: ImageItem; state: ItemState }) {
+/**
+ * One picture to decide. A transparent copy with its dark source waiting is one card: approving
+ * approves the copy (the API supersedes the source), and rejecting rejects both, so neither returns.
+ */
+function Candidate({ identity, name, candidate, source, state }: { identity: string; name: string; candidate: ImageItem; source: ImageItem | null; state: ItemState }) {
   const { run } = useReview()
   const id = `${identity}|picture`
   const dialog = useRef<HTMLDialogElement>(null)
   const enlarge = useRef<HTMLButtonElement>(null)
   const label = `picture, ${name}`
   const decide = (decision: { decision: 'approve' } | { decision: 'reject'; note: string }) =>
-    run(id, (token) => reviewCandidate(token, identity, candidate.sha256, decision))
+    run(id, async (token) => {
+      await reviewCandidate(token, identity, candidate.sha256, decision)
+      if (source && decision.decision === 'reject') await reviewCandidate(token, identity, source.sha256, decision)
+    })
 
   return (
     <div className="space-y-3">
@@ -82,6 +107,16 @@ function Candidate({ identity, name, candidate, state }: { identity: string; nam
           <dd>{candidate.model}</dd>
           <dt className="text-muted-foreground">Prompt version</dt>
           <dd>{candidate.promptVersion}</dd>
+          {source && (
+            <>
+              <dt className="text-muted-foreground">Dark source</dt>
+              <dd>
+                <a href={imageUrl(source.sha256)} target="_blank" rel="noreferrer" className="underline">
+                  {source.promptVersion}
+                </a>
+              </dd>
+            </>
+          )}
           <dt className="text-muted-foreground">Size</dt>
           <dd>
             {candidate.w} × {candidate.h} px, {Math.round(candidate.bytes / 1000)} KB
@@ -168,7 +203,7 @@ function Upload({ identity, name }: { identity: string; name: string }) {
 }
 
 /**
- * Drafts newest first, each to decide; with none, the approved picture with Withdraw.
+ * Drafts newest first, one card per picture (a transparent copy carries its dark source); with none, the approved picture with Withdraw.
  * `state` is the item's (model.ts pictureState); null when the exercise has no picture yet.
  */
 export default function Picture({ exercise, name, state }: { exercise: Exercise; name: string; state: ItemState | null }) {
@@ -184,8 +219,8 @@ export default function Picture({ exercise, name, state }: { exercise: Exercise;
           Picture
         </h3>
       )}
-      {shown.map((c) => (
-        <Candidate key={c.sha256} identity={exercise.identity} name={name} candidate={c} state={c.status === 'draft' ? 'review' : state!} />
+      {pictureCards(shown).map(({ shown: c, source }) => (
+        <Candidate key={c.sha256} identity={exercise.identity} name={name} candidate={c} source={source} state={c.status === 'draft' ? 'review' : state!} />
       ))}
       <ItemError id={id} />
       <Upload identity={exercise.identity} name={name} />
