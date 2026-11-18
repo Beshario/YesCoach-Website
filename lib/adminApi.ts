@@ -124,7 +124,7 @@ export interface UploadMeta {
   alt: string
 }
 
-/** A non-2xx answer: the HTTP status and the API's error body. */
+/** A non-2xx answer: the HTTP status and the API's error body (its raw text when not JSON). */
 export class ApiError extends Error {
   constructor(readonly status: number, readonly body: unknown) {
     super(`${status} ${JSON.stringify(body)}`)
@@ -133,8 +133,9 @@ export class ApiError extends Error {
 
 /** Why the API refused, in its own words: publish's problems, the validator's problem, or the error code. */
 export function refusal(err: ApiError): string {
+  if (typeof err.body === 'string') return `${err.status}: ${err.body}`
   const body = err.body as { error?: string; problems?: string[]; problem?: string }
-  return body.problems?.join('; ') ?? body.problem ?? body.error ?? err.message
+  return body.problems?.join('; ') ?? body.problem ?? (body.error ? `${body.error} (${err.status})` : err.message)
 }
 
 export const imageUrl = (sha256: string): string => `${CDN_URL}/img/${sha256}.webp`
@@ -167,11 +168,25 @@ const jsonInit = (body: unknown): RequestInit => ({
 })
 
 async function call<T>(token: string, path: string, init: RequestInit = {}): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
-    ...init,
-    headers: { Authorization: `Bearer ${token}`, ...init.headers },
-  })
-  const body = await res.json()
+  const what = `${init.method ?? 'GET'} ${path.split('?')[0]}`
+  let res: Response
+  try {
+    res = await fetch(`${API_URL}${path}`, {
+      ...init,
+      headers: { Authorization: `Bearer ${token}`, ...init.headers },
+    })
+  } catch (err) {
+    // The browser hides the answer when the network fails or the API gives this origin no CORS grant.
+    throw new Error(`${what}: no answer the page can read (${(err as Error).message}). Offline, or ${window.location.origin} is not an allowed origin.`)
+  }
+  const text = await res.text()
+  let body: unknown
+  try {
+    body = JSON.parse(text)
+  } catch {
+    if (!res.ok) throw new ApiError(res.status, text.slice(0, 300))
+    throw new Error(`${what}: ${res.status} answer is not JSON`)
+  }
   if (!res.ok) throw new ApiError(res.status, body)
   return body as T
 }
