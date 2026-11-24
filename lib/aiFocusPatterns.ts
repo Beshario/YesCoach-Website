@@ -15,14 +15,14 @@ export const STRENGTH_FOCUS: Record<string, string[]> = {
   'Pull (back, biceps)': [...PULL, ...CORE],
   Legs: [...LEGS, ...CORE],
   'Upper body': [...PUSH, ...PULL, ...CORE],
-  'Lower body': [...LEGS, ...CORE],
+  'Lower body': [...LEGS, 'back_extension', ...CORE],
 }
 
 /** Mobility focus value to its patterns. */
 export const MOBILITY_FOCUS: Record<string, string[]> = {
   'Lower back': ['spinal-extension-stretch', 'spinal-flexion-stretch', 'spinal-flow', 'thoracic-stretch', 'glute-stretch', 'hamstring-stretch', 'hip-flexor-stretch', 'hip-rotation-stretch', 'bird-dog', 'glute-bridges-dynamic', 'torso-twists'],
-  Hips: ['adductor-stretch', 'glute-stretch', 'hamstring-stretch', 'hip-flexor-stretch', 'hip-rotation-stretch', 'it-band-stretch', 'quad-stretch', 'walking-quad-stretch', 'leg-swings', 'glute-bridges-dynamic', 'worlds-greatest-stretch', 'cuban-rotations'],
-  Shoulders: ['shoulder-stretch', 'shoulder-circles', 'arm-swings', 'cuban-rotations', 'scapular-wall-slides', 'pec-stretch', 'lat-stretch', 'triceps-stretch', 'biceps-stretch', 'thoracic-stretch', 'neck-stretch'],
+  Hips: ['inchworms', 'adductor-stretch', 'glute-stretch', 'hamstring-stretch', 'hip-flexor-stretch', 'hip-rotation-stretch', 'it-band-stretch', 'quad-stretch', 'walking-quad-stretch', 'leg-swings', 'glute-bridges-dynamic', 'worlds-greatest-stretch', 'cuban-rotations'],
+  Shoulders: ['inchworms', 'shoulder-stretch', 'shoulder-circles', 'arm-swings', 'cuban-rotations', 'scapular-wall-slides', 'pec-stretch', 'lat-stretch', 'triceps-stretch', 'biceps-stretch', 'thoracic-stretch', 'neck-stretch'],
   'Desk posture': ['neck-stretch', 'pec-stretch', 'thoracic-stretch', 'shoulder-stretch', 'shoulder-circles', 'scapular-wall-slides', 'hip-flexor-stretch', 'spinal-extension-stretch', 'wrist-extensor-stretch', 'wrist-flexor-stretch', 'finger-flexor-stretch', 'biceps-stretch', 'lat-stretch'],
   'Knees and ankles': ['ankle-circles', 'calf-stretch', 'quad-stretch', 'walking-quad-stretch', 'toe-heel-walks', 'hamstring-stretch', 'it-band-stretch', 'leg-swings'],
 }
