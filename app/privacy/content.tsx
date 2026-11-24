@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import type { ReactNode } from "react"
+import { openAnalyticsChoice } from "@/components/analytics-consent"
 
 const EMAIL = "contact@yescoach.fit"
 
@@ -58,6 +59,8 @@ export default function PrivacyContent() {
           <div className="space-y-8 text-muted-foreground">
             <Section title="1. Who we are">
               <p>YesCoach makes the YesCoach app and this website. This policy covers both. Questions go to {mail}.</p>
+              {/* OWNER TO SUPPLY: the legal name and postal contact address of the data controller. Replace both placeholders before publishing. */}
+              <Line label="Controller">[LEGAL NAME], [CONTACT ADDRESS].</Line>
               <p>Most of what you do in YesCoach stays on your phone. Each section below names one thing you can do and what leaves your phone when you do it.</p>
             </Section>
 
@@ -88,8 +91,8 @@ export default function PrivacyContent() {
               <p>The coach asks your permission before its first request. Declining changes nothing else in the app. You can turn it off any time in Account, and nothing more is sent.</p>
               <Line label="What we send">the place you train and the time you chose. How recovered each muscle group looks and when you last trained it hard. Your active goals and their progress. Your pain reports, with severity, trend and how long ago. This is health data. How often you train and your usual session length. Your recent sessions, as days ago, muscles worked and hard sets. The exercises your equipment allows. Notes you asked the coach to remember. Today&apos;s workout from your plan, if you follow one. Your note for the day, up to 200 characters, if you type one.</Line>
               <Line label="What we do not send">your name, email, account ID, body measurements, or the loads you lifted.</Line>
-              <Line label="Where it goes">our server, run on Cloudflare, passes the request to Anthropic&apos;s API, which writes the plan. Anthropic receives the one-way code, not your account.</Line>
-              <Line label="What we keep">not the request, the note or the plan. We keep counts of your coach uses per day, week and month, the exercises the coach suggested to you and the ones you added, and, for 30 days, a reason code for any attempt that failed. Our AI gateway keeps metadata only, such as size, cost and timing.</Line>
+              <Line label="Where it goes">our server, run on Cloudflare, passes the request to Anthropic&apos;s API, which writes the plan. Anthropic receives the one-way code, not your account. Anthropic deletes API requests within 30 days, unless they are flagged for breaking its usage policy or the law requires longer.</Line>
+              <Line label="What we keep">not the request, the note or the plan. We keep counts of your coach uses per day, week and month, the exercises the coach suggested to you and the ones you added, and, for 30 days, a reason code for any attempt that failed. Our AI gateway keeps metadata only, such as size, cost and timing. Our server logs hold errors and timings, never your request, and are deleted after 7 days at most.</Line>
               <p>Uses are limited per day and per week. Because the note is text you type, do not put personal information in it.</p>
             </Section>
 
@@ -133,13 +136,18 @@ export default function PrivacyContent() {
               <p>YesCoach has no in-app purchases right now. We hold no payment details.</p>
             </Section>
 
-            <Section title="13. If you visit yescoach.fit">
-              <p>This website uses Google Analytics to count visits and see which pages are read. Google sets cookies in your browser for this.</p>
+            <Section id="website" title="13. If you visit yescoach.fit">
+              <p>This website can use Google Analytics to count visits and see which pages are read. It loads only if you tap Accept on the banner. Until then, and after Decline, no Google Analytics script runs and no Google Analytics cookies are set.</p>
+              <p>Your choice is kept in this browser.{' '}
+                <button type="button" onClick={openAnalyticsChoice} className="text-primary hover:underline">
+                  Change your choice
+                </button>
+              </p>
             </Section>
 
             <Section title="14. Who processes data for us">
               <ul className="list-disc pl-6 space-y-2">
-                <li>Google: sign-in (Firebase Authentication), app distribution (Google Play), and website analytics.</li>
+                <li>Google: sign-in (Firebase Authentication), app distribution (Google Play), and website analytics if you accept them.</li>
                 <li>PostHog: app analytics and session recordings, only if you allow them.</li>
                 <li>Cloudflare: our server, our AI gateway, and exercise content downloads.</li>
                 <li>Anthropic: writes coach plans, only if you use the coach.</li>
@@ -151,7 +159,7 @@ export default function PrivacyContent() {
               <ul className="list-disc pl-6 space-y-2">
                 <li>Data on your phone: until you delete it, reset the app or uninstall it.</li>
                 <li>Analytics: events 3 months, session recordings 30 days.</li>
-                <li>Coach records: failure codes 30 days. Use counts and exercise suggestions until you delete your account.</li>
+                <li>Coach records: failure codes 30 days. Use counts and exercise suggestions until you delete your account. Server logs 7 days at most. Anthropic: 30 days (section 5).</li>
                 <li>Muscle requests: 180 days if nobody approves them. Approved ones until you delete your account.</li>
                 <li>Your sign-in account: until you delete it.</li>
                 <li>Emails you send us: as long as we need to answer them.</li>

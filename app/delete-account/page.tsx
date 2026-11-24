@@ -50,7 +50,7 @@ export default function DeleteAccountPage() {
               <a href={`mailto:${EMAIL}?subject=Delete%20my%20YesCoach%20account`} className="text-primary hover:underline">
                 {EMAIL}
               </a>{' '}
-              with the subject &quot;Delete my YesCoach account&quot;, from the Google account you signed in with. We
+              with the subject &quot;Delete my YesCoach account&quot;, from the email address you signed in with. We
               delete your account and data within 30 days and reply to confirm.
             </p>
           </section>
@@ -58,7 +58,8 @@ export default function DeleteAccountPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-foreground">What is deleted</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Your sign-in account (Google sign-in through Firebase).</li>
+              <li>Your sign-in account (Firebase Authentication, whether you used Google, Apple or email).</li>
+              <li>Everything our server holds for your account: AI coach records (use counts, the exercises the coach suggested and the ones you added, failure codes) and your muscle requests, approved or not.</li>
               <li>All workouts, plans, goals, settings, and other data stored in the app on your phone.</li>
               <li>The workout records YesCoach wrote to Health Connect, while YesCoach is connected to it.</li>
               <li>Your privacy and terms choices stored in the app.</li>
@@ -78,7 +79,8 @@ export default function DeleteAccountPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-foreground">What is kept</h2>
             <p>
-              Nothing tied to your account is kept after deletion, except emails you sent us, which we keep only as
+              One record is kept: a one-way code made from your account ID and the date you deleted, so the deleted
+              account cannot send us data again. It holds no email or account ID. Emails you sent us are kept only as
               long as needed to answer them.
             </p>
             <p>

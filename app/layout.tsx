@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import Script from 'next/script'
 import { ThemeProvider } from '@/components/theme-provider'
+import { AnalyticsConsent } from '@/components/analytics-consent'
 import './globals.css'
 
 const geistSans = Geist({
@@ -101,15 +101,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
         </ThemeProvider>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-4BW7GGLKBX" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-4BW7GGLKBX');
-          `}
-        </Script>
+        <AnalyticsConsent />
       </body>
     </html>
   )
