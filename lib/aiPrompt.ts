@@ -189,6 +189,12 @@ function partsFor(c: Choices): { strength: string[]; mobility: string[] } {
     const [pattern, ...rest] = e.id.split(':')
     const entry = patterns.get(pattern) ?? { kind: e.kind, parts: [new Set(), new Set(), new Set()] }
     rest.forEach((part, i) => entry.parts[i].add(part))
+    // A mobility variant has one apparatus of its own (pec-stretch low is a
+    // doorway stretch), so it rides on the variant: "low [doorway]".
+    if (e.kind === 'mobility' && rest[2] !== 'none') {
+      entry.parts[0].delete(rest[0])
+      entry.parts[0].add(`${rest[0]} [${rest[2]}]`)
+    }
     patterns.set(pattern, entry)
   }
   const strength: string[] = []
@@ -207,7 +213,17 @@ function partsFor(c: Choices): { strength: string[]; mobility: string[] } {
 
 const FULL_LIST_URL = 'https://yescoach.fit/ai/yescoach-format.txt'
 
-const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
+/** Example rows: dumbbell work unless the visitor's equipment rules dumbbells out, so the AI never copies an implement it may not use. */
+const EXAMPLE_ROWS = {
+  dumbbell: `          { "exerciseId": "bench_press:flat:dumbbell:none", "exerciseName": "Dumbbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
+          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
+          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }`,
+  bodyweight: `          { "exerciseId": "push_up:standard:bodyweight:none", "exerciseName": "Push-Up", "sets": 3, "reps": "8-12", "suggestedRIR": 2, "restSec": 90 },
+          { "exerciseId": "handstand_push_up:pike:bodyweight:none", "exerciseName": "Pike Push-Up", "sets": 3, "reps": "6-10", "suggestedRIR": 2, "groupId": "A" },
+          { "exerciseId": "anti_extension:plank:bodyweight:none", "exerciseName": "Plank", "sets": 3, "reps": "30-60s", "suggestedRIR": 2, "groupId": "A" }`,
+}
+
+const formatRules = (example: string) => `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
 {
   "version": "1.2",
   "type": "yescoach_program",
@@ -219,9 +235,7 @@ const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the 
         "name": "Push",
         "exercises": [
           { "exerciseId": "shoulder-circles:standard:bodyweight:none", "exerciseName": "Shoulder Circles", "sets": 1, "reps": "10", "suggestedRIR": 5, "section": "warmup" },
-          { "exerciseId": "bench_press:flat:dumbbell:none", "exerciseName": "Dumbbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
-          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
-          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }
+${example}
         ],
         "groups": [ { "id": "A", "type": "superset", "rounds": 3, "restBetweenSec": 15, "restAfterSec": 90 } ]
       }
@@ -229,7 +243,7 @@ const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the 
   }
 }
 Rules:
-- exerciseId: "pattern:variant:implement:apparatus", every part taken from one line of EXERCISE PARTS below. Apparatus is "none" unless the line names one. Mobility moves use implement "bodyweight". Never invent a pattern; a variant and implement the app lacks together is swapped for the closest match.
+- exerciseId: "pattern:variant:implement:apparatus", every part taken from one line of EXERCISE PARTS below. Apparatus is "none" unless the line names one; a mobility variant written "low [doorway]" is "pec-stretch:low:bodyweight:doorway". Mobility moves use implement "bodyweight". Never invent a pattern; a variant and implement the app lacks together is swapped for the closest match.
 - exerciseName: a short plain name, e.g. "Incline Dumbbell Bench Press".
 - category: "training" for strength, "protocol" for mobility.
 - sets: whole number 1-20. suggestedRIR: whole number 0-10 (reps left in reserve; 5 for warm-up and mobility moves).
@@ -261,7 +275,9 @@ export function buildPrompt(c: Choices): BuiltPrompt {
   if (c.focus) about.push(`- Focus: ${c.focus}`)
   if (c.days) about.push(`- Days per week: ${c.days}`)
   if (c.minutes) about.push(`- Session length: ${c.minutes} minutes`)
+  const implementsAllowed = c.where ? HOME_IMPLEMENTS[c.where] : undefined
   if (c.where) about.push(`- Equipment: ${c.where}`)
+  if (implementsAllowed) about.push(`- Every exercise's implement must be ${implementsAllowed.join(' or ')}. No other equipment.`)
   if (c.level) about.push(`- Experience: ${c.level}`)
   if (c.warmup === 'yes') about.push('- Start with a short warm-up section')
   if (c.warmup === 'no') about.push('- No warm-up section')
@@ -275,13 +291,13 @@ export function buildPrompt(c: Choices): BuiltPrompt {
       ? 'Write one entry in "days" per session, in order. Reply with the program as one ```json code block (or a downloadable .json file), then one line on how it is split. Nothing else.'
       : 'Write exactly one entry in "days". Reply with the workout as one ```json code block, then one short line on what it trains. Nothing else.',
     '',
-    FORMAT_RULES,
+    formatRules(EXAMPLE_ROWS[implementsAllowed && !implementsAllowed.includes('dumbbell') ? 'bodyweight' : 'dumbbell']),
     '',
   )
 
   const parts = partsFor(c)
   head.push(
-    `The exact id of every exercise is listed at ${FULL_LIST_URL}. If you can open it, copy exact ids from there that match the parts below. If you cannot, build them from the parts. Do not ask me for it.`,
+    `The exact id of every exercise is listed at ${FULL_LIST_URL}. If you can open it, copy exact ids from there, but only ids whose parts appear below. If you cannot, build them from the parts. Do not ask me for it.`,
     '',
     'EXERCISE PARTS. Use only these.',
     ...(parts.strength.length ? ['STRENGTH (pattern: variants | implements):', ...parts.strength] : []),
