@@ -58,9 +58,8 @@ export default function PrivacyContent() {
 
           <div className="space-y-8 text-muted-foreground">
             <Section title="1. Who we are">
-              <p>YesCoach makes the YesCoach app and this website. This policy covers both. Questions go to {mail}.</p>
-              {/* OWNER TO SUPPLY: the legal name and postal contact address of the data controller. Replace both placeholders before publishing. */}
-              <Line label="Controller">[LEGAL NAME], [CONTACT ADDRESS].</Line>
+              <p>YesCoach is made by Zbesh Apps, a business of Zbesh Tech Inc. Zbesh Tech Inc. controls the data this policy describes. This policy covers the YesCoach app and this website.</p>
+              <p>The person accountable for privacy at Zbesh Tech Inc. answers questions and complaints at {mail}.</p>
               <p>Most of what you do in YesCoach stays on your phone. Each section below names one thing you can do and what leaves your phone when you do it.</p>
             </Section>
 
