@@ -72,7 +72,7 @@ export default function PrivacyContent() {
 
             <Section title="3. If you make an account">
               <p>You can sign in with Google, Apple, or an email and password. Google&apos;s Firebase Authentication holds your email, an account ID, and the name your sign-in provider shares, if any.</p>
-              <p>An account does not copy your workouts anywhere. They stay on your phone. If you lose your phone, an account will not bring them back. A backup file will (section 9).</p>
+              <p>An account does not copy your workouts anywhere. They stay on your phone. If you lose your phone, an account will not bring them back. A backup file will (section 8).</p>
               <p>You need an account for the AI coach (section 5) and for muscle requests (section 6). What those features keep on our server is stored under a one-way code made from your account ID, not under your email or the ID itself.</p>
               <p>Keep your sign-in details safe. Anyone who signs in as you can use these features as you.</p>
             </Section>
@@ -103,11 +103,7 @@ export default function PrivacyContent() {
               <p>Because the name is text you type, do not put personal information in it.</p>
             </Section>
 
-            <Section title="7. If you suggest a missing exercise">
-              <p>Suggest an exercise saves your suggestion on your phone. It is not sent to us.</p>
-            </Section>
-
-            <Section id="health-connect" title="8. If you connect Health Connect">
+            <Section id="health-connect" title="7. If you connect Health Connect">
               <p>On Android, you can choose to send your finished workouts to Health Connect, so they appear in the health apps you use. This is optional and off until you turn it on.</p>
               <Line label="What we write">each finished workout as an exercise session, with its exercises, sets and reps. On devices where Health Connect supports it, we also write weight, set order and effort.</Line>
               <Line label="What we read">nothing. YesCoach does not read data from Health Connect.</Line>
@@ -117,25 +113,25 @@ export default function PrivacyContent() {
               <Line label="Security">Health Connect stores this data on your phone under Android&apos;s protections. YesCoach does not copy it anywhere else.</Line>
             </Section>
 
-            <Section title="9. If you export a backup">
+            <Section title="8. If you export a backup">
               <p>In Account, you can save a full backup or a CSV of your workouts. The file is made on your phone and goes where you save or share it. We never receive it. Anyone you give the file to can read your training data.</p>
             </Section>
 
-            <Section title="10. If you open a video">
+            <Section title="9. If you open a video">
               <p>Exercise videos open on YouTube. YouTube&apos;s own privacy policy applies there. YesCoach sends YouTube nothing about you.</p>
             </Section>
 
-            <Section title="11. If you delete your account">
+            <Section title="10. If you delete your account">
               <p>In the app, go to Account, Data, Delete My Account. It deletes, in order: the workout records YesCoach wrote to Health Connect, everything our server holds under your one-way code (coach records and muscle requests), your sign-in account, the data on your phone, your privacy choices, and the app&apos;s analytics ID. <Link href="/delete-account" className="text-primary hover:underline">How to delete your account</Link>.</p>
               <p>We keep one record: the one-way code and the date you deleted, so the deleted account cannot send us data again. It holds no email or account ID.</p>
               <p>Analytics already sent stay under the random ID until they expire (section 4). To delete them sooner, or if you no longer have the app, email {mail}. We reply within 30 days.</p>
             </Section>
 
-            <Section title="12. Purchases">
+            <Section title="11. Purchases">
               <p>YesCoach has no in-app purchases right now. We hold no payment details.</p>
             </Section>
 
-            <Section id="website" title="13. If you visit yescoach.fit">
+            <Section id="website" title="12. If you visit yescoach.fit">
               <p>This website can use Google Analytics to count visits and see which pages are read. It loads only if you tap Accept on the banner. Until then, and after Decline, no Google Analytics script runs and no Google Analytics cookies are set.</p>
               <p>Your choice is kept in this browser.{' '}
                 <button type="button" onClick={openAnalyticsChoice} className="text-primary hover:underline">
@@ -144,7 +140,7 @@ export default function PrivacyContent() {
               </p>
             </Section>
 
-            <Section title="14. Who processes data for us">
+            <Section title="13. Who processes data for us">
               <ul className="list-disc pl-6 space-y-2">
                 <li>Google: sign-in (Firebase Authentication), app distribution (Google Play), and website analytics if you accept them.</li>
                 <li>PostHog: app analytics and session recordings, only if you allow them.</li>
@@ -154,7 +150,7 @@ export default function PrivacyContent() {
               <p>We use this data to run the features you choose, keep the service secure, fix bugs, see how the app is used, and answer support and legal requests.</p>
             </Section>
 
-            <Section title="15. How long we keep it">
+            <Section title="14. How long we keep it">
               <ul className="list-disc pl-6 space-y-2">
                 <li>Data on your phone: until you delete it, reset the app or uninstall it.</li>
                 <li>Analytics: events 3 months, session recordings 30 days.</li>
@@ -166,7 +162,7 @@ export default function PrivacyContent() {
               <p>Processor records may be kept longer where the law, tax rules or fraud prevention require it.</p>
             </Section>
 
-            <Section title="16. Your rights">
+            <Section title="15. Your rights">
               <p>Subject to applicable law, you can ask us to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Show you the information linked to your account.</li>
@@ -177,11 +173,11 @@ export default function PrivacyContent() {
               <p>Requests: {mail}</p>
             </Section>
 
-            <Section title="17. Children">
+            <Section title="16. Children">
               <p>YesCoach is not directed to children under 13. If you believe a child has given us personal information, contact us.</p>
             </Section>
 
-            <Section title="18. Changes">
+            <Section title="17. Changes">
               <p>We may update this policy. The date at the top shows the latest version. Continued use after an update means the updated policy applies.</p>
             </Section>
           </div>
