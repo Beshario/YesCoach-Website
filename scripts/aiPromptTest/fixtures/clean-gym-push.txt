@@ -1,0 +1,46 @@
+```json
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Test",
+    "category": "training",
+    "days": [
+      {
+        "name": "Day",
+        "exercises": [
+          {
+            "exerciseId": "bench_press:flat:barbell:none",
+            "exerciseName": "Barbell Bench Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "overhead_press:seated:dumbbell:none",
+            "exerciseName": "Seated Dumbbell Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "elbow_extension:pushdown:cable:none",
+            "exerciseName": "Cable Pushdown",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "shoulder_abduction:standard:cable:none",
+            "exerciseName": "Cable Lateral Raise",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+A push day.

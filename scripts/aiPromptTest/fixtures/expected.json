@@ -1,0 +1,68 @@
+{
+ "clean-gym-push.txt": {
+  "case": "gym-push",
+  "imports": true,
+  "outcomes": {
+   "kept": 4
+  }
+ },
+ "phantom-crossed-gym-pull.txt": {
+  "case": "gym-pull-supersets",
+  "imports": true,
+  "outcomes": {
+   "kept": 1,
+   "swap": 3
+  }
+ },
+ "dumbbell-lean-on-gym.txt": {
+  "case": "gym-push",
+  "imports": true,
+  "outcomes": {
+   "kept": 4
+  }
+ },
+ "invented-pattern.txt": {
+  "case": "gym-push",
+  "imports": false,
+  "outcomes": {
+   "kept": 1,
+   "unknown_pattern": 1
+  }
+ },
+ "prose-around-json.txt": {
+  "case": "gym-push",
+  "imports": true,
+  "outcomes": {
+   "kept": 2
+  }
+ },
+ "barbell-on-dumbbell-kit.txt": {
+  "case": "db-full",
+  "imports": true,
+  "outcomes": {
+   "kept": 3
+  },
+  "equipment": 2
+ },
+ "no-match-on-bodyweight.txt": {
+  "case": "bw-program-3",
+  "imports": false,
+  "outcomes": {
+   "kept": 1,
+   "no_match": 1
+  },
+  "equipment": 0
+ },
+ "unparseable-trailing-comma.txt": {
+  "case": "bw-legs",
+  "imports": false,
+  "parseError": true
+ },
+ "malformed-id.txt": {
+  "case": "gym-push",
+  "imports": false,
+  "outcomes": {
+   "malformed": 1
+  }
+ }
+}

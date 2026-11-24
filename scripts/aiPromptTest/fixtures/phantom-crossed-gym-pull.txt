@@ -1,0 +1,45 @@
+```json
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Test",
+    "category": "training",
+    "days": [
+      {
+        "name": "Day",
+        "exercises": [
+          {
+            "exerciseId": "lat_pulldown:neutral:dumbbell:none",
+            "exerciseName": "Dumbbell Neutral Pulldown",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "horizontal_pull:pendlay_row:cable:none",
+            "exerciseName": "Cable Pendlay Row",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "hinge:rdl:cable:none",
+            "exerciseName": "Cable RDL",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "horizontal_pull:seated:cable:none",
+            "exerciseName": "Seated Cable Row",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          }
+        ]
+      }
+    ]
+  }
+}
+```

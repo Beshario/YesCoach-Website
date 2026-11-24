@@ -1,0 +1,31 @@
+```json
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Test",
+    "category": "training",
+    "days": [
+      {
+        "name": "Day",
+        "exercises": [
+          {
+            "exerciseId": "push_up:standard:bodyweight:none",
+            "exerciseName": "Push-Up",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "bench_press:flat:bodyweight:none",
+            "exerciseName": "Bench Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          }
+        ]
+      }
+    ]
+  }
+}
+```
