@@ -1,0 +1,12 @@
+{
+  "gym-push": { "mode": "workout", "kind": "strength", "focus": "Push (chest, shoulders, triceps)", "minutes": "45", "where": "Gym, full equipment" },
+  "gym-pull-supersets": { "mode": "workout", "kind": "strength", "focus": "Pull (back, biceps)", "minutes": "60", "where": "Gym, full equipment", "supersets": "yes" },
+  "gym-legs": { "mode": "workout", "kind": "strength", "focus": "Legs", "minutes": "45", "where": "Gym, full equipment" },
+  "gym-full-program-4": { "mode": "program", "days": "4", "kind": "strength", "focus": "Full body", "where": "Gym, full equipment", "level": "Intermediate" },
+  "gym-unset": { "mode": "workout", "kind": "strength", "focus": "Upper body", "minutes": "45" },
+  "db-full": { "mode": "workout", "kind": "strength", "focus": "Full body", "minutes": "45", "where": "Home, dumbbells only" },
+  "db-push-warmup": { "mode": "workout", "kind": "strength", "focus": "Push (chest, shoulders, triceps)", "minutes": "45", "where": "Home, dumbbells only", "warmup": "yes" },
+  "bw-legs": { "mode": "workout", "kind": "strength", "focus": "Legs", "minutes": "30", "where": "Home, no equipment" },
+  "bw-program-3": { "mode": "program", "days": "3", "kind": "strength", "where": "Home, no equipment", "level": "Beginner" },
+  "mobility-hips": { "mode": "workout", "kind": "mobility", "focus": "Hips", "minutes": "15" }
+}

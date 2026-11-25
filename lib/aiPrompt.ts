@@ -1,15 +1,15 @@
 /**
  * Builds the /ai prompt from the visitor's choices.
  *
- * The copied prompt is self-contained: format rules, an example, and the
- * exercise id parts (lib/exerciseCatalog.json grouped by pattern, filtered by
- * the choices) travel in the prompt, so the AI never has to open a link or ask
- * a question. The full id list stays at /ai/yescoach-format.txt for an AI that
- * can read it; a pairing the parts allow but the app lacks is swapped on
- * import. Choices the visitor leaves open are not defaulted here; the AI picks.
+ * The copied prompt is self-contained: format rules, an example, and the exact
+ * exercise ids (lib/exerciseCatalog.json grouped by pattern, filtered by the
+ * visitor's kit and focus) travel in the prompt, so the AI never has to open a
+ * link or ask a question, and every id it can copy is one the app has. Choices
+ * the visitor leaves open are not defaulted here; the AI picks.
  */
 
 import catalog from './exerciseCatalog.json'
+import { MOBILITY_FOCUS, STRENGTH_FOCUS, WARMUP_FOR_STRENGTH } from './aiFocusPatterns'
 
 export type Mode = 'workout' | 'program'
 export type Kind = 'strength' | 'mobility'
@@ -167,47 +167,67 @@ const HOME_IMPLEMENTS: Record<string, string[]> = {
   'Home, no equipment': ['bodyweight'],
 }
 
-/** The exercises this prompt offers: only what the visitor's choices allow. */
+/** Implements the visitor's kit allows; undefined when any implement is fine. */
+export function kitFor(c: Choices): string[] | undefined {
+  return c.where ? HOME_IMPLEMENTS[c.where] : undefined
+}
+
+/** The exercises this prompt offers: only what the visitor's kit and focus allow. */
 export function exercisesFor(c: Choices): CatalogEntry[] {
   const all = catalog as CatalogEntry[]
-  if (c.kind === 'mobility') return all.filter((e) => e.kind === 'mobility')
-  const implementsAllowed = c.where ? HOME_IMPLEMENTS[c.where] : undefined
+  const patternsOf = (e: CatalogEntry) => e.id.split(':')[0]
+  if (c.kind === 'mobility') {
+    const focused = c.focus ? MOBILITY_FOCUS[c.focus] : undefined
+    return all.filter((e) => e.kind === 'mobility' && (!focused || focused.includes(patternsOf(e))))
+  }
+  const implementsAllowed = kitFor(c)
+  const focused = c.focus ? STRENGTH_FOCUS[c.focus] : undefined
+  const warmupPatterns = c.focus && WARMUP_FOR_STRENGTH[c.focus]?.flatMap((f) => MOBILITY_FOCUS[f])
   return all.filter((e) => {
-    if (e.kind === 'mobility') return c.warmup !== 'no'
-    return !implementsAllowed || implementsAllowed.includes(e.id.split(':')[2])
+    if (e.kind === 'mobility') return c.warmup !== 'no' && (!warmupPatterns || warmupPatterns.includes(patternsOf(e)))
+    return (!implementsAllowed || implementsAllowed.includes(e.id.split(':')[2])) && (!focused || focused.includes(patternsOf(e)))
   })
 }
 
 /**
- * The exercises as id parts, one line per pattern: strength
- * "pattern: variants | implements" (plus a non-default apparatus), mobility
- * "pattern: variants".
+ * The exact ids on offer, one line per pattern: "pattern: entry, entry". An id
+ * is the pattern, a colon and one whole entry (variant:implement:apparatus), so
+ * nothing the AI writes can be a pairing the app lacks.
  */
-function partsFor(c: Choices): { strength: string[]; mobility: string[] } {
-  const patterns = new Map<string, { kind: CatalogEntry['kind']; parts: [Set<string>, Set<string>, Set<string>] }>()
+function idLines(c: Choices): { strength: string[]; mobility: string[] } {
+  const lines = { strength: new Map<string, string[]>(), mobility: new Map<string, string[]>() }
   for (const e of exercisesFor(c)) {
-    const [pattern, ...rest] = e.id.split(':')
-    const entry = patterns.get(pattern) ?? { kind: e.kind, parts: [new Set(), new Set(), new Set()] }
-    rest.forEach((part, i) => entry.parts[i].add(part))
-    patterns.set(pattern, entry)
+    const [pattern, ...entry] = e.id.split(':')
+    const group = lines[e.kind]
+    group.set(pattern, [...(group.get(pattern) ?? []), entry.join(':')])
   }
-  const strength: string[] = []
-  const mobility: string[] = []
-  for (const [pattern, { kind, parts: [variants, implementsUsed, apparatus] }] of patterns) {
-    const join = (set: Set<string>) => [...set].join(', ')
-    if (kind === 'mobility') {
-      mobility.push(`${pattern}: ${join(variants)}`)
-    } else {
-      const special = [...apparatus].filter((a) => a !== 'none')
-      strength.push(`${pattern}: ${join(variants)} | ${join(implementsUsed)}${special.length ? ` | apparatus ${special.join(', ')}` : ''}`)
-    }
-  }
-  return { strength, mobility }
+  const render = (group: Map<string, string[]>) => [...group].map(([pattern, entries]) => `${pattern}: ${entries.join(', ')}`)
+  return { strength: render(lines.strength), mobility: render(lines.mobility) }
 }
 
-const FULL_LIST_URL = 'https://yescoach.fit/ai/yescoach-format.txt'
+/**
+ * Example rows: real ids for the visitor's kit. A gym or unset kit gets mixed
+ * implements so no single one reads as the default; dumbbells-only and
+ * bodyweight kits get rows their kit allows.
+ */
+const EXAMPLE_ROWS = {
+  mixed: `          { "exerciseId": "bench_press:flat:barbell:none", "exerciseName": "Barbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
+          { "exerciseId": "shoulder_abduction:standard:cable:none", "exerciseName": "Cable Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
+          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }`,
+  dumbbell: `          { "exerciseId": "bench_press:flat:dumbbell:none", "exerciseName": "Dumbbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
+          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
+          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }`,
+  bodyweight: `          { "exerciseId": "push_up:standard:bodyweight:none", "exerciseName": "Push-Up", "sets": 3, "reps": "8-12", "suggestedRIR": 2, "restSec": 90 },
+          { "exerciseId": "handstand_push_up:pike:bodyweight:none", "exerciseName": "Pike Push-Up", "sets": 3, "reps": "6-10", "suggestedRIR": 2, "groupId": "A" },
+          { "exerciseId": "anti_extension:plank:bodyweight:none", "exerciseName": "Plank", "sets": 3, "reps": "30-60s", "suggestedRIR": 2, "groupId": "A" }`,
+}
 
-const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
+function exampleFor(kit: string[] | undefined): string {
+  if (!kit) return EXAMPLE_ROWS.mixed
+  return kit.includes('dumbbell') ? EXAMPLE_ROWS.dumbbell : EXAMPLE_ROWS.bodyweight
+}
+
+const formatRules = (example: string) => `FORMAT (YesCoach program format 1.2). The app rejects the whole reply if any rule is broken.
 {
   "version": "1.2",
   "type": "yescoach_program",
@@ -219,9 +239,7 @@ const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the 
         "name": "Push",
         "exercises": [
           { "exerciseId": "shoulder-circles:standard:bodyweight:none", "exerciseName": "Shoulder Circles", "sets": 1, "reps": "10", "suggestedRIR": 5, "section": "warmup" },
-          { "exerciseId": "bench_press:flat:dumbbell:none", "exerciseName": "Dumbbell Flat Bench Press", "sets": 3, "reps": "8-10", "suggestedRIR": 2, "restSec": 120 },
-          { "exerciseId": "shoulder_abduction:standard:dumbbell:none", "exerciseName": "Dumbbell Lateral Raise", "sets": 3, "reps": "12-15", "suggestedRIR": 1, "groupId": "A" },
-          { "exerciseId": "elbow_extension:overhead:dumbbell:none", "exerciseName": "Dumbbell Overhead Extension", "sets": 3, "reps": "10-12", "suggestedRIR": 1, "groupId": "A" }
+${example}
         ],
         "groups": [ { "id": "A", "type": "superset", "rounds": 3, "restBetweenSec": 15, "restAfterSec": 90 } ]
       }
@@ -229,7 +247,7 @@ const FORMAT_RULES = `FORMAT (YesCoach program format 1.2). The app rejects the 
   }
 }
 Rules:
-- exerciseId: "pattern:variant:implement:apparatus", every part taken from one line of EXERCISE PARTS below. Apparatus is "none" unless the line names one. Mobility moves use implement "bodyweight". Never invent a pattern; a variant and implement the app lacks together is swapped for the closest match.
+- exerciseId: copy one id from EXERCISE IDS below, whole: a pattern, a colon, then one entry from that pattern's line. Never mix parts from different entries and never write an id that is not listed. The example rows only show the format.
 - exerciseName: a short plain name, e.g. "Incline Dumbbell Bench Press".
 - category: "training" for strength, "protocol" for mobility.
 - sets: whole number 1-20. suggestedRIR: whole number 0-10 (reps left in reserve; 5 for warm-up and mobility moves).
@@ -238,7 +256,7 @@ Rules:
 - section (optional): "warmup", "power", "accessories" or "cooldown". Leave it out for main work. Never on a group member (put it on the group).
 - groups (optional, supersets and circuits): each group {"id","type":"superset" or "circuit","rounds","restBetweenSec","restAfterSec"}; members carry "groupId", sit next to each other in the list, number at least 2, and their sets equal the group's rounds. Leave "groups" out when there are none.
 - No comments, no trailing commas.
-Before you reply, check every rule above, especially that each exerciseId is built from the parts.`
+Before you reply, check every rule above, especially that each exerciseId is listed below.`
 
 export interface BuiltPrompt {
   text: string
@@ -261,7 +279,9 @@ export function buildPrompt(c: Choices): BuiltPrompt {
   if (c.focus) about.push(`- Focus: ${c.focus}`)
   if (c.days) about.push(`- Days per week: ${c.days}`)
   if (c.minutes) about.push(`- Session length: ${c.minutes} minutes`)
+  const implementsAllowed = kitFor(c)
   if (c.where) about.push(`- Equipment: ${c.where}`)
+  if (implementsAllowed) about.push(`- Every exercise's implement must be ${implementsAllowed.join(' or ')}. No other equipment.`)
   if (c.level) about.push(`- Experience: ${c.level}`)
   if (c.warmup === 'yes') about.push('- Start with a short warm-up section')
   if (c.warmup === 'no') about.push('- No warm-up section')
@@ -275,17 +295,15 @@ export function buildPrompt(c: Choices): BuiltPrompt {
       ? 'Write one entry in "days" per session, in order. Reply with the program as one ```json code block (or a downloadable .json file), then one line on how it is split. Nothing else.'
       : 'Write exactly one entry in "days". Reply with the workout as one ```json code block, then one short line on what it trains. Nothing else.',
     '',
-    FORMAT_RULES,
+    formatRules(exampleFor(implementsAllowed)),
     '',
   )
 
-  const parts = partsFor(c)
+  const ids = idLines(c)
   head.push(
-    `The exact id of every exercise is listed at ${FULL_LIST_URL}. If you can open it, copy exact ids from there that match the parts below. If you cannot, build them from the parts. Do not ask me for it.`,
-    '',
-    'EXERCISE PARTS. Use only these.',
-    ...(parts.strength.length ? ['STRENGTH (pattern: variants | implements):', ...parts.strength] : []),
-    ...(parts.mobility.length ? ['MOBILITY (pattern: variants):', ...parts.mobility] : []),
+    'EXERCISE IDS. Use only these.',
+    ...(ids.strength.length ? ['STRENGTH (pattern: variant:implement:apparatus, ...):', ...ids.strength] : []),
+    ...(ids.mobility.length ? [`MOBILITY (pattern: variant:implement:apparatus, ...):`, ...ids.mobility] : []),
   )
   return { text: head.join('\n'), exerciseCount: exercisesFor(c).length }
 }

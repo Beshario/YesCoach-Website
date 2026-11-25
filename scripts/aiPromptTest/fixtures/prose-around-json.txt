@@ -1,0 +1,34 @@
+Sure! Here is your push workout. I kept it short {as asked}.
+
+```json
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Test",
+    "category": "training",
+    "days": [
+      {
+        "name": "Day",
+        "exercises": [
+          {
+            "exerciseId": "bench_press:incline:dumbbell:none",
+            "exerciseName": "Incline Dumbbell Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "elbow_extension:overhead:dumbbell:none",
+            "exerciseName": "Dumbbell Overhead Extension",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+This trains chest and triceps. Enjoy!

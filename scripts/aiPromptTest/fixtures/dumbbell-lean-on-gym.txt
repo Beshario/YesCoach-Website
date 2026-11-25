@@ -1,0 +1,45 @@
+```json
+{
+  "version": "1.2",
+  "type": "yescoach_program",
+  "program": {
+    "name": "Test",
+    "category": "training",
+    "days": [
+      {
+        "name": "Day",
+        "exercises": [
+          {
+            "exerciseId": "bench_press:flat:dumbbell:none",
+            "exerciseName": "Dumbbell Bench Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "shoulder_abduction:standard:dumbbell:none",
+            "exerciseName": "Dumbbell Lateral Raise",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "elbow_extension:overhead:dumbbell:none",
+            "exerciseName": "Dumbbell Overhead Extension",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          },
+          {
+            "exerciseId": "overhead_press:seated:dumbbell:none",
+            "exerciseName": "Seated Dumbbell Press",
+            "sets": 3,
+            "reps": "8-10",
+            "suggestedRIR": 2
+          }
+        ]
+      }
+    ]
+  }
+}
+```

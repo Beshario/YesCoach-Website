@@ -54,7 +54,7 @@ const faqs: { question: string; answer: string; link?: { href: string; label: st
   {
     question: 'Does the AI need to browse the web?',
     answer:
-      'No. The prompt carries the format and the exercise parts that fit your choices, so any AI chat can write the workout, even one that cannot open links. An AI that can browse may also use the full exercise list.',
+      'No. The prompt carries the format and the exact exercise ids that fit your equipment and focus, so any AI chat can write the workout, including one that cannot open links.',
   },
   {
     question: 'Is YesCoach free?',
