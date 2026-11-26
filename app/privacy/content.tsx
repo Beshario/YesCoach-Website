@@ -53,7 +53,7 @@ export default function PrivacyContent() {
             Privacy Policy
           </h1>
           <p className="text-sm text-muted-foreground mb-12">
-            Last updated: November 24, 2026
+            Last updated: November 26, 2026
           </p>
 
           <div className="space-y-8 text-muted-foreground">
@@ -79,7 +79,7 @@ export default function PrivacyContent() {
 
             <Section title="4. If you allow analytics">
               <p>Analytics are off until you allow them. You can turn them off any time in Account.</p>
-              <Line label="What we send">which screens and features you use, sessions you start and finish, and each set you log with its exercise, load, reps and effort. Also the app version, device type, and where you installed the app from.</Line>
+              <Line label="What we send">which screens and features you use, sessions you start and finish, and each set you log with its exercise, load, reps and effort. Also the app version, device type, and where you installed the app from. The name of an app error and where in our code it happened, never its text.</Line>
               <Line label="What we do not send">your name, email, account ID, or text you type.</Line>
               <Line label="Identity">events are linked to a random ID made on your phone. They are not linked to your account, even when you are signed in.</Line>
               <Line label="Session recordings">with analytics on, we may record how you move through screens to find bugs. Text you type is hidden. Recording stops on screens where you report pain or answer setup questions.</Line>
