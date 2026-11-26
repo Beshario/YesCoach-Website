@@ -199,7 +199,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-muted-foreground text-lg mb-20 max-w-2xl"
           >
-            Every set updates the model. Muscle dose, recovery state, cumulative tonnage, balance, all recomputed every session.
+            Every set updates the model. Muscle dose, recovery state (est.), cumulative tonnage, balance, all recomputed every session.
           </motion.p>
 
           <div className="space-y-24">
@@ -304,7 +304,7 @@ export default function Home() {
             >
               <h3 className="text-2xl font-bold text-primary">Start with a proven structure.</h3>
               <p className="text-muted-foreground leading-relaxed text-lg">
-                Push/Pull/Legs. Upper/Lower. Or build your own. Your plan lives in the app, ready when you show up.
+                Pick a free program, set the weeks, and Plan shows your next day. Or build your own.
               </p>
             </motion.div>
 

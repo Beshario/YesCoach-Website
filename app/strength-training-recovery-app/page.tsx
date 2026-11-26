@@ -97,7 +97,7 @@ export default function StrengthTrainingRecoveryAppPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
             >
-              Try the Android Beta
+              Get YesCoach free on Android
             </a>
             <a
               href="https://twitter.com/YCoach58265"
@@ -158,7 +158,7 @@ export default function StrengthTrainingRecoveryAppPage() {
               </h2>
               <ul className="space-y-3 text-muted-foreground">
                 <li>Tracks session-level muscle stress across every logged workout.</li>
-                <li>Connects set logging to recovery interpretation.</li>
+                <li>Connects set logging to estimated recovery.</li>
                 <li>Shows weekly and monthly patterns alongside daily snapshots.</li>
                 <li>Built for strength training.</li>
               </ul>
@@ -167,7 +167,7 @@ export default function StrengthTrainingRecoveryAppPage() {
             <aside className="rounded-2xl border border-border bg-card p-8">
               <h2 className="text-xl font-semibold text-foreground mb-4">Next step</h2>
               <p className="text-muted-foreground mb-5">
-                Try the beta, then send feedback on what feels useful, unclear, or missing.
+                Log a week of training, then tell us what feels useful, unclear, or missing.
               </p>
               <div className="flex flex-col gap-3">
                 <a

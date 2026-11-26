@@ -106,7 +106,7 @@ const faqs = [
   {
     question: 'Where do I find this routine in the app?',
     answer:
-      'Search "Desk & Posture" under Programs, or open it from the Pain & Mobility shelf. Each exercise has its own log entry so you can track completion over time.',
+      'In Plan, tap Start a program, then open Desk & Posture under Pain & Mobility. Each exercise has its own log entry so you can track completion over time.',
   },
 ]
 
@@ -148,7 +148,7 @@ export default function DeskPostureRoutinePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
             >
-              Try the Android Beta
+              Get YesCoach free on Android
             </a>
             <a
               href="https://twitter.com/YCoach58265"
@@ -236,7 +236,7 @@ export default function DeskPostureRoutinePage() {
                 How to find and log this routine
               </h2>
               <ul className="space-y-3 text-muted-foreground">
-                <li>Search "Desk & Posture" under Programs, or open it from the Pain & Mobility shelf.</li>
+                <li>In Plan, tap Start a program, then open Desk & Posture under Pain & Mobility.</li>
                 <li>Each move logs individually, so a partial session still counts.</li>
                 <li>Read more on protocol structure at{' '}
                   <Link href="/blog/programs-and-protocols" className="text-primary underline underline-offset-4">
@@ -250,7 +250,7 @@ export default function DeskPostureRoutinePage() {
             <aside className="rounded-2xl border border-border bg-card p-8">
               <h2 className="text-xl font-semibold text-foreground mb-4">Next step</h2>
               <p className="text-muted-foreground mb-5">
-                Try the beta, run the Desk Reset Session today, and see how it feels against your usual afternoon slump.
+                Run the Desk Reset Session today and see how it feels against your usual afternoon slump.
               </p>
               <div className="flex flex-col gap-3">
                 <a

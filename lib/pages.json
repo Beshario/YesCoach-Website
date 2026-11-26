@@ -1,10 +1,10 @@
 {
   "$comment": "Every public URL; unlisted routes (noindex) go under unlisted. Drives sitemap.ts (lastModified, changeFrequency, priority) and the IndexNow workflow (sources). When you change a page's content, set lastModified to the day it ships. scripts/check-pages.mjs fails the build if an app/**/page.tsx has no entry here.",
   "pages": [
-    { "path": "/", "sources": ["app/page.tsx"], "lastModified": "2026-10-04", "changeFrequency": "weekly", "priority": 1 },
-    { "path": "/strength-training-recovery-app", "sources": ["app/strength-training-recovery-app/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.8 },
+    { "path": "/", "sources": ["app/page.tsx"], "lastModified": "2026-11-25", "changeFrequency": "weekly", "priority": 1 },
+    { "path": "/strength-training-recovery-app", "sources": ["app/strength-training-recovery-app/"], "lastModified": "2026-11-25", "changeFrequency": "monthly", "priority": 0.8 },
     { "path": "/anterior-pelvic-tilt-exercises", "sources": ["app/anterior-pelvic-tilt-exercises/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
-    { "path": "/desk-posture-routine", "sources": ["app/desk-posture-routine/"], "lastModified": "2026-09-13", "changeFrequency": "monthly", "priority": 0.7 },
+    { "path": "/desk-posture-routine", "sources": ["app/desk-posture-routine/"], "lastModified": "2026-11-25", "changeFrequency": "monthly", "priority": 0.7 },
     { "path": "/ai", "sources": ["app/ai/", "components/prompt-builder.tsx", "lib/aiPrompt.ts", "lib/exerciseCatalog.json"], "lastModified": "2026-11-04", "changeFrequency": "monthly", "priority": 0.8 },
     { "path": "/blog", "sources": ["app/blog/page.tsx"], "lastModified": "2026-11-04", "changeFrequency": "weekly", "priority": 0.6 },
     { "path": "/blog/train-with-ai", "sources": ["app/blog/train-with-ai/", "public/blog/train-with-ai/"], "lastModified": "2026-11-04", "changeFrequency": "monthly", "priority": 0.7 },
