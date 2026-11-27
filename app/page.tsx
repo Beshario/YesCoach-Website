@@ -7,6 +7,7 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { PhoneFrame } from '@/components/phone-frame'
 import { AppScreenshot } from '@/components/app-screenshot'
 import { playStoreUrl } from '@/lib/playStore'
+import { HeroVideo } from '@/components/hero-video'
 
 export default function Home() {
   return (
@@ -112,35 +113,14 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Phone mockups */}
+            {/* Promo video */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-[540px] flex items-center justify-center lg:justify-end"
+              className="flex items-center justify-center lg:justify-end"
             >
-              {/* Back phone — behind, rotated */}
-              <div className="absolute left-6 lg:left-0 top-4 rotate-[-7deg] opacity-60 w-[170px] sm:w-[190px] z-0">
-                <PhoneFrame>
-                  <AppScreenshot
-                    dark="/screenshots/dark/home-back.webp"
-                    light="/screenshots/light/home-back.webp"
-                    alt="YesCoach app back view"
-                    priority
-                  />
-                </PhoneFrame>
-              </div>
-
-              {/* Front phone — in front, slight counter-rotation */}
-              <div className="relative rotate-[2deg] w-[210px] ml-24 lg:ml-32 z-10">
-                <PhoneFrame>
-                  <AppScreenshot
-                    dark="/screenshots/dark/home-front.webp"
-                    light="/screenshots/light/home-front.webp"
-                    alt="YesCoach app home screen"
-                  />
-                </PhoneFrame>
-              </div>
+              <HeroVideo />
             </motion.div>
 
           </div>
