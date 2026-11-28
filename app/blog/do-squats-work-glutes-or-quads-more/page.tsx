@@ -13,7 +13,7 @@ const HERO_ALT = "YesCoach body map for a back squat next to a wide-stance (sumo
 export const metadata: Metadata = {
   title: FULL_TITLE,
   description,
-  authors: [{ name: 'YesCoach' }],
+  authors: [{ name: 'Beshari Jamal' }],
   openGraph: {
     title: FULL_TITLE,
     description,
@@ -39,7 +39,7 @@ const jsonLd = {
   "@type": "Article",
   "headline": TITLE,
   "description": description,
-  "author": { "@type": "Organization", "name": "YesCoach" },
+  "author": { "@type": "Person", "name": "Beshari Jamal" },
   "publisher": { "@type": "Organization", "name": "YesCoach", "url": "https://yescoach.fit" },
   "datePublished": "2026-11-27",
   "mainEntityOfPage": URL,

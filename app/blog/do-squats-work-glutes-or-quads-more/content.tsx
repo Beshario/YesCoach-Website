@@ -68,7 +68,7 @@ export default function BlogPostContent() {
         >
           <div className="mb-10">
             <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
-              <span>YesCoach</span>
+              <span>Beshari Jamal</span>
               <span aria-hidden="true">·</span>
               <time dateTime="2026-11-27">November 27, 2026</time>
               <span aria-hidden="true">·</span>
@@ -144,7 +144,7 @@ export default function BlogPostContent() {
                 A 2025 study of 12 trained men squatted at 70% of their one-rep max with a flat foot, raised heels or a raised forefoot. Quadriceps activation was greater with the flat foot and raised heels than with a raised forefoot. <Cite href="https://doi.org/10.3389/fphys.2025.1727141">Bozkurt 2025 in Frontiers in Physiology</Cite>.
               </p>
               <p>
-                We did not find a study on toe-out angle we could read and trust, so this post makes no claim about it. Pick the angle that lets you reach depth with your knees tracking over your toes.
+                I did not find a study on toe-out angle I could read and trust, so this post makes no claim about it. Pick the angle that lets you reach depth with your knees tracking over your toes.
               </p>
             </section>
 
