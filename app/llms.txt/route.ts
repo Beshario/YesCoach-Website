@@ -26,6 +26,7 @@ YesCoach computes which muscles a given exercise recruits from joint torque and 
 - [YesCoach program format](https://yescoach.fit/ai/yescoach-format.txt): AI-readable instructions for writing an importable program, with the full list of valid exercise IDs. Read this before writing a YesCoach program.
 - [YesCoach exercise list](https://yescoach.fit/ai/exercises.json): every valid exercise ID as JSON (id, name, kind), the same list the prompt builder uses.
 - [Blog](https://yescoach.fit/blog): index of all posts.
+- [Do squats work glutes or quads more?](https://yescoach.fit/blog/do-squats-work-glutes-or-quads-more): how bar position, stance width, depth and foot position shift squat work between glutes and quads, with the studies behind each.
 - [How to train with AI](https://yescoach.fit/blog/train-with-ai): how to make a workout plan with ChatGPT, what to put in the prompt, six checks for the reply, and how to log it and see what it trained.
 - [How to start strength training at home](https://yescoach.fit/blog/programs-and-protocols): the three beginner programs and seven mobility protocols, with the minimum-effective-dose evidence behind each.
 - [Watch a lift light up](https://yescoach.fit/blog/watch-a-lift-light-up): how one bench press set distributes joint torque across pectoralis major, anterior deltoid, and triceps brachii.

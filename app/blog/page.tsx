@@ -29,6 +29,14 @@ interface Post {
 
 const posts: Post[] = [
   {
+    slug: "do-squats-work-glutes-or-quads-more",
+    title: "Do squats work glutes or quads more? It depends on the squat",
+    summary: "Bar position, stance width and depth shift the split toward glutes or quads. What the studies found and how to pick your squat.",
+    date: "2026-11-27",
+    displayDate: "November 27, 2026",
+    readTime: "4 min read",
+  },
+  {
     slug: "train-with-ai",
     title: "How to train with AI: make a workout plan with ChatGPT, then track it",
     summary: "What to put in the prompt, six things to check in the reply, and why logging every set decides whether the plan works.",
